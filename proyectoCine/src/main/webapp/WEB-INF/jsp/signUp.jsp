@@ -1,3 +1,4 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,13 +16,7 @@
   </head>
   <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!">CINE UTN</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-      </div>
-    </nav>
+     <c:import url="WEB-INF/jsp/includes/navbarProyecto.jsp"/>
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-4 px-lg-5 my-5">
@@ -109,9 +104,8 @@
 
 
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-    </footer>
+    
+     <c:import url="WEB-INF/jsp/includes/footer.jsp"/>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
