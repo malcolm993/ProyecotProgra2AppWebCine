@@ -6,6 +6,7 @@ public class Usuario implements Serializable{
     private String apellido;
     private String email;
     private String contrasenia;
+    private int credito;
 
     public Usuario(){
 
@@ -19,6 +20,14 @@ public class Usuario implements Serializable{
         this.id = id;
     }
 
+    public int getCredito(){
+        return credito;
+    }
+
+    public void setCredito(int credito)
+    {
+        this.credito = credito;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -51,5 +60,5 @@ public class Usuario implements Serializable{
         this.contrasenia = contrasenia;
     }
 
-    
+
 }
