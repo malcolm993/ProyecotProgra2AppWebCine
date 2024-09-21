@@ -1,4 +1,4 @@
-package cuentasbeans;
+package proyectocine.clasesbeans;
 import java.io.Serializable;
 
 

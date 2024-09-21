@@ -1,4 +1,4 @@
-package cuentasbeans;
+package proyectocine.clasesbeans;
 import java.io.Serializable;
 public class Director implements Serializable{
     private int id;
