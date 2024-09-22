@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -18,7 +19,16 @@ public class logInServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        /*
+        PrintWriter textoPrueba = resp.getWriter();
+        textoPrueba.println("<html><head>");
+        textoPrueba.println("<title>Saludando...</title>");
+        textoPrueba.println("</head><body>");
+        textoPrueba.println("<h1>Hola </h1>");
+        textoPrueba.println("</body></html>");
+        */
+        
+        req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
     @Override
