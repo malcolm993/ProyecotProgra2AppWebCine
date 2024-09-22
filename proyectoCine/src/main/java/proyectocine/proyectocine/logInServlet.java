@@ -15,7 +15,7 @@ import java.io.PrintWriter;
  *
  * @author santi
  */
-public class logInServlet extends HttpServlet{
+public class logInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,8 +26,8 @@ public class logInServlet extends HttpServlet{
         textoPrueba.println("</head><body>");
         textoPrueba.println("<h1>Hola </h1>");
         textoPrueba.println("</body></html>");
-        */
-        
+         */
+
         req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
@@ -35,6 +35,5 @@ public class logInServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
-    
+
 }

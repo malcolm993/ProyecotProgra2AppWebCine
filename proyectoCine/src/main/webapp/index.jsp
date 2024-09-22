@@ -16,7 +16,7 @@
     </head>
     <body>
         <c:import url="WEB-INF/jsp/includes/navbarProyecto.jsp"/>
-   
+
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -341,10 +341,10 @@
             </div>
         </section>
         <!-- Footer-->
-        
-        
+
+
         <c:import url="WEB-INF/jsp/includes/footer.jsp"/>
-        
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
