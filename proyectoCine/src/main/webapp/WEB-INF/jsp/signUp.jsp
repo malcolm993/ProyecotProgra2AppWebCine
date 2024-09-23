@@ -12,11 +12,11 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/assets/css/styles.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
-        <c:import url="WEB-INF/jsp/includes/navbarProyecto.jsp"/>
+        <c:import url="includes/navbarProyecto.jsp"/>
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -105,10 +105,10 @@
 
         <!-- Footer-->
 
-        <c:import url="WEB-INF/jsp/includes/footer.jsp"/>
+        <c:import url="includes/footer.jsp"/>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/scripts.js"></script>
     </body>
 </html>

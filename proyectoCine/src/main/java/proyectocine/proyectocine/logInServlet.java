@@ -19,16 +19,26 @@ public class logInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*
-        PrintWriter textoPrueba = resp.getWriter();
-        textoPrueba.println("<html><head>");
-        textoPrueba.println("<title>Saludando...</title>");
-        textoPrueba.println("</head><body>");
-        textoPrueba.println("<h1>Hola </h1>");
-        textoPrueba.println("</body></html>");
-         */
+        //req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
 
-        req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+        try {
+            String destino;
+            String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
+            pathInfo = pathInfo == null ? "" : pathInfo;
+
+            switch (pathInfo) {
+                case "/signupcine": // Form de alta
+                    destino = "/WEB-INF/jsp/signUp.jsp";
+                    break;
+
+                default: // pagina log In
+                    destino = "/WEB-INF/jsp/login.jsp";
+            }
+
+            req.getRequestDispatcher(destino).forward(req, resp);
+        } catch (Exception ex) {
+            resp.sendError(500, ex.getMessage());
+        }
     }
 
     @Override

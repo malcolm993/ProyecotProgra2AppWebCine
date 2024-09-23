@@ -30,6 +30,7 @@
         <!--CARTELERA-->
         <section class="py-5">
             <h2 class="titulo-centrado"> CARTELERA</h2>
+            <a href="#" class="btn btn-outline-primary float-end">EDITAR</a>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
@@ -236,6 +237,7 @@
         <!--PROXIMAMENTE-->
         <section class="py-5">
             <h2 class="titulo-centrado">PROXIMAMENTE</h2>
+            <a href="#" class="btn btn-outline-primary float-end">EDITAR</a>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">

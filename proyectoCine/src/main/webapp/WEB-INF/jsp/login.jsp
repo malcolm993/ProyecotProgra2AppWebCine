@@ -13,7 +13,8 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../assets/css/styles.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/assets/css/styles.css" rel="stylesheet" />
+
     </head>
     <body>
         <!-- Navigation-->
@@ -63,7 +64,7 @@
 
                 <!-- Register buttons -->
                 <div class="text-center">
-                    <p>Not a member? <a href="#!">Register</a></p>
+                    <p>Not a member? <a href="logincine/signupcine">Register</a></p>
                     <p>or sign up with:</p>
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
                         <i class="fab fa-facebook-f"></i>
@@ -90,6 +91,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="../assets/js/scripts.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/scripts.js"></script>
     </body>
 </html>
