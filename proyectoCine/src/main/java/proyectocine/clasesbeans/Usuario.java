@@ -7,6 +7,7 @@ public class Usuario implements Serializable{
     private String email;
     private String contrasenia;
     private int credito;
+    private RolUsuario rolUsuario;
 
     public Usuario(){
 
@@ -16,6 +17,13 @@ public class Usuario implements Serializable{
         return id;
     }
 
+    public RolUsuario getRolUsuario(){
+        return rolUsuario;
+    }
+
+    public void setRolUsuario(RolUsuario rolUsuario){
+        this.rolUsuario = rolUsuario;
+    }
     public void setId(int id) {
         this.id = id;
     }
