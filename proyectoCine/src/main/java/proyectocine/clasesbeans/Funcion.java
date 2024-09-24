@@ -13,8 +13,26 @@ public class Funcion implements Serializable{
     private TipoDeFuncion tipoDeFuncion;
     private Sala sala;
     private Pelicula pelicula;
+    private String fechaDeFuncion;
+    private String horario;
 
     
+    public String getFechaDeFuncion() {
+        return fechaDeFuncion;
+    }
+
+    public void setFechaDeFuncion(String fechaDeFuncion) {
+        this.fechaDeFuncion = fechaDeFuncion;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
     public Funcion() {
     }
 
