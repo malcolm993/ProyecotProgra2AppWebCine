@@ -8,10 +8,12 @@ public class Pelicula {
     private String Apto_publico;
     private String fechaDeEstreno;
     private String director;
-
+    private EstadoPelicula estadoPelicula;
     
     public Pelicula() {
     }
+
+    
     public int getId() {
         return id;
     }
@@ -53,6 +55,16 @@ public class Pelicula {
     }
     public void setDirector(String director) {
         this.director = director;
+    }
+
+
+    public EstadoPelicula getEstadoPelicula() {
+        return estadoPelicula;
+    }
+
+
+    public void setEstadoPelicula(EstadoPelicula estadoPelicula) {
+        this.estadoPelicula = estadoPelicula;
     }
 
     
