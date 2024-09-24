@@ -13,6 +13,7 @@ public class Funcion implements Serializable{
     private String fechaDeEstreno;
     private TipoDeFuncion tipoDeFuncion;
     private Sala sala;
+    private Pelicula pelicula;
 
     
     public Funcion() {
@@ -47,6 +48,14 @@ public class Funcion implements Serializable{
 
     public void setSala(Sala sala) {
         this.sala = sala;
+    }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
     }
     
 }
