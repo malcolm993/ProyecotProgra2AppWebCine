@@ -33,13 +33,6 @@ public class Funcion implements Serializable{
     public void setTipoDeFuncion(TipoDeFuncion tipoDeFuncion){
         this.tipoDeFuncion = tipoDeFuncion;
     }
-    public String getFechaDeEstreno() {
-        return fechaDeEstreno;
-    }
-
-    public void setFechaDeEstreno(String fechaDeEstreno) {
-        this.fechaDeEstreno = fechaDeEstreno;
-    }
 
     public Sala getSala() {
         return sala;
