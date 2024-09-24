@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class Funcion implements Serializable{
     private int id_funcion;
     private String fechaDeEstreno;
+    private TipoDeFuncion tipoDeFuncion;
 
     public Funcion() {
     }
@@ -23,6 +24,13 @@ public class Funcion implements Serializable{
         this.id_funcion = id_funcion;
     }
 
+    public TipoDeFuncion getTipoDeFuncion(){
+        return tipoDeFuncion;
+    }
+
+    public void setTipoDeFuncion(TipoDeFuncion tipoDeFuncion){
+        this.tipoDeFuncion = tipoDeFuncion;
+    }
     public String getFechaDeEstreno() {
         return fechaDeEstreno;
     }
