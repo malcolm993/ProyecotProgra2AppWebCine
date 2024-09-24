@@ -10,7 +10,6 @@ import java.io.Serializable;
  */
 public class Funcion implements Serializable{
     private int id_funcion;
-    private String fechaDeEstreno;
     private TipoDeFuncion tipoDeFuncion;
     private Sala sala;
     private Pelicula pelicula;
