@@ -12,7 +12,9 @@ public class Funcion implements Serializable{
     private int id_funcion;
     private String fechaDeEstreno;
     private TipoDeFuncion tipoDeFuncion;
+    private Sala sala;
 
+    
     public Funcion() {
     }
 
@@ -37,6 +39,14 @@ public class Funcion implements Serializable{
 
     public void setFechaDeEstreno(String fechaDeEstreno) {
         this.fechaDeEstreno = fechaDeEstreno;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
     
 }
