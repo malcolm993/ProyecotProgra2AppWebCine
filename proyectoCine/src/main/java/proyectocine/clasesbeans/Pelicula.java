@@ -1,6 +1,8 @@
 package proyectocine.clasesbeans;
 
-public class Pelicula {
+import java.io.Serializable;
+
+public class Pelicula implements Serializable{
     private int id;
     private int duracion_min;
     private String nombre_pelicula;

@@ -1,6 +1,8 @@
 package proyectocine.clasesbeans;
 
-public class Butaca {
+import java.io.Serializable;
+
+public class Butaca implements Serializable{
     private int id;
     private String ubicacion_butaca;
     private Sala sala;

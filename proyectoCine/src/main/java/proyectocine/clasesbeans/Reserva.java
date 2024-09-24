@@ -1,6 +1,8 @@
 package proyectocine.clasesbeans;
 
-public class Reserva {
+import java.io.Serializable;
+
+public class Reserva implements Serializable{
     private int id;
     private Funcion funcion;
     private int costoReserva;
