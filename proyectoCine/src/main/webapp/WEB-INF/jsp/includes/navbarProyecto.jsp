@@ -16,7 +16,7 @@
                 <li class="nav-item"><a class="nav-link" href="#!">Acerca de nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Cartelera</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Proximamente</a></li>
-                <li class="nav-item"><a class="nav-link" href="logincine">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="usuariocine">Log in</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop  ?? lo sacamos?</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

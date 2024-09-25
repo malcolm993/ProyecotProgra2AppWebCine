@@ -9,30 +9,29 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  *
- * @author santi
+ * @author santiago
  */
-public class logInServlet extends HttpServlet {
+public class PeliculasServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
-
         try {
             String destino;
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
 
             switch (pathInfo) {
-                case "/signupcine": // Form de alta
-                    destino = "/WEB-INF/jsp/signUp.jsp";
+                case "/updatePelicula": // Form de alta
+                    destino = "/WEB-INF/jsp/altaPelicula.jsp";
                     break;
-
+                case "/updateFuncion": // Form de alta
+                    destino = "/WEB-INF/jsp/altaFuncion.jsp";
+                    break;    
                 default: // pagina log In
-                    destino = "/WEB-INF/jsp/login.jsp";
+                    destino = "/WEB-INF/jsp/editForm.jsp";
             }
 
             req.getRequestDispatcher(destino).forward(req, resp);
@@ -40,10 +39,5 @@ public class logInServlet extends HttpServlet {
             resp.sendError(500, ex.getMessage());
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
+    
 }

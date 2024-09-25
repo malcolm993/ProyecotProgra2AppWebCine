@@ -64,7 +64,7 @@
 
                 <!-- Register buttons -->
                 <div class="text-center">
-                    <p>Not a member? <a href="logincine/signupcine">Register</a></p>
+                    <p>Not a member? <a href="usuariocine/signupcine">Register</a></p>
                     <p>or sign up with:</p>
                     <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
                         <i class="fab fa-facebook-f"></i>

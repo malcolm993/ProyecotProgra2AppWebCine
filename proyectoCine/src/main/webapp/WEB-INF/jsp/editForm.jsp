@@ -49,7 +49,7 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <button class="btn btn-success">Añadir Película</button>
+                                <a href="edicionpeliculas/updatePelicula" class="btn btn-success">Añadir Película</a>
                                 <button class="btn btn-warning">Modificar Película</button>
                                 <button class="btn btn-danger">Eliminar Película</button>
                             </div>
@@ -123,7 +123,7 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <button class="btn btn-success">Añadir Función</button>
+                               <a href="edicionpeliculas/updateFuncion" class="btn btn-success">Añadir Película</a>
                                 <button class="btn btn-warning">Modificar Función</button>
                                 <button class="btn btn-danger">Eliminar Función</button>
                             </div>
