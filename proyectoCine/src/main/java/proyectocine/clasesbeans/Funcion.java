@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyectocine.clasesbeans;
+
 import java.io.Serializable;
+
 /**
  *
  * @author kitty
  */
-public class Funcion implements Serializable{
+public class Funcion implements Serializable {
+
     private int id_funcion;
     private TipoDeFuncion tipoDeFuncion;
     private Sala sala;
@@ -16,7 +19,6 @@ public class Funcion implements Serializable{
     private String fechaDeFuncion;
     private String horario;
 
-    
     public String getFechaDeFuncion() {
         return fechaDeFuncion;
     }
@@ -44,11 +46,11 @@ public class Funcion implements Serializable{
         this.id_funcion = id_funcion;
     }
 
-    public TipoDeFuncion getTipoDeFuncion(){
+    public TipoDeFuncion getTipoDeFuncion() {
         return tipoDeFuncion;
     }
 
-    public void setTipoDeFuncion(TipoDeFuncion tipoDeFuncion){
+    public void setTipoDeFuncion(TipoDeFuncion tipoDeFuncion) {
         this.tipoDeFuncion = tipoDeFuncion;
     }
 
@@ -67,5 +69,5 @@ public class Funcion implements Serializable{
     public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
     }
-    
+
 }

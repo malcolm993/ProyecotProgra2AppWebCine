@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  * @author santiago
  */
-public class PeliculasServlet extends HttpServlet{
+public class PeliculasServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,9 +27,22 @@ public class PeliculasServlet extends HttpServlet{
                 case "/updatePelicula": // Form de alta
                     destino = "/WEB-INF/jsp/altaPelicula.jsp";
                     break;
+
                 case "/updateFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
-                    break;    
+                    break;
+                case "/checkPelicula": // Form de alta
+                    destino = "/WEB-INF/jsp/revisarPelicula.jsp";
+                    break;
+                case "/checkFuncion": // Form de alta
+                    destino = "/WEB-INF/jsp/revisarFuncion.jsp";
+                    break;
+                case "/deletePelicula": // Form de alta
+                    destino = "/WEB-INF/jsp/eliminarPelicula.jsp";
+                    break;
+                case "/deleteFuncion": // Form de alta
+                    destino = "/WEB-INF/jsp/eliminarFuncion.jsp";
+                    break;
                 default: // pagina log In
                     destino = "/WEB-INF/jsp/editForm.jsp";
             }
@@ -39,5 +52,5 @@ public class PeliculasServlet extends HttpServlet{
             resp.sendError(500, ex.getMessage());
         }
     }
-    
+
 }

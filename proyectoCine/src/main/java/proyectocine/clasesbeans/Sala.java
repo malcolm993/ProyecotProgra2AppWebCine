@@ -1,12 +1,13 @@
 package proyectocine.clasesbeans;
+
 import java.io.Serializable;
 
+public class Sala implements Serializable {
 
-public class Sala implements Serializable{
     private int id;
     private int cantDeButacas;
 
-    public Sala(){
+    public Sala() {
 
     }
 
@@ -26,5 +27,4 @@ public class Sala implements Serializable{
         this.cantDeButacas = cantDeButacas;
     }
 
-    
 }

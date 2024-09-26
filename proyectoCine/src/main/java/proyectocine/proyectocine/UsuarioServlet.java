@@ -30,7 +30,6 @@ public class UsuarioServlet extends HttpServlet {
                 case "/signupcine": // Form de alta
                     destino = "/WEB-INF/jsp/signUp.jsp";
                     break;
-                    
 
                 default: // pagina log In
                     destino = "/WEB-INF/jsp/login.jsp";

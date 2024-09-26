@@ -1,6 +1,9 @@
 package proyectocine.clasesbeans;
+
 import java.io.Serializable;
-public class Usuario implements Serializable{
+
+public class Usuario implements Serializable {
+
     private int id;
     private String nombre;
     private String apellido;
@@ -9,7 +12,7 @@ public class Usuario implements Serializable{
     private int credito;
     private RolUsuario rolUsuario;
 
-    public Usuario(){
+    public Usuario() {
 
     }
 
@@ -17,25 +20,26 @@ public class Usuario implements Serializable{
         return id;
     }
 
-    public RolUsuario getRolUsuario(){
+    public RolUsuario getRolUsuario() {
         return rolUsuario;
     }
 
-    public void setRolUsuario(RolUsuario rolUsuario){
+    public void setRolUsuario(RolUsuario rolUsuario) {
         this.rolUsuario = rolUsuario;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getCredito(){
+    public int getCredito() {
         return credito;
     }
 
-    public void setCredito(int credito)
-    {
+    public void setCredito(int credito) {
         this.credito = credito;
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -67,6 +71,5 @@ public class Usuario implements Serializable{
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-
 
 }
