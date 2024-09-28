@@ -15,6 +15,18 @@ public class Pelicula implements Serializable {
 
     public Pelicula() {
     }
+    
+    public Pelicula(int id, int duracion_min, String nombre_pelicula, String sinopsis, String apto_publico,
+            String fechaDeEstreno, String director, EstadoPelicula estadoPelicula) {
+        this.id = id;
+        this.duracion_min = duracion_min;
+        this.nombre_pelicula = nombre_pelicula;
+        this.sinopsis = sinopsis;
+        Apto_publico = apto_publico;
+        this.fechaDeEstreno = fechaDeEstreno;
+        this.director = director;
+        this.estadoPelicula = estadoPelicula;
+    }
 
     public int getId() {
         return id;
