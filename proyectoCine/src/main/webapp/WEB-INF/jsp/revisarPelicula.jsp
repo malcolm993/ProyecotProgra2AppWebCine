@@ -20,12 +20,11 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${pelicula.nombre}</h5>
-                            <p class="card-text"><strong>Duración:</strong> ${pelicula.duracion} min</p>
+                            <h5 class="card-title">${pelicula.nombre_pelicula}</h5>
+                            <p class="card-text"><strong>Duración:</strong> ${pelicula.duracion_min} min</p>
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
                             <p class="card-text"><strong>Apto para:</strong> ${pelicula.aptoPara}</p>
-                            <p class="card-text"><strong>Descripción corta:</strong> ${pelicula.descripcionCorta}</p>
                             <p class="card-text"><strong>Estado:</strong> ${pelicula.estado}</p>
                         </div>
                     </div>
