@@ -2,6 +2,8 @@ package proyectocine.clasesbeans;
 
 import java.io.Serializable;
 
+import jakarta.validation.constraints.Null;
+
 public class Pelicula implements Serializable {
 
     private int id;
@@ -14,6 +16,7 @@ public class Pelicula implements Serializable {
     private EstadoPelicula estadoPelicula;
 
     public Pelicula() {
+        this(0, 0, "", "","","","",null);
     }
     
     public Pelicula(int id, int duracion_min, String nombre_pelicula, String sinopsis, String apto_publico,
