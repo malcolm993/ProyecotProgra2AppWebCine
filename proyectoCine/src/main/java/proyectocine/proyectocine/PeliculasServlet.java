@@ -24,13 +24,20 @@ public class PeliculasServlet extends HttpServlet {
             pathInfo = pathInfo == null ? "" : pathInfo;
 
             switch (pathInfo) {
-                case "/updatePelicula": // Form de alta
+                case "/addPelicula": // Form de alta
                     destino = "/WEB-INF/jsp/altaPelicula.jsp";
                     break;
 
-                case "/updateFuncion": // Form de alta
+                case "/addFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
                     break;
+                case "/updatePelicula": // Form de alta
+                    destino = "/WEB-INF/jsp/edicionPelicula.jsp";
+                    break;
+
+                case "/updateFuncion": // Form de alta
+                    destino = "/WEB-INF/jsp/edicionFuncion.jsp";
+                    break;    
                 case "/checkPelicula": // Form de alta
                     destino = "/WEB-INF/jsp/revisarPelicula.jsp";
                     break;

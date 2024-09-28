@@ -49,8 +49,8 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/updatePelicula" class="btn btn-success">Añadir Película</a>
-                                <a href="edicionpeliculas/editPelicula" class="btn btn-warning">Modificar Película</a>
+                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">Añadir Película</a>
+                                <a href="edicionpeliculas/updatePelicula" class="btn btn-warning">Modificar Película</a>
                                 <a href="edicionpeliculas/deletePelicula" class="btn btn-danger">Eliminar Película</a>
                                 <a href="edicionpeliculas/checkPelicula" class="btn btn-info">Revisar</a>
                             </div>
@@ -87,8 +87,8 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/updatePelicula" class="btn btn-success">Añadir Película</a>
-                                <a href="edicionpeliculas/editPelicula" class="btn btn-warning">Modificar Película</a>
+                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">Añadir Película</a>
+                                <a href="edicionpeliculas/updatePelicula" class="btn btn-warning">Modificar Película</a>
                                 <a href="edicionpeliculas/deletePelicula" class="btn btn-danger">Eliminar Película</a>
                                 <a href="edicionpeliculas/checkPelicula" class="btn btn-info">Revisar</a>
                             </div>
@@ -125,8 +125,8 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/updateFuncion" class="btn btn-success">Añadir Funcion</a>
-                                <a href="edicionpeliculas/editFuncion" class="btn btn-warning">Modificar Función</a>
+                                <a href="edicionpeliculas/addFuncion" class="btn btn-success">Añadir Funcion</a>
+                                <a href="edicionpeliculas/updateFuncion" class="btn btn-warning">Modificar Función</a>
                                 <a href="edicionpeliculas/deleteFuncion" class="btn btn-danger">Eliminar Función</a>
                                 <a href="edicionpeliculas/checkFuncion" class="btn btn-info">Revisar</a>
                             </div>
