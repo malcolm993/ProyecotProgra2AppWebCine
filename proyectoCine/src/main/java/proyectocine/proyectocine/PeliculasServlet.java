@@ -9,12 +9,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import proyectocine.clasesDAO.DAO;
+import proyectocine.clasesDAO.peliculaDAO;
+import proyectocine.clasesbeans.Pelicula;
 
 /**
  *
  * @author santiago
  */
 public class PeliculasServlet extends HttpServlet {
+
+    private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
+
+    @Override
+    public void init() throws ServletException {
+        pelicuDaoHardcodeado = new peliculaDAO();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +47,7 @@ public class PeliculasServlet extends HttpServlet {
 
                 case "/updateFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/edicionFuncion.jsp";
-                    break;    
+                    break;
                 case "/checkPelicula": // Form de alta
                     destino = "/WEB-INF/jsp/revisarPelicula.jsp";
                     break;
@@ -51,7 +61,8 @@ public class PeliculasServlet extends HttpServlet {
                     destino = "/WEB-INF/jsp/eliminarFuncion.jsp";
                     break;
                 default: // pagina log In
-                    destino = "/WEB-INF/jsp/editForm.jsp";
+                    req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
+                    destino = "/WEB-INF/jsp/peliculasFuncionesListas.jsp";
             }
 
             req.getRequestDispatcher(destino).forward(req, resp);

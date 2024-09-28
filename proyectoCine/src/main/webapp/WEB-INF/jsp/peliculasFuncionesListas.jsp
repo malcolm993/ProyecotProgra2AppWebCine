@@ -32,13 +32,17 @@
                             <!-- List of Movies in Cartelera -->
                             <h3>Películas en Cartelera</h3>
                             <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Pelicula 1</div>
-                                        Descripción de la película
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Duración: 120 min</span>
-                                </li>
+                                <!-- aca arranca cada lista del acordion -->
+                                <c:forEach items="${listaPeliculas}" var="pelicula">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold"> <p>${pelicula.nombre_pelicula}</p> </div>
+                                            
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">Duración: 120 min</span>
+                                    </li>
+                                </c:forEach>
+                                <!-- comment 
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold">Pelicula 2</div>
@@ -46,6 +50,7 @@
                                     </div>
                                     <span class="badge bg-primary rounded-pill">Duración: 90 min</span>
                                 </li>
+                                -->
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">

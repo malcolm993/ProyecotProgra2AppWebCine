@@ -16,9 +16,9 @@ public class Pelicula implements Serializable {
     private EstadoPelicula estadoPelicula;
 
     public Pelicula() {
-        this(0, 0, "", "","","","",null);
+        this(0, 0, "", "", "", "", "", null);
     }
-    
+
     public Pelicula(int id, int duracion_min, String nombre_pelicula, String sinopsis, String apto_publico,
             String fechaDeEstreno, String director, EstadoPelicula estadoPelicula) {
         this.id = id;
