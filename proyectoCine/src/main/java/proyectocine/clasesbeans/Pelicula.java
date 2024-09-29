@@ -14,6 +14,8 @@ public class Pelicula implements Serializable {
     private String fechaDeEstreno;
     private String director;
     private EstadoPelicula estadoPelicula;
+    private String fotopeli;
+    private static final String FOTO_DEFAULT = "placeholder.png";
 
     public Pelicula() {
         this(0, 0, "", "", "", "", "", null);
@@ -29,6 +31,7 @@ public class Pelicula implements Serializable {
         this.fechaDeEstreno = fechaDeEstreno;
         this.director = director;
         this.estadoPelicula = estadoPelicula;
+        
     }
 
     public int getId() {
@@ -94,5 +97,20 @@ public class Pelicula implements Serializable {
     public void setEstadoPelicula(EstadoPelicula estadoPelicula) {
         this.estadoPelicula = estadoPelicula;
     }
-
+    
+    public String getFoto(){
+        return fotopeli;
+    }
+    
+    public void setFoto(String fotox){
+     if (fotox != null && !fotox.isBlank()){
+         this.fotopeli = fotox;
+     } else if (!tieneFoto()){
+         this.fotopeli = FOTO_DEFAULT;
+     }
+    }
+    
+    public boolean tieneFoto(){
+        return !this.fotopeli.equals(FOTO_DEFAULT);
+    }
 }

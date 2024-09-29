@@ -15,17 +15,17 @@
             <div class="card mt-4">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <!-- Imagen de la película -->
-                        <img src="${pelicula.poster}" class="img-fluid rounded-start" alt="${pelicula.nombre}" />
-                    </div>
+                        <<h1>aca estaria la imagen</h1>
+                         <img class="card-img-top" src="/assets/img/$(pelicula.fotopeli)" alt="imagen pelicula" />
+                        </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${pelicula.nombre_pelicula}</h5>
                             <p class="card-text"><strong>Duración:</strong> ${pelicula.duracion_min} min</p>
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
-                            <p class="card-text"><strong>Apto para:</strong> ${pelicula.aptoPara}</p>
-                            <p class="card-text"><strong>Estado:</strong> ${pelicula.estado}</p>
+                            <p class="card-text"><strong>Apto para:</strong> ${pelicula.apto_publico}</p>
+                            <p class="card-text"><strong>Estado:</strong> ${pelicula.estadoPelicula}</p>
                         </div>
                     </div>
                 </div>

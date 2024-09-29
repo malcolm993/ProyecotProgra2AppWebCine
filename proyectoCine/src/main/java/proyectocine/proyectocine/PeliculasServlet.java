@@ -33,6 +33,10 @@ public class PeliculasServlet extends HttpServlet {
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
 
+            String idString = req.getParameter("id");
+            if (idString != null) {
+                req.setAttribute("pelicula", pelicuDaoHardcodeado.getById(Integer.parseInt(idString)));
+            }
             switch (pathInfo) {
                 case "/addPelicula": // Form de alta
                     destino = "/WEB-INF/jsp/altaPelicula.jsp";
