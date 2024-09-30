@@ -18,11 +18,11 @@ public class Pelicula implements Serializable {
     private static final String FOTO_DEFAULT = "placeholder.png";
 
     public Pelicula() {
-        this(0, 0, "", "", "", "", "", null);
+        this(0, 0, "", "", "", "", "", null, null);
     }
 
     public Pelicula(int id, int duracion_min, String nombre_pelicula, String sinopsis, String apto_publico,
-            String fechaDeEstreno, String director, EstadoPelicula estadoPelicula) {
+            String fechaDeEstreno, String director, EstadoPelicula estadoPelicula, String foto) {
         this.id = id;
         this.duracion_min = duracion_min;
         this.nombre_pelicula = nombre_pelicula;
@@ -31,8 +31,8 @@ public class Pelicula implements Serializable {
         this.fechaDeEstreno = fechaDeEstreno;
         this.director = director;
         this.estadoPelicula = estadoPelicula;
-        this.fotopeli = "vengadores.jpg";
-        
+        this.fotopeli = foto;
+
     }
 
     public int getId() {
@@ -98,20 +98,20 @@ public class Pelicula implements Serializable {
     public void setEstadoPelicula(EstadoPelicula estadoPelicula) {
         this.estadoPelicula = estadoPelicula;
     }
-    
-    public String getFoto(){
+
+    public String getFoto() {
         return fotopeli;
     }
-    
-    public void setFoto(String fotox){
-     if (fotox != null && !fotox.isBlank()){
-         this.fotopeli = fotox;
-     } else if (!tieneFoto()){
-         this.fotopeli = FOTO_DEFAULT;
-     }
+
+    public void setFoto(String fotox) {
+        if (fotox != null && !fotox.isBlank()) {
+            this.fotopeli = fotox;
+        } else if (!tieneFoto()) {
+            this.fotopeli = FOTO_DEFAULT;
+        }
     }
-    
-    public boolean tieneFoto(){
+
+    public boolean tieneFoto() {
         return !this.fotopeli.equals(FOTO_DEFAULT);
     }
 }

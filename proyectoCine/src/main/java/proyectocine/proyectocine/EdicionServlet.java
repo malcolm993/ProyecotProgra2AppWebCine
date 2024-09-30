@@ -17,7 +17,7 @@ import proyectocine.clasesbeans.Pelicula;
  *
  * @author santiago
  */
-public class PeliculasServlet extends HttpServlet {
+public class EdicionServlet extends HttpServlet {
 
     private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
 

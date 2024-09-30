@@ -51,7 +51,7 @@
                                     <i class="fas fa-edit ms-2"></i>
                                 </a>
                             </p>
-                            
+
                             <p class="card-text">
                                 <strong>Estado:</strong> ${pelicula.estado}
                                 <a href="editarPelicula?campo=estado&id=${pelicula.id}">

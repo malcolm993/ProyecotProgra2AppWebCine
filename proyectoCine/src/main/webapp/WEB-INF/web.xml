@@ -7,7 +7,7 @@
     </servlet>
     <servlet>
         <servlet-name>edicionpeliculas-servlet</servlet-name>
-        <servlet-class>proyectocine.proyectocine.PeliculasServlet</servlet-class>
+        <servlet-class>proyectocine.proyectocine.EdicionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>usuario-servlet</servlet-name>
