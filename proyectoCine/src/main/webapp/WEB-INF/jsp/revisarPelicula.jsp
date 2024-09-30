@@ -16,7 +16,7 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <<h1>aca estaria la imagen</h1>
-                         <img class="card-img-top" src="/assets/img/$(pelicula.fotopeli)" alt="imagen pelicula" />
+                         <img class="card-img-top" src="${pageContext.request.contextPath}/assets/img/${pelicula.foto}" alt="imagen pelicula" />
                         </div>
                     <div class="col-md-8">
                         <div class="card-body">

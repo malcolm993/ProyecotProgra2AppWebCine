@@ -31,6 +31,7 @@ public class Pelicula implements Serializable {
         this.fechaDeEstreno = fechaDeEstreno;
         this.director = director;
         this.estadoPelicula = estadoPelicula;
+        this.fotopeli = "vengadores.jpg";
         
     }
 
