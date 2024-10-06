@@ -10,6 +10,8 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center">Detalles de la Película</h1>
+            <p>Context Path: ${pageContext.request.contextPath}</p>
+            <p>Foto: ${pelicula.foto}</p>
 
             <!-- Información de la película -->
             <div class="card mt-4">

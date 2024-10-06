@@ -112,6 +112,6 @@ public class Pelicula implements Serializable {
     }
 
     public boolean tieneFoto() {
-        return !this.fotopeli.equals(FOTO_DEFAULT);
+        return !fotopeli.equals(FOTO_DEFAULT);
     }
 }

@@ -29,10 +29,10 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-
             req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
 
-            req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+
         } catch (Exception ex) {
             resp.sendError(500, ex.getMessage());
         }
