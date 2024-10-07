@@ -17,7 +17,7 @@ import proyectocine.clasesbeans.Pelicula;
  *
  * @author santiago
  */
-public class EdicionServlet extends HttpServlet {
+public class EdicionFuncionesServlet extends HttpServlet {
 
     private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
 
@@ -38,35 +38,25 @@ public class EdicionServlet extends HttpServlet {
                 req.setAttribute("pelicula", pelicuDaoHardcodeado.getById(Integer.parseInt(idString)));
             }
             switch (pathInfo) {
-                case "/addPelicula": // Form de alta
-                    destino = "/WEB-INF/jsp/altaPelicula.jsp";
-                    break;
 
                 case "/addFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
-                    break;
-                case "/updatePelicula": // Form de alta
-                    destino = "/WEB-INF/jsp/edicionPelicula.jsp";
                     break;
 
                 case "/updateFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/edicionFuncion.jsp";
                     break;
-                case "/checkPelicula": // Form de alta
-                    destino = "/WEB-INF/jsp/revisarPelicula.jsp";
-                    break;
+
                 case "/checkFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/revisarFuncion.jsp";
                     break;
-                case "/deletePelicula": // Form de alta
-                    destino = "/WEB-INF/jsp/eliminarPelicula.jsp";
-                    break;
+
                 case "/deleteFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/eliminarFuncion.jsp";
                     break;
                 default: // pagina log In
                     req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
-                    destino = "/WEB-INF/jsp/peliculasFuncionesListas.jsp";
+                    destino = "/WEB-INF/jsp/funcionesLista.jsp";
             }
 
             req.getRequestDispatcher(destino).forward(req, resp);
