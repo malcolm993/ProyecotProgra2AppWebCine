@@ -15,15 +15,15 @@
             <div class="card mt-4">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="${pelicula.poster}" class="img-fluid rounded-start" alt="${pelicula.nombre}" />
+                        <img src="${pageContext.request.contextPath}/assets/img/${pelicula.foto}" class="img-fluid rounded-start" alt="imagen pelicula" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${pelicula.nombre}</h5>
-                            <p class="card-text"><strong>Duración:</strong> ${pelicula.duracion} min</p>
+                            <h5 class="card-title">${pelicula.nombre_pelicula}</h5>
+                            <p class="card-text"><strong>Duración:</strong> ${pelicula.duracion_min} min</p>
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
-                            <p class="card-text"><strong>Estado:</strong> ${pelicula.estado}</p>
+                            <p class="card-text"><strong>Estado:</strong> ${pelicula.estadoPelicula}</p>
                         </div>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
 
             <!-- Botón de confirmación -->
             <div class="d-flex justify-content-center mt-4">
-                <form action="confirmarBorradoPelicula" method="POST">
-                    <input type="hidden" name="idPelicula" value="${pelicula.id}" />
+                <form id ="formBorrarPelicula" action="deletePelicula" method="post">
+                    <input type="hidden" name="id" value="${pelicula.id}" />
                     <button type="submit" class="btn btn-danger">Confirmar Borrado</button>
                 </form>
             </div>
