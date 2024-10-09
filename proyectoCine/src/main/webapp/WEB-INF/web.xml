@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>edicionpeliculas-servlet</servlet-name>
-        <servlet-class>proyectocine.proyectocine.EdicionServlet</servlet-class>
+        <servlet-class>proyectocine.proyectocine.EdicionPeliculasServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>index-servlet</servlet-name>

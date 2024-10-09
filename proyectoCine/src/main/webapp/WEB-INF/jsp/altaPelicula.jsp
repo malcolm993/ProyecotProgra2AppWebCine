@@ -21,6 +21,7 @@
                         class="form-control"
                         placeholder="Nombre de la película"
                         name="nombre"
+                        id ="nombre"
                         aria-label="Nombre de la película"
                         required
                         />
@@ -34,6 +35,7 @@
                         class="form-control"
                         placeholder="Duración de la película"
                         name="duracion"
+                        id="duracion"
                         aria-label="Duración"
                         required
                         />
@@ -53,6 +55,7 @@
                         class="form-control"
                         placeholder="Ej: Todo público, +13"
                         name="apto_para"
+                        id="apto_para"
                         required
                         />
                 </div>
@@ -68,6 +71,7 @@
                         class="form-control"
                         placeholder="Nombre del director"
                         name="director"
+                        id="director"
                         required
                         />
                 </div>
@@ -98,7 +102,8 @@
                                 type="file"
                                 class="form-control d-none"
                                 id="customFile1"
-                                name="poster"
+                                name="img_pelicula"
+                                id="img_pelicula"
                                 accept="image/*"
                                 onchange="displaySelectedImage(event, 'selectedImage')"
                                 required
