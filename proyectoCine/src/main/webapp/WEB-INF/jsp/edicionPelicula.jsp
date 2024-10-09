@@ -17,18 +17,18 @@
                 <div class="row g-0">
                     <div class="col-md-4">
                         <!-- Imagen de la película -->
-                        <img src="${pelicula.poster}" class="img-fluid rounded-start" alt="${pelicula.nombre}" />
+                        <img src="${pageContext.request.contextPath}/assets/img/${pelicula.foto}" class="img-fluid rounded-start" alt="imagen pelicula" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">
-                                ${pelicula.nombre}
+                                ${pelicula.nombre_pelicula}
                                 <a href="editarPelicula?campo=nombre&id=${pelicula.id}">
                                     <i class="fas fa-edit ms-2"></i>
                                 </a>
                             </h5>
                             <p class="card-text">
-                                <strong>Duración:</strong> ${pelicula.duracion} min
+                                <strong>Duración:</strong> ${pelicula.duracion_min} min
                                 <a href="editarPelicula?campo=duracion&id=${pelicula.id}">
                                     <i class="fas fa-edit ms-2"></i>
                                 </a>

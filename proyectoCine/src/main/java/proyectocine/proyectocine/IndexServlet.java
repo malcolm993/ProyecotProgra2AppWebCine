@@ -31,7 +31,7 @@ public class IndexServlet extends HttpServlet {
         try {
             req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
 
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
 
         } catch (Exception ex) {
             resp.sendError(500, ex.getMessage());

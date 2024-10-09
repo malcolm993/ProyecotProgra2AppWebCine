@@ -93,45 +93,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Funciones Accordion -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFunciones">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFunciones" aria-expanded="false" aria-controls="collapseFunciones">
-                            Funciones de Cine
-                        </button>
-                    </h2>
-                    <div id="collapseFunciones" class="accordion-collapse collapse" aria-labelledby="headingFunciones" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <!-- List of Functions -->
-                            <h3>Funciones Disponibles</h3>
-                            <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Función 1</div>
-                                        Película: Pelicula 1 | Horario: 15:00
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Sala: 1</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Función 2</div>
-                                        Película: Pelicula 2 | Horario: 18:00
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Sala: 2</span>
-                                </li>
-                            </ol>
-                            <!-- CRUD Buttons -->
-                            <div class="mt-3">
-                                <a href="edicionpeliculas/addFuncion" class="btn btn-success">Añadir Funcion</a>
-                                <a href="edicionpeliculas/updateFuncion" class="btn btn-warning">Modificar Función</a>
-                                <a href="edicionpeliculas/deleteFuncion" class="btn btn-danger">Eliminar Función</a>
-                                <a href="edicionpeliculas/checkFuncion" class="btn btn-info">Revisar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
