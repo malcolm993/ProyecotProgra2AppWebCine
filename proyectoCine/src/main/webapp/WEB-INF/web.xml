@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <welcome-file-list>
+        <welcome-file>/</welcome-file>
+    </welcome-file-list>
     <servlet>
         <description>controlador de logeo del usuario</description>
         <servlet-name>usuario-servlet</servlet-name>
@@ -7,7 +10,11 @@
     </servlet>
     <servlet>
         <servlet-name>edicionpeliculas-servlet</servlet-name>
-        <servlet-class>proyectocine.proyectocine.PeliculasServlet</servlet-class>
+        <servlet-class>proyectocine.proyectocine.EdicionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>index-servlet</servlet-name>
+        <servlet-class>proyectocine.proyectocine.IndexServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>usuario-servlet</servlet-name>
@@ -16,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>edicionpeliculas-servlet</servlet-name>
         <url-pattern>/edicionpeliculas/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>index-servlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

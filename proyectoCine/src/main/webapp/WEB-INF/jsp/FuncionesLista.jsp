@@ -32,27 +32,26 @@
                             <!-- List of Movies in Cartelera -->
                             <h3>Películas en Cartelera</h3>
                             <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Pelicula 1</div>
-                                        Descripción de la película
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Duración: 120 min</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Pelicula 2</div>
-                                        Descripción de la película
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Duración: 90 min</span>
-                                </li>
+                                <!-- aca arranca cada lista del acordion -->
+                                <c:forEach items="${listaPeliculas}" var="pelicula">
+                                    <c:if test = "${pelicula.estadoPelicula == 'cartelera'}">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold"> <p>${pelicula.nombre_pelicula}</p> </div>
+
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <a href="edicionpeliculas/updatePelicula?id=${pelicula.id}" class="btn btn-warning btn-sm">Modificar</a>
+                                                <a href="edicionpeliculas/deletePelicula?id=${pelicula.id}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                <a href="edicionpeliculas/checkPelicula?id=${pelicula.id}" class="btn btn-info btn-sm">Revisar</a>
+                                            </div>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>                                
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/updatePelicula" class="btn btn-success">Añadir Película</a>
-                                <a href="edicionpeliculas/editPelicula" class="btn btn-warning">Modificar Película</a>
-                                <a href="edicionpeliculas/deletePelicula" class="btn btn-danger">Eliminar Película</a>
-                                <a href="edicionpeliculas/checkPelicula" class="btn btn-info">Revisar</a>
+                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">Añadir Película</a>
                             </div>
                         </div>
                     </div>
@@ -70,27 +69,26 @@
                             <!-- List of Movies in Proximamente -->
                             <h3>Próximos Estrenos</h3>
                             <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Pelicula 3</div>
-                                        Estreno pronto
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Estreno: 25 Nov</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Pelicula 4</div>
-                                        Estreno pronto
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Estreno: 30 Nov</span>
-                                </li>
+                                <!-- aca arranca cada lista del acordion -->
+                                <c:forEach items="${listaPeliculas}" var="pelicula">
+                                    <c:if test = "${pelicula.estadoPelicula == 'proximamente'}">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold"> <p>${pelicula.nombre_pelicula}</p> </div>
+
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <a href="edicionpeliculas/updatePelicula?id=${pelicula.id}" class="btn btn-warning btn-sm">Modificar</a>
+                                                <a href="edicionpeliculas/deletePelicula?id=${pelicula.id}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                <a href="edicionpeliculas/checkPelicula?id=${pelicula.id}" class="btn btn-info btn-sm">Revisar</a>
+                                            </div>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>                                
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/updatePelicula" class="btn btn-success">Añadir Película</a>
-                                <a href="edicionpeliculas/editPelicula" class="btn btn-warning">Modificar Película</a>
-                                <a href="edicionpeliculas/deletePelicula" class="btn btn-danger">Eliminar Película</a>
-                                <a href="edicionpeliculas/checkPelicula" class="btn btn-info">Revisar</a>
+                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">Añadir Película</a>
                             </div>
                         </div>
                     </div>
@@ -125,8 +123,8 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/updateFuncion" class="btn btn-success">Añadir Funcion</a>
-                                <a href="edicionpeliculas/editFuncion" class="btn btn-warning">Modificar Función</a>
+                                <a href="edicionpeliculas/addFuncion" class="btn btn-success">Añadir Funcion</a>
+                                <a href="edicionpeliculas/updateFuncion" class="btn btn-warning">Modificar Función</a>
                                 <a href="edicionpeliculas/deleteFuncion" class="btn btn-danger">Eliminar Función</a>
                                 <a href="edicionpeliculas/checkFuncion" class="btn btn-info">Revisar</a>
                             </div>

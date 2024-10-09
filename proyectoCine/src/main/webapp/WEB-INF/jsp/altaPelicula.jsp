@@ -57,17 +57,8 @@
                         />
                 </div>
 
-                <!-- Descripción corta -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon4">Descripción corta</span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Breve descripción"
-                        name="descripcion_corta"
-                        required
-                        />
-                </div>
+
+
 
                 <!-- Director -->
                 <div class="input-group mb-3">

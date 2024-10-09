@@ -9,12 +9,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import proyectocine.clasesDAO.DAO;
+import proyectocine.clasesDAO.peliculaDAO;
+import proyectocine.clasesbeans.Pelicula;
 
 /**
  *
  * @author santiago
  */
-public class PeliculasServlet extends HttpServlet {
+public class EdicionServlet extends HttpServlet {
+
+    private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
+
+    @Override
+    public void init() throws ServletException {
+        pelicuDaoHardcodeado = new peliculaDAO();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,13 +33,24 @@ public class PeliculasServlet extends HttpServlet {
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
 
+            String idString = req.getParameter("id");
+            if (idString != null) {
+                req.setAttribute("pelicula", pelicuDaoHardcodeado.getById(Integer.parseInt(idString)));
+            }
             switch (pathInfo) {
-                case "/updatePelicula": // Form de alta
+                case "/addPelicula": // Form de alta
                     destino = "/WEB-INF/jsp/altaPelicula.jsp";
                     break;
 
-                case "/updateFuncion": // Form de alta
+                case "/addFuncion": // Form de alta
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
+                    break;
+                case "/updatePelicula": // Form de alta
+                    destino = "/WEB-INF/jsp/edicionPelicula.jsp";
+                    break;
+
+                case "/updateFuncion": // Form de alta
+                    destino = "/WEB-INF/jsp/edicionFuncion.jsp";
                     break;
                 case "/checkPelicula": // Form de alta
                     destino = "/WEB-INF/jsp/revisarPelicula.jsp";
@@ -44,7 +65,8 @@ public class PeliculasServlet extends HttpServlet {
                     destino = "/WEB-INF/jsp/eliminarFuncion.jsp";
                     break;
                 default: // pagina log In
-                    destino = "/WEB-INF/jsp/editForm.jsp";
+                    req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
+                    destino = "/WEB-INF/jsp/peliculasFuncionesListas.jsp";
             }
 
             req.getRequestDispatcher(destino).forward(req, resp);
