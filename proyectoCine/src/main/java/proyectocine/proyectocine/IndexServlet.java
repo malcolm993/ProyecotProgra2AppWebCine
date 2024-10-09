@@ -19,17 +19,17 @@ import proyectocine.clasesbeans.Pelicula;
  */
 public class IndexServlet extends HttpServlet {
 
-    private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
+    private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
 
     @Override
     public void init() throws ServletException {
-        pelicuDaoHardcodeado = new peliculaDAO();
+        peliculaDaoHardcodeado = peliculaDAO.getInstance();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
+            req.setAttribute("listaPeliculas", peliculaDaoHardcodeado.getAll());
 
             req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
 

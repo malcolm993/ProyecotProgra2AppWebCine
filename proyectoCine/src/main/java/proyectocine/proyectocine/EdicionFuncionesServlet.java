@@ -24,7 +24,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        pelicuDaoHardcodeado = new peliculaDAO();
+        pelicuDaoHardcodeado = peliculaDAO.getInstance();
     }
 
     @Override

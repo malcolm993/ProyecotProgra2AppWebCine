@@ -15,7 +15,7 @@
             <!-- Información de la película -->
             <div class="card p-4">
                 <h2 class="text-center mb-4">Editar datos Película: ${pelicula.nombre_pelicula}</h2>
-                <form id="formEditarPelicula" action="update" method="post" enctype="multipart/form-data">
+                <form id="formEditarPelicula" action="updatePelicula" method="post" enctype="multipart/form-data">
 
                     <!-- Campo Nombre -->
                     <div class="mb-3 row">
@@ -62,10 +62,12 @@
                         <div class="col-sm-12 text-center">
                             <img class="img-fluid mb-3" src="${pageContext.request.contextPath}/assets/img/${pelicula.foto}" alt="Foto de ${pelicula.nombre_pelicula}" style="max-width: 200px;"/>
                         </div>
+                        <!-- Imagen de la película 
                         <label for="foto" class="col-sm-2 col-form-label">Foto:</label>
                         <div class="col-sm-10">
                             <input type="file" id="foto" name="foto" class="form-control">
                         </div>
+                        -->
                     </div>
 
                     <!-- Campo Sinopsis -->
