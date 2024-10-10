@@ -19,8 +19,6 @@ public class Funcion implements Serializable {
     private String fechaDeFuncion;
     private String horario;
 
-    
-
     public Funcion(int id_funcion, TipoDeFuncion tipoDeFuncion, Sala sala, Pelicula pelicula, String fechaDeFuncion,
             String horario) {
         this.id_funcion = id_funcion;

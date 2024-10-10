@@ -108,13 +108,14 @@ public class EdicionPeliculasServlet extends HttpServlet {
     }
 
     private void cargarPeliculaParams(Pelicula peli, HttpServletRequest req) {
+        
         peli.setNombre_pelicula(req.getParameter("nombre"));
-        //peli.setFoto("");
-        peli.setApto_publico(req.getParameter("apto_publico"));
+        peli.setApto_publico(req.getParameter("aptopara"));
         peli.setDirector(req.getParameter("director"));
-        //peli.setDuracion_min(Integer.parseInt(req.getParameter("duracion")));
-        //peli.setFechaDeEstreno(LEGACY_DO_HEAD);
+        peli.setDuracion_min(Integer.parseInt(req.getParameter("duracion")));
+        peli.setFechaDeEstreno(req.getParameter("fechaEstreno"));
         peli.setSinopsis(req.getParameter("sinopsis"));
+        
     }
 
 }

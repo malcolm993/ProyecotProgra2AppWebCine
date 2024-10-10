@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center mb-4">Detalles de la Película</h1>
+            <h1 class="text-center mb-4">Detalles de la Película id pelicula: ${pelicula.id}</h1>
 
             <!-- Información de la película -->
             <div class="card p-4">
@@ -29,7 +29,7 @@
                     <div class="mb-3 row">
                         <label for="duracion" class="col-sm-2 col-form-label">Duración (min):</label>
                         <div class="col-sm-10">
-                            <input type="text" id="duracion" name="duracion" class="form-control" value="${pelicula.duracion_min}" required>
+                            <input type="number" id="duracion" name="duracion" class="form-control" value="${pelicula.duracion_min}" required>
                         </div>
                     </div>
 
@@ -81,7 +81,7 @@
                     <!-- Botones de acción -->
                     <div class="mb-3 row">
                         <div class="col-sm-12 text-center">
-                            <input type="hidden" name="id" value="${pelicula.id}" />
+                            <input type="hidden" name="id" value="${pelicula.id}" aria-label ="Archivo" />
                             <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
                             <button type="reset" class="btn btn-secondary">Reiniciar</button>
                         </div>
