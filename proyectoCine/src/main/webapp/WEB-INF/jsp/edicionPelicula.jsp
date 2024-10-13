@@ -15,7 +15,7 @@
             <!-- Información de la película -->
             <div class="card p-4">
                 <h2 class="text-center mb-4">Editar datos Película: ${pelicula.nombre_pelicula}</h2>
-                <form id="formEditarPelicula" action="updatePelicula" method="post" enctype="multipart/form-data">
+                <form id="formEditarPelicula" action="updatePelicula" method="post" > <!-- enctype="multipart/form-data" esto era lo qno dejaba enviar informacion al servelet preguntar porque  -->
 
                     <!-- Campo Nombre -->
                     <div class="mb-3 row">
@@ -79,9 +79,10 @@
                     </div>
 
                     <!-- Botones de acción -->
+                    <input type="hidden" name="id" value="${pelicula.id}" aria-label ="Archivo" />
                     <div class="mb-3 row">
                         <div class="col-sm-12 text-center">
-                            <input type="hidden" name="id" value="${pelicula.id}" aria-label ="Archivo" />
+                            
                             <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
                             <button type="reset" class="btn btn-secondary">Reiniciar</button>
                         </div>
@@ -89,6 +90,7 @@
 
                 </form>
             </div>
+                    
             <!-- Botón de regresar -->
             <div class="d-flex justify-content-center mt-4">
                 <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
