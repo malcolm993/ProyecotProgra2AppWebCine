@@ -12,7 +12,7 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-4">Alta de Película</h1>
-            <form action="ruta_de_tu_servidor_para_guardar_la_pelicula" method="POST" enctype="multipart/form-data">
+            <form action="/addPelicula" method="POST" enctype="multipart/form-data">
                 <!-- Nombre de película -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -76,16 +76,18 @@
                         />
                 </div>
 
-                <!-- Estado de la película -->
-                <label for="estado" class="form-label">Estado de la película</label>
-                <div class="input-group mb-3">
-                    <select class="form-select" id="estado" name="estado" required>
-                        <option value="En cartelera">En cartelera</option>
-                        <option value="Próximo a estrenarse">Próximo a estrenarse</option>
-                    </select>
-                </div>
+                <!-- Campo Estado Película -->
+                    <div class="mb-3 row">
+                        <label for="estadoPelicula" class="col-sm-2 col-form-label">Estado Película:</label>
+                        <div class="col-sm-10">
+                            <select id="estadoPelicula" name="estadoPelicula" class="form-select" required>
+                                <option value="cartelera" ${pelicula.estadoPelicula == 'cartelera' ? 'selected' : ''}>Cartelera</option>
+                                <option value="proximamente" ${pelicula.estadoPelicula == 'proximamente' ? 'selected' : ''}>Próximamente</option>
+                            </select>
+                        </div>
+                    </div>
 
-                <!-- Selección de póster -->
+                <!-- Selección de póster
                 <div>
                     <div class="mb-4 d-flex justify-content-center">
                         <img
@@ -111,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+                Selección de póster -->
 
                 <!-- Botón para enviar -->
                 <div class="d-grid gap-2 mt-4">

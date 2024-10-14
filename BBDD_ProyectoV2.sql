@@ -69,39 +69,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `BBDD-ProyectoProgra2`.`BUTACA`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`BUTACA` (
-  `id_butaca` INT NOT NULL,
-  `ubicacion_butaca` VARCHAR(45) NOT NULL,
-  `id_sala` VARCHAR(2) NOT NULL,
-  PRIMARY KEY (`id_butaca`),
-  INDEX `fk_BUTACA_SALA1_idx` (`id_sala` ASC) VISIBLE,
-  CONSTRAINT `fk_BUTACA_SALA1`
-    FOREIGN KEY (`id_sala`)
-    REFERENCES `BBDD-ProyectoProgra2`.`SALA` (`id_sala`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `BBDD-ProyectoProgra2`.`BUTACA_RESERVA`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`BUTACA_RESERVA` (
-  `id_reserva_butaca` INT NOT NULL,
-  `id_butaca` INT NOT NULL,
-  PRIMARY KEY (`id_reserva_butaca`),
-  INDEX `fk_ENTRADA_RESERVA_BUTACA1_idx` (`id_butaca` ASC) VISIBLE,
-  CONSTRAINT `fk_ENTRADA_RESERVA_BUTACA1`
-    FOREIGN KEY (`id_butaca`)
-    REFERENCES `BBDD-ProyectoProgra2`.`BUTACA` (`id_butaca`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `BBDD-ProyectoProgra2`.`USUARIO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`USUARIO` (
@@ -129,21 +96,39 @@ CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (
   `cantidad_entradas` INT NOT NULL,
   PRIMARY KEY (`id_reserva_entrada`),
   INDEX `fk_RESERVA_CAPACIDAD_FUNCION1_idx` (`id_funcion` ASC) VISIBLE,
-  INDEX `fk_RESERVA_CAPACIDAD_BUTACA_RESERVA1_idx` (`id_reserva_butaca` ASC) VISIBLE,
   INDEX `fk_RESERVA_ENTRADA_USUARIO1_idx` (`USUARIO_id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_RESERVA_CAPACIDAD_FUNCION1`
     FOREIGN KEY (`id_funcion`)
     REFERENCES `BBDD-ProyectoProgra2`.`FUNCION` (`id_funcion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_RESERVA_CAPACIDAD_BUTACA_RESERVA1`
-    FOREIGN KEY (`id_reserva_butaca`)
-    REFERENCES `BBDD-ProyectoProgra2`.`BUTACA_RESERVA` (`id_reserva_butaca`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_RESERVA_ENTRADA_USUARIO1`
     FOREIGN KEY (`USUARIO_id_cliente`)
     REFERENCES `BBDD-ProyectoProgra2`.`USUARIO` (`id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `BBDD-ProyectoProgra2`.`BUTACA`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`BUTACA` (
+  `id_butaca` INT NOT NULL,
+  `ubicacion_butaca` VARCHAR(45) NOT NULL,
+  `id_sala` VARCHAR(2) NOT NULL,
+  `RESERVA_ENTRADA_id_reserva_entrada` INT NOT NULL,
+  PRIMARY KEY (`id_butaca`),
+  INDEX `fk_BUTACA_SALA1_idx` (`id_sala` ASC) VISIBLE,
+  INDEX `fk_BUTACA_RESERVA_ENTRADA1_idx` (`RESERVA_ENTRADA_id_reserva_entrada` ASC) VISIBLE,
+  CONSTRAINT `fk_BUTACA_SALA1`
+    FOREIGN KEY (`id_sala`)
+    REFERENCES `BBDD-ProyectoProgra2`.`SALA` (`id_sala`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BUTACA_RESERVA_ENTRADA1`
+    FOREIGN KEY (`RESERVA_ENTRADA_id_reserva_entrada`)
+    REFERENCES `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (`id_reserva_entrada`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
