@@ -82,7 +82,7 @@
                     <input type="hidden" name="id" value="${pelicula.id}" aria-label ="Archivo" />
                     <div class="mb-3 row">
                         <div class="col-sm-12 text-center">
-                            
+
                             <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
                             <button type="reset" class="btn btn-secondary">Reiniciar</button>
                         </div>
@@ -90,7 +90,7 @@
 
                 </form>
             </div>
-                    
+
             <!-- Botón de regresar -->
             <div class="d-flex justify-content-center mt-4">
                 <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>

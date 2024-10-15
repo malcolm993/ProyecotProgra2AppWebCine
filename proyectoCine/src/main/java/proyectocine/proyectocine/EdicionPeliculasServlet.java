@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.peliculaDAO;
+import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 
 /**
@@ -126,6 +127,14 @@ public class EdicionPeliculasServlet extends HttpServlet {
             String duracionStr = req.getParameter("duracion"); // Se necesita convertir a Integer
             String fechaEstreno = req.getParameter("fechaEstreno");
             String sinopsis = req.getParameter("sinopsis");
+            String estadoPelicula = req.getParameter("estadoPelicula");
+            System.out.println(nombre);
+            System.out.println(aptoPara);
+            System.out.println(director);
+            System.out.println(duracionStr);
+            System.out.println(fechaEstreno);
+            System.out.println(sinopsis);
+            System.out.println(estadoPelicula);
 
             // Validar si los parámetros recibidos son nulos
             if (nombre == null || aptoPara == null || director == null || duracionStr == null || fechaEstreno == null || sinopsis == null) {
@@ -143,6 +152,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
             peli.setFechaDeEstreno(fechaEstreno);
             peli.setSinopsis(sinopsis);
+            peli.setEstadoPelicula(EstadoPelicula.valueOf(estadoPelicula));
 
         } catch (NullPointerException e) {
             // Aquí manejamos si algún parámetro es nulo

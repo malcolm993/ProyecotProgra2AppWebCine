@@ -35,7 +35,7 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${listaPeliculas}" var="pelicula">
-                        <c:if test = "${pelicula.estadoPelicula == 'cartelera'}">
+                        <c:if test = "${pelicula.estadoPelicula == 'CARTELERA'}">
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Product image-->
@@ -71,7 +71,7 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${listaPeliculas}" var="pelicula">
-                        <c:if test = "${pelicula.estadoPelicula == 'proximamente'}">
+                        <c:if test = "${pelicula.estadoPelicula == 'PROXIMAMENTE'}">
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Product image-->
