@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.peliculaDAO;
-import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 
 /**
@@ -127,37 +126,23 @@ public class EdicionPeliculasServlet extends HttpServlet {
             String duracionStr = req.getParameter("duracion"); // Se necesita convertir a Integer
             String fechaEstreno = req.getParameter("fechaEstreno");
             String sinopsis = req.getParameter("sinopsis");
-            String estado = req.getParameter("estadoPelicula");
-            
-            System.out.println(nombre);
-            System.out.println(aptoPara);
-            System.out.println(director);
-            System.out.println(duracionStr);
-            System.out.println(fechaEstreno);
-            System.out.println(sinopsis);
-            System.out.println(estado);
 
             // Validar si los parámetros recibidos son nulos
-            if (nombre == null || aptoPara == null || director == null || duracionStr == null || fechaEstreno == null || sinopsis == null || estado ==null) {
+            if (nombre == null || aptoPara == null || director == null || duracionStr == null || fechaEstreno == null || sinopsis == null) {
                 throw new NullPointerException("Uno o más parámetros son nulos");
             }
+
+            // Si todos los valores están presentes, procedemos a asignar
+            peli.setNombre_pelicula(nombre);
+            peli.setApto_publico(aptoPara);
+            peli.setDirector(director);
+
             // Conversión de duracion (manejo de excepción por si no es un número válido)
             int duracion = Integer.parseInt(duracionStr);
             peli.setDuracion_min(duracion);
 
-            // Si todos los valores están presentes, procedemos a asignar
-            peli.setNombre_pelicula(nombre);
-            peli.setSinopsis(sinopsis);
-            peli.setApto_publico(aptoPara);
             peli.setFechaDeEstreno(fechaEstreno);
-            peli.setDirector(director);
-            peli.setEstadoPelicula(EstadoPelicula.proximamente);
-            if(estado.equalsIgnoreCase("cartelera")){
-                peli.setEstadoPelicula(EstadoPelicula.cartelera);
-            }
-            peli.setFoto("");
-
-
+            peli.setSinopsis(sinopsis);
 
         } catch (NullPointerException e) {
             // Aquí manejamos si algún parámetro es nulo

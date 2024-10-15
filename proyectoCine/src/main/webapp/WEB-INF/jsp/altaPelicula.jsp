@@ -12,7 +12,7 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center mb-4">Alta de Película</h1>
-            <form id ="formAgregarPelicula" action="addPelicula" method="POST" >
+            <form action="ruta_de_tu_servidor_para_guardar_la_pelicula" method="POST" enctype="multipart/form-data">
                 <!-- Nombre de película -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -40,13 +40,6 @@
                         required
                         />
                 </div>
-                <!-- Fecha de estreno -->
-                <div class="mb-3 row">
-                        <label for="fechaEstreno" class="col-sm-2 col-form-label">Fecha de estreno:</label>
-                        <div class="col-sm-10">
-                            <input type="date" id="fechaEstreno" name="fechaEstreno" class="form-control" value="${pelicula.fechaDeEstreno}" required>
-                        </div>
-                    </div>
 
                 <!-- Sinopsis -->
                 <div class="input-group mb-3">
@@ -61,8 +54,8 @@
                         type="text"
                         class="form-control"
                         placeholder="Ej: Todo público, +13"
-                        name="aptopara"
-                        id="aptopara"
+                        name="apto_para"
+                        id="apto_para"
                         required
                         />
                 </div>
@@ -92,7 +85,7 @@
                     </select>
                 </div>
 
-                <!-- Selección de póster 
+                <!-- Selección de póster -->
                 <div>
                     <div class="mb-4 d-flex justify-content-center">
                         <img
@@ -118,9 +111,6 @@
                         </div>
                     </div>
                 </div>
-                -->
-                
-                 <input type="hidden" name="foto" value="${pelicula.foto}" aria-label ="Archivo" />
 
                 <!-- Botón para enviar -->
                 <div class="d-grid gap-2 mt-4">
@@ -133,10 +123,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- JS para mostrar la imagen seleccionada -->
         <script>
-            function displaySelectedImage(event, elementId) {
-                const image = document.getElementById(elementId);
-                image.src = URL.createObjectURL(event.target.files[0]);
-            }
+                                    function displaySelectedImage(event, elementId) {
+                                        const image = document.getElementById(elementId);
+                                        image.src = URL.createObjectURL(event.target.files[0]);
+                                    }
         </script>
     </body>
 </html>

@@ -77,17 +77,6 @@
                             <textarea id="sinopsis" name="sinopsis" class="form-control" rows="5" required>${pelicula.sinopsis}</textarea>
                         </div>
                     </div>
-                    <!-- Campo Estado de pelicula falta -->
-                     <div class="mb-3 row">
-                        <label for="estadoPelicula" class="col-sm-2 col-form-label">Estado Película:</label>
-                        <div class="col-sm-10">
-                            <select id="estadoPelicula" name="estadoPelicula" class="form-select" required>
-                                <option value="cartelera" ${pelicula.estadoPelicula == 'cartelera' ? 'selected' : ''}>Cartelera</option>
-                                <option value="proximamente" ${pelicula.estadoPelicula == 'proximamente' ? 'selected' : ''}>Próximamente</option>
-                            </select>
-                        </div>
-                    </div>
-                    
 
                     <!-- Botones de acción -->
                     <input type="hidden" name="id" value="${pelicula.id}" aria-label ="Archivo" />
