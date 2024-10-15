@@ -80,6 +80,7 @@
 
                     <!-- Botones de acción -->
                     <input type="hidden" name="id" value="${pelicula.id}" aria-label ="Archivo" />
+                    <input type="hidden" name="estadoPelicula" value="${pelicula.estadoPelicula}" />
                     <div class="mb-3 row">
                         <div class="col-sm-12 text-center">
 
