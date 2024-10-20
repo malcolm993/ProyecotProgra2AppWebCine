@@ -35,7 +35,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
         pelicuDaoHardcodeado = PeliculaDAO.getInstance();
         salasDaoHardcodeado = SalaDAO.getInstance();
         try {
-            funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDaoHardcodeado.getAll());
+            funcionesHardcodeado= FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDaoHardcodeado.getAll());
         } catch (Exception ex) {
             System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
             System.out.println("ERROS EN SERVLET FUNCIONES");
@@ -47,7 +47,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
             System.out.println(funcionesHardcodeado.getAll());
         } catch (Exception ex) {
             System.out.println("ERROS EN SERVLET FUNCIONES salas !!!");
-        }
+    }
 
     }
 
@@ -83,6 +83,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
                     req.setAttribute("listaFunciones", funcionesHardcodeado.getAll());
                     destino = "/WEB-INF/jsp/funcionesLista.jsp";
             }
+
             req.getRequestDispatcher(destino).forward(req, resp);
         } catch (Exception ex) {
             resp.sendError(500, ex.getMessage());

@@ -10,9 +10,9 @@ public class Sala implements Serializable {
 
     public Sala() {
     }
-
-    public Sala(int ids, int cantButacas, TipoDeSala tipo) {
-        this.id = ids;
+    
+    public Sala(int ids, int cantButacas, TipoDeSala tipo){
+        this.id=ids;
         this.cantDeButacas = cantButacas;
         tipoSala = tipo;
     }
@@ -32,12 +32,12 @@ public class Sala implements Serializable {
     public void setCantDeButacas(int cantDeButacas) {
         this.cantDeButacas = cantDeButacas;
     }
-
-    public TipoDeSala getTipoDeSala() {
+    
+    public TipoDeSala getTipoDeSala(){
         return this.tipoSala;
     }
-
-    public void setTipoDeSala(TipoDeSala tipo) {
+    
+    public void setTipoDeSala(TipoDeSala tipo){
         this.tipoSala = tipo;
     }
 
@@ -45,7 +45,4 @@ public class Sala implements Serializable {
     public String toString() {
         return "Sala{" + "id=" + id + ", cantDeButacas=" + cantDeButacas + ", tipoSala=" + tipoSala + '}';
     }
-    
-    
-
 }

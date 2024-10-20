@@ -101,7 +101,7 @@
             <a href="funciones" class="btn btn-outline-primary float-end">FUNCIONES</a>
 
         </section>
-
+         
         <!-- Footer-->
 
 

@@ -119,6 +119,4 @@ public class Pelicula implements Serializable {
     public String toString() {
         return "Pelicula{" + "id=" + id + ", duracion_min=" + duracion_min + ", nombre_pelicula=" + nombre_pelicula + ", estadoPelicula=" + estadoPelicula + '}';
     }
-    
-    
 }
