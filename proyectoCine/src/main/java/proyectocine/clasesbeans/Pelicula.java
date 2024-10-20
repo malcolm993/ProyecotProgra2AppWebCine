@@ -114,4 +114,11 @@ public class Pelicula implements Serializable {
     public boolean tieneFoto() {
         return !fotopeli.equals(FOTO_DEFAULT);
     }
+
+    @Override
+    public String toString() {
+        return "Pelicula{" + "id=" + id + ", duracion_min=" + duracion_min + ", nombre_pelicula=" + nombre_pelicula + ", estadoPelicula=" + estadoPelicula + '}';
+    }
+    
+    
 }

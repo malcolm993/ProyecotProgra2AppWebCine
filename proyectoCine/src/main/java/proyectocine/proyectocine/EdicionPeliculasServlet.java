@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import proyectocine.clasesDAO.DAO;
-import proyectocine.clasesDAO.peliculaDAO;
+import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 
@@ -27,7 +27,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        peliculaDaoHardcodeado = peliculaDAO.getInstance();
+        peliculaDaoHardcodeado = PeliculaDAO.getInstance();
     }
 
     @Override

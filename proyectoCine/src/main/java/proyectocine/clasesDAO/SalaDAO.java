@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import proyectocine.clasesbeans.Sala;
+import proyectocine.clasesbeans.TipoDeSala;
 
 /**
  *
@@ -17,13 +18,22 @@ public class SalaDAO implements DAO<Sala, Integer> {
 
     private static int contador = 1; // Simula un id autoincremental de base de datos
     private List<Sala> salas;
+    private static SalaDAO salashardcodeadas;
 
-    public SalaDAO() {
+    private SalaDAO() {
         this.salas = new ArrayList<>();
+        cargarSalasFake();
+    }
+
+    public static SalaDAO getInstance() {
+        if (salashardcodeadas == null) {
+            salashardcodeadas = new SalaDAO();
+        }
+        return salashardcodeadas;
     }
 
     @Override
-    public void add(Sala sala) throws Exception {
+    public void add(Sala sala) {
         UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
         sala.setId(contador);
         salas.add(sala);
@@ -31,7 +41,7 @@ public class SalaDAO implements DAO<Sala, Integer> {
     }
 
     @Override
-    public void update(Sala sala) throws Exception {
+    public void update(Sala sala) {
         UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
         int idx = salas.indexOf(sala);
         if (idx > 0) {
@@ -40,7 +50,7 @@ public class SalaDAO implements DAO<Sala, Integer> {
     }
 
     @Override
-    public void delete(Integer id) throws Exception {
+    public void delete(Integer id) {
         this.salas.remove(getById(id));
     }
 
@@ -50,7 +60,7 @@ public class SalaDAO implements DAO<Sala, Integer> {
     }
 
     @Override
-    public Sala getById(Integer id) throws Exception {
+    public Sala getById(Integer id) {
         UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
         Sala sala = null;
         Iterator<Sala> it = this.salas.iterator();
@@ -63,4 +73,15 @@ public class SalaDAO implements DAO<Sala, Integer> {
         UtilExceptions.checkObjetoNulo(sala, "No existe funcion con id " + id);
         return null;
     }
+
+    public void cargarSalasFake() {
+        add(new Sala(contador, 20, TipoDeSala._2D));
+        add(new Sala(contador, 20, TipoDeSala._3D));
+        add(new Sala(contador, 20, TipoDeSala.D_BOX));
+    }
+
+    public int cantidadSalas() {
+        return this.salas.size();
+    }
+
 }

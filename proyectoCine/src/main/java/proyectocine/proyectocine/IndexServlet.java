@@ -10,8 +10,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import proyectocine.clasesDAO.DAO;
-import proyectocine.clasesDAO.peliculaDAO;
+import proyectocine.clasesDAO.SalaDAO;
+import proyectocine.clasesDAO.PeliculaDAO;
+import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.Pelicula;
+import proyectocine.clasesbeans.Sala;
 
 /**
  *
@@ -20,10 +23,14 @@ import proyectocine.clasesbeans.Pelicula;
 public class IndexServlet extends HttpServlet {
 
     private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
+    private DAO<Sala, Integer> salaDaoHardcodeado;
+    private DAO<Funcion, Integer> funcionDaoHardcodeado;
 
     @Override
     public void init() throws ServletException {
-        peliculaDaoHardcodeado = peliculaDAO.getInstance();
+        peliculaDaoHardcodeado = PeliculaDAO.getInstance();
+        salaDaoHardcodeado = SalaDAO.getInstance();
+
     }
 
     @Override

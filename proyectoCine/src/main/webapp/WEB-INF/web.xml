@@ -16,6 +16,10 @@
         <servlet-name>index-servlet</servlet-name>
         <servlet-class>proyectocine.proyectocine.IndexServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>funciones-servlet</servlet-name>
+        <servlet-class>proyectocine.proyectocine.EdicionFuncionesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>usuario-servlet</servlet-name>
         <url-pattern>/usuariocine/*</url-pattern>
@@ -27,6 +31,10 @@
     <servlet-mapping>
         <servlet-name>index-servlet</servlet-name>
         <url-pattern>/inicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>funciones-servlet</servlet-name>
+        <url-pattern>/funciones/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
