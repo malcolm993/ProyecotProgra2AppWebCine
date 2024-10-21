@@ -34,7 +34,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>funciones-servlet</servlet-name>
-        <url-pattern>/funciones/*</url-pattern>
+        <url-pattern>/edicionfunciones/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

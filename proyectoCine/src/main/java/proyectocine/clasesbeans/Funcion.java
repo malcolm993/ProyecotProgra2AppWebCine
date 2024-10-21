@@ -72,4 +72,10 @@ public class Funcion implements Serializable {
         this.pelicula = pelicula;
     }
 
+    @Override
+    public String toString() {
+        return "Funcion{" + "id_funcion=" + id_funcion + ", sala=" + sala + ", pelicula=" + pelicula + ", fechaDeFuncion=" + fechaDeFuncion + ", horario=" + horario + '}';
+    }
+    
+
 }

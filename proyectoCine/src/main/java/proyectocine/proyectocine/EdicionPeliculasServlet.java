@@ -38,6 +38,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
             pathInfo = pathInfo == null ? "" : pathInfo;
 
             String idString = req.getParameter("id");
+
             if (idString != null) {
                 req.setAttribute("pelicula", peliculaDaoHardcodeado.getById(Integer.parseInt(idString)));
             }

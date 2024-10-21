@@ -14,13 +14,11 @@
             <!-- Información de la función -->
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">Película: ${funcion.pelicula.nombre}</h5>
-                    <p class="card-text"><strong>Fecha:</strong> ${funcion.fecha}</p>
+                    <h5 class="card-title">ID de la Funcion ${funcion.id_funcion}</h5>
+                    <p class="card-text"><strong>Fecha:</strong> ${funcion.pelicula.nombre_pelicula}</p>                    
+                    <p class="card-text"><strong>Fecha:</strong> ${funcion.fechaDeFuncion}</p>
                     <p class="card-text"><strong>Horario:</strong> ${funcion.horario}</p>
-                    <p class="card-text"><strong>Tipo de Función:</strong> ${funcion.tipo}</p>
-                    <p class="card-text"><strong>Idioma:</strong> ${funcion.idioma}</p>
-                    <p class="card-text"><strong>Subtitulado:</strong> ${funcion.subtitulado}</p>
-                    <p class="card-text"><strong>Sala:</strong> ${funcion.sala}</p>
+                    <p class="card-text"><strong>Tipo de Función Sala :</strong> ${funcion.sala.tipoDeSala}</p>
                 </div>
             </div>
 

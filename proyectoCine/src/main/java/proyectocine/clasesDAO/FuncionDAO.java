@@ -68,7 +68,7 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
             }
         }
         UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
-        return null;
+        return funcion;
     }
     
     

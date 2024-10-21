@@ -98,7 +98,7 @@
             </div>
         </section>
         <section class="py-5">
-            <a href="funciones" class="btn btn-outline-primary float-end">FUNCIONES</a>
+            <a href="edicionfunciones" class="btn btn-outline-primary float-end">FUNCIONES</a>
 
         </section>
          
