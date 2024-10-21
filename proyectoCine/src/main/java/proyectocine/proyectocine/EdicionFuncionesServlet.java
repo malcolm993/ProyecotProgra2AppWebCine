@@ -103,10 +103,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
 
-            String idString = req.getParameter("id");
-            if (idString != null) {
-                req.setAttribute("pelicula", pelicuDaoHardcodeado.getById(Integer.parseInt(idString)));
-            }
+            
             switch (pathInfo) {
 
                 case "/addFuncion": // Form de alta
@@ -114,26 +111,31 @@ public class EdicionFuncionesServlet extends HttpServlet {
                     break;
 
                 case "/updateFuncion": // Form de alta
-                    destino = "/WEB-INF/jsp/edicionFuncion.jsp";
-                    break;
-
-                case "/checkFuncion": // Form de alta
-                    destino = "/WEB-INF/jsp/revisarFuncion.jsp";
+                    id_f = Integer.parseInt(req.getParameter("idFuncion"));
+                    f = funcionesHardcodeado.getById(id_f);
+                    cargarFuncionParam(f, req, resp);
+                    funcionesHardcodeado.update(f);
                     break;
 
                 case "/deleteFuncion": // Form de alta
-                    destino = "/WEB-INF/jsp/eliminarFuncion.jsp";
+                    id_f = Integer.parseInt(req.getParameter("idFuncion"));
+                    System.out.println("id de funcion:" + id_f);
+                    funcionesHardcodeado.delete(id_f);
                     break;
                 default: // pagina log In
                     req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
                     destino = "/WEB-INF/jsp/funcionesLista.jsp";
             }
 
-            req.getRequestDispatcher(destino).forward(req, resp);
+            resp.sendRedirect(getServletContext().getContextPath());
         } catch (Exception ex) {
             resp.sendError(500, ex.getMessage());
         }
 
+    }
+    
+    private void cargarFuncionParam(Funcion fun, HttpServletRequest req, HttpServletResponse res){
+        
     }
 
 }

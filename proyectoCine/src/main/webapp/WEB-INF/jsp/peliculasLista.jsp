@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center">Gestión de Películas y Funciones de Cine</h1>
+            <h1 class="text-center">Gestión de Películas </h1>
 
             <!-- Accordion for Cartelera, Proximamente, Funciones -->
             <div class="accordion accordion-flush" id="accordionExample">

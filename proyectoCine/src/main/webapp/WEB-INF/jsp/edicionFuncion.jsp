@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center">Detalles de la Función de Cine</h1>
+            <h1 class="text-center">Detalles de la Función ID : ${funcion.id_funcion}</h1>
 
             <!-- Información de la función -->
             <div class="card mt-4">
