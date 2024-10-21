@@ -8,14 +8,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Gestión de Películas</title>
+        <title>GestiÃ³n de PelÃ­culas</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center">Gestión de Películas </h1>
+            <h1 class="text-center">GestiÃ³n de PelÃ­culas </h1>
 
             <!-- Accordion for Cartelera, Proximamente, Funciones -->
             <div class="accordion accordion-flush" id="accordionExample">
@@ -30,7 +30,7 @@
                     <div id="collapseCartelera" class="accordion-collapse collapse" aria-labelledby="headingCartelera" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <!-- List of Movies in Cartelera -->
-                            <h3>Películas en Cartelera</h3>
+                            <h3>PelÃ­culas en Cartelera</h3>
                             <ol class="list-group list-group-numbered">
                                 <!-- aca arranca cada lista del acordion -->
                                 <c:forEach items="${listaPeliculas}" var="pelicula">
@@ -51,7 +51,7 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">Añadir Película</a>
+                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">AÃ±adir PelÃ­cula</a>
                             </div>
                         </div>
                     </div>
@@ -61,13 +61,13 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingProximamente">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProximamente" aria-expanded="false" aria-controls="collapseProximamente">
-                            Próximamente
+                            PrÃ³ximamente
                         </button>
                     </h2>
                     <div id="collapseProximamente" class="accordion-collapse collapse" aria-labelledby="headingProximamente" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <!-- List of Movies in Proximamente -->
-                            <h3>Próximos Estrenos</h3>
+                            <h3>PrÃ³ximos Estrenos</h3>
                             <ol class="list-group list-group-numbered">
                                 <!-- aca arranca cada lista del acordion -->
                                 <c:forEach items="${listaPeliculas}" var="pelicula">
@@ -88,7 +88,7 @@
                             </ol>
                             <!-- CRUD Buttons -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">Añadir Película</a>
+                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">AÃ±adir PelÃ­cula</a>
                             </div>
                         </div>
                     </div>
