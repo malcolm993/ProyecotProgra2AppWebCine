@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class peliculaDAO implements DAO<Pelicula, Integer> {
+public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
     private static int contador = 1; // Simula un id autoincremental de base de datos
     private List<Pelicula> peliculas;
-    private static peliculaDAO peliculashardcodeadas;
+    private static PeliculaDAO peliculashardcodeadas;
 
-    private peliculaDAO() {
+    private PeliculaDAO() {
         this.peliculas = new ArrayList<>();
         cargerPeliculasFake();
     }
 
     public static peliculaDAO getInstance() {
         if (peliculashardcodeadas == null) {
-            peliculashardcodeadas = new peliculaDAO();
+            peliculashardcodeadas = new PeliculaDAO();
         }
 
         return peliculashardcodeadas;
