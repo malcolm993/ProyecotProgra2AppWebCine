@@ -18,7 +18,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
         cargerPeliculasFake();
     }
 
-    public static peliculaDAO getInstance() {
+    public static PeliculaDAO getInstance() {
         if (peliculashardcodeadas == null) {
             peliculashardcodeadas = new PeliculaDAO();
         }
