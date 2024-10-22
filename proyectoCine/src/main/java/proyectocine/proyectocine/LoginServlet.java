@@ -7,17 +7,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.UsuarioDAO;
 import proyectocine.clasesbeans.Usuario;
 
 public class LoginServlet extends HttpServlet{
-    private DAO<Usuario, Integer> usuariohardcodeado;
 
-    @Override
-    public void init() throws ServletException {
-        usuariohardcodeado = UsuarioDAO.getInstance();
-    }
+    
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
