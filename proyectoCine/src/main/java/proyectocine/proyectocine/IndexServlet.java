@@ -37,7 +37,6 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             req.setAttribute("listaPeliculas", peliculaDaoHardcodeado.getAll());
-
             req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
 
         } catch (Exception ex) {

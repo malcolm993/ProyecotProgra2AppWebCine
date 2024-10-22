@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import proyectocine.clasesbeans.RolUsuario;
 import proyectocine.clasesbeans.Usuario;
 
 public class UsuarioDAO implements DAO<Usuario,Integer>{
@@ -13,6 +14,7 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
 
     public UsuarioDAO(){
         this.usuarios = new ArrayList<>();
+        cargarUsuariosFake();
     }
 
     public static UsuarioDAO getInstance(){
@@ -73,11 +75,16 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
         Iterator<Usuario> it = this.usuarios.iterator();
         while (it.hasNext() && usuario == null) {
             Usuario aux = it.next();
-            if (aux.getEmail() == mail && aux.getContrasenia() == password){
+            if (aux.getEmail().equals(mail) && aux.getContrasenia().equals(password)){
                 usuario = aux;
             }
         }
         return usuario;
+    }
+
+    public void cargarUsuariosFake(){
+        add(new Usuario(contador, "user1", "lastname1", "user1@gmail.com", "124", contador, RolUsuario.CLIENTE));
+        add(new Usuario(contador, "admin1", "lastname2", "admin1@gmail.com", "123", contador, RolUsuario.ADMIN));
     }
 
 }
