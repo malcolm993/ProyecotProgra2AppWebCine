@@ -21,9 +21,11 @@
                 <c:choose>
                     <c:when test="${userLogueado == null}">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">invitado</a></li>
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">${userLogueado.nombre} </a></li>
                     </c:otherwise>
                 </c:choose> 
                 <li class="nav-item dropdown">
