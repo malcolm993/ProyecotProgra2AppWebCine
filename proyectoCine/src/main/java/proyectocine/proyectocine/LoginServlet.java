@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet{
         // TODO Auto-generated method stub
         String origen = req.getParameter("origen"); // Obtengo el origen
         req.setAttribute("deDondeViene", origen); // Lo seteo como valor para poner en el form del .jsp (ir a verlo)
-        req.getRequestDispatcher("/WEB-INF/login-page.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
     @Override
