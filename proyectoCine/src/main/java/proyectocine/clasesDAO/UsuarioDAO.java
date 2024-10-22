@@ -68,4 +68,16 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
         return usuario;
     }
 
+    public Usuario getUser(String mail, String password){
+        Usuario usuario = null;
+        Iterator<Usuario> it = this.usuarios.iterator();
+        while (it.hasNext() && usuario == null) {
+            Usuario aux = it.next();
+            if (aux.getEmail() == mail && aux.getContrasenia() == password){
+                usuario = aux;
+            }
+        }
+        return usuario;
+    }
+
 }
