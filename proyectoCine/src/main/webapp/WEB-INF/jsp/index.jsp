@@ -31,7 +31,9 @@
         <section class="py-5">
             <h2 class="titulo-centrado"> CARTELERA !!!!</h2>
             <!-- enlace a servlet edicion peliculas -->
-            <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
+            <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
+                <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
+            </c:if>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${listaPeliculas}" var="pelicula">
@@ -67,7 +69,10 @@
         <section class="py-5">
             <h2 class="titulo-centrado">PROXIMAMENTE</h2>
             <!<!-- enlace a servlet edicion peliculas -->
-            <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
+            <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
+                <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
+            </c:if>
+            
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${listaPeliculas}" var="pelicula">
@@ -98,7 +103,10 @@
             </div>
         </section>
         <section class="py-5">
-            <a href="edicionfunciones" class="btn btn-outline-primary float-end">FUNCIONES</a>
+            <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
+                <a href="edicionfunciones" class="btn btn-outline-primary float-end">FUNCIONES</a>
+            </c:if>
+            
 
         </section>
          
