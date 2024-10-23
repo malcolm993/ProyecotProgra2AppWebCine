@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocine.clasesDAO.DAO;
@@ -28,6 +29,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
     private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
     private DAO<Sala, Integer> salasDaoHardcodeado;
     private DAO<Funcion, Integer> funcionesHardcodeado;
+    private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
 
     @Override
     public void init() throws ServletException {
@@ -57,7 +59,6 @@ public class EdicionFuncionesServlet extends HttpServlet {
             String destino;
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
-
             String idString = req.getParameter("idfuncion");
             
             System.out.println("id funcion: " + idString);
@@ -72,6 +73,8 @@ public class EdicionFuncionesServlet extends HttpServlet {
                     break;
 
                 case "/updateFuncion": // Form de alta
+                    req.setAttribute("listaHorarios", horarios);
+                    req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
                     destino = "/WEB-INF/jsp/edicionFuncion.jsp";
                     break;
 

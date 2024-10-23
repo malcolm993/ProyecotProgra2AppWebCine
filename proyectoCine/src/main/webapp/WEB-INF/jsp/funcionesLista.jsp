@@ -10,88 +10,128 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Gesti贸n de Pel铆culas</title>
+        <title>Gestion de Peli璫ulas</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center">Gesti贸n de Funciones de Cine</h1>
+            <h1 class="text-center">Gestion de Funciones de Cine</h1>
 
-            <!-- Accordion for Cartelera, Proximamente, Funciones -->
+            <!-- Accordion for 2D, 3D, D-BOX -->
             <div class="accordion accordion-flush" id="accordionExample">
 
-                <!-- Cartelera Accordion -->
+                <!-- Accordion for Funciones 2D -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingCartelera">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCartelera" aria-expanded="false" aria-controls="collapseCartelera">
-                            FUNCIONES
+                    <h2 class="accordion-header" id="heading2D">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2D" aria-expanded="false" aria-controls="collapse2D">
+                            FUNCIONES 2D
                         </button>
                     </h2>
-                    <div id="collapseCartelera" class="accordion-collapse collapse" aria-labelledby="headingCartelera" data-bs-parent="#accordionExample">
+                    <div id="collapse2D" class="accordion-collapse collapse" aria-labelledby="heading2D" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <!-- List of Movies in Cartelera -->
-                            <h3>Funciones de peliculas en Cartelera</h3>
+                            <h3>Funciones de peliculas en 2D</h3>
                             <ol class="list-group list-group-numbered">
-                                <!-- aca arranca cada lista del acordion -->
+                                <!-- Lista de funciones en 2D -->
                                 <c:forEach items="${listaFunciones}" var="funcion">
-
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold"> <p>ID :${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala : ${funcion.sala.tipoDeSala}</p> </div>
-                                            ${funcion.pelicula.nombre_pelicula}| duracion : ${funcion.pelicula.duracion_min} min |
-                                            Horario de funcion: ${funcion.horario}
-                                        </div>
-                                        <div class="btn-group" role="group">
-                                            <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
-                                            <a href="edicionfunciones/deleteFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-danger btn-sm">Eliminar</a>
-                                            <a href="edicionfunciones/checkFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-info btn-sm">Revisar</a>
-                                        </div>
-                                    </li>
-
-                                </c:forEach>                                
+                                    <c:if test="${funcion.sala.tipoDeSala == '_2D'}">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">
+                                                    <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
+                                                </div>
+                                                ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
+                                                Horario de funcion: ${funcion.horario} | Fecha proyeccion: ${funcion.fechaDeFuncion}
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
+                                                <a href="edicionfunciones/deleteFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                <a href="edicionfunciones/checkFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-info btn-sm">Revisar</a>
+                                            </div>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
                             </ol>
-                            <!-- ALta Button -->
+                            <!-- Bot髇 A馻dir Funci髇 para 2D -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/addPelicula" class="btn btn-success">A帽adir Funcion</a>
+                                <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">A馻dir Funci髇 2D</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-                <!-- Funciones Accordion -->
+                <!-- Accordion for Funciones 3D -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFunciones">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFunciones" aria-expanded="false" aria-controls="collapseFunciones">
-                            Funciones de Cine
+                    <h2 class="accordion-header" id="heading3D">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3D" aria-expanded="false" aria-controls="collapse3D">
+                            FUNCIONES 3D
                         </button>
                     </h2>
-                    <div id="collapseFunciones" class="accordion-collapse collapse" aria-labelledby="headingFunciones" data-bs-parent="#accordionExample">
+                    <div id="collapse3D" class="accordion-collapse collapse" aria-labelledby="heading3D" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <!-- List of Functions -->
-                            <h3>Funciones Disponibles</h3>
+                            <h3>Funciones de peliculas en 3D</h3>
                             <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Funci贸n 1</div>
-                                        Pel铆cula: Pelicula 1 | Horario: 15:00
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Sala: 1</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Funci贸n 2</div>
-                                        Pel铆cula: Pelicula 2 | Horario: 18:00
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">Sala: 2</span>
-                                </li>
+                                <!-- Lista de funciones en 3D -->
+                                <c:forEach items="${listaFunciones}" var="funcion">
+                                    <c:if test="${funcion.sala.tipoDeSala == '_3D'}">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">
+                                                    <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
+                                                </div>
+                                                ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
+                                                Horario de funcion: ${funcion.horario}
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
+                                                <a href="edicionfunciones/deleteFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                <a href="edicionfunciones/checkFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-info btn-sm">Revisar</a>
+                                            </div>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
                             </ol>
-                            <!-- CRUD Buttons -->
+                            <!-- Bot髇 A馻dir Funci髇 para 3D -->
                             <div class="mt-3">
-                                <a href="edicionpeliculas/addFuncion" class="btn btn-success">A帽adir Funcion</a>
-                                <a href="edicionpeliculas/updateFuncion" class="btn btn-warning">Modificar Funci贸n</a>
-                                <a href="edicionpeliculas/deleteFuncion" class="btn btn-danger">Eliminar Funci贸n</a>
-                                <a href="edicionpeliculas/checkFuncion" class="btn btn-info">Revisar</a>
+                                <a href="edicionfunciones/addFuncion?tipoSala=_3D" class="btn btn-success">A馻dir Funci髇 3D</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion for Funciones D-BOX -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingDBox">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDBox" aria-expanded="false" aria-controls="collapseDBox">
+                            FUNCIONES D-BOX
+                        </button>
+                    </h2>
+                    <div id="collapseDBox" class="accordion-collapse collapse" aria-labelledby="headingDBox" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <h3>Funciones de peliculas en D-BOX</h3>
+                            <ol class="list-group list-group-numbered">
+                                <!-- Lista de funciones en D-BOX -->
+                                <c:forEach items="${listaFunciones}" var="funcion">
+                                    <c:if test="${funcion.sala.tipoDeSala == 'D_BOX'}">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">
+                                                    <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
+                                                </div>
+                                                ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
+                                                Horario de funcion: ${funcion.horario}
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
+                                                <a href="edicionfunciones/deleteFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                <a href="edicionfunciones/checkFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-info btn-sm">Revisar</a>
+                                            </div>
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                            </ol>
+                            <!-- Bot髇 A馻dir Funci髇 para D-BOX -->
+                            <div class="mt-3">
+                                <a href="edicionfunciones/addFuncion?tipoSala=D_BOX" class="btn btn-success">A馻dir Funci髇 D-BOX</a>
                             </div>
                         </div>
                     </div>

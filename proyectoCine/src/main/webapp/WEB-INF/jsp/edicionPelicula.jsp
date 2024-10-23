@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center mb-4">Detalles de la Película id pelicula: ${pelicula.id}</h1>
+            <h1 class="text-center mb-4">Detalles de la Película ID pelicula: ${pelicula.id}</h1>
 
             <!-- Información de la película -->
             <div class="card p-4">

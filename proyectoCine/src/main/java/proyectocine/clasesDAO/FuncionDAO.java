@@ -12,6 +12,7 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
     private static int contador = 1; // Simula un id autoincremental de base de datos
     private List<Funcion> funciones;
     private static FuncionDAO funcionesHardcodeadas; 
+    private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
 
     private  FuncionDAO(List<Sala> x, List<Pelicula> y) {
         this.funciones = new ArrayList<>();
@@ -83,13 +84,17 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
     public void creacionFuncionPorSala(Sala s,List<Pelicula> y){
         int auxCont = 0;
         Pelicula p;
-        List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
+        
 
         for (String horario : horarios) {
             p = y.get(auxCont);
             add(new Funcion(contador, s, p, "2024-20-10", horario));
             auxCont++;
         }
+    }
+    
+    public List<String> getListaHorarios(){
+        return this.horarios;
     }
 
 }

@@ -13,52 +13,73 @@
             <h1 class="text-center">Detalles de la Función ID : ${funcion.id_funcion}</h1>
 
             <!-- Información de la función -->
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        Película: ${funcion.pelicula.nombre}
-                        <a href="editarFuncion?campo=pelicula&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </h5>
-                    <p class="card-text">
-                        <strong>Fecha:</strong> ${funcion.fecha}
-                        <a href="editarFuncion?campo=fecha&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </p>
-                    <p class="card-text">
-                        <strong>Horario:</strong> ${funcion.horario}
-                        <a href="editarFuncion?campo=horario&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </p>
-                    <p class="card-text">
-                        <strong>Tipo de Función:</strong> ${funcion.tipo}
-                        <a href="editarFuncion?campo=tipo&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </p>
-                    <p class="card-text">
-                        <strong>Idioma:</strong> ${funcion.idioma}
-                        <a href="editarFuncion?campo=idioma&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </p>
-                    <p class="card-text">
-                        <strong>Subtitulado:</strong> ${funcion.subtitulado}
-                        <a href="editarFuncion?campo=subtitulado&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </p>
-                    <p class="card-text">
-                        <strong>Sala:</strong> ${funcion.sala}
-                        <a href="editarFuncion?campo=sala&id=${funcion.id}">
-                            <i class="fas fa-edit ms-2"></i>
-                        </a>
-                    </p>
-                </div>
+            <div class="card p-4">
+                
+                <form id="formEditarFuncion" action="updateFuncion" method="post">
+
+                    <!-- Campo Película -->
+                    <div class="mb-3 row">
+                        <label for="pelicula" class="col-sm-2 col-form-label">Película:</label>
+                        <div class="col-sm-10">
+                             <!-- <input type="text" id="pelicula" name="pelicula" class="form-control" value="${funcion.pelicula.nombre_pelicula}" readonly> -->
+                            <select id="pelicula" name="pelicula" class="form-control" required>
+                                <!-- Mostrar la película de la función como la opción seleccionada por defecto -->
+                                <option value="${funcion.pelicula.nombre_pelicula}" selected>${funcion.pelicula.nombre_pelicula}</option>
+
+                                <!-- Lista de otras opciones de películas -->
+                                <c:forEach items="${listaPeliculas}" var="pelicula">
+                                    <option value="${pelicula.nombre_pelicula}">${pelicula.nombre_pelicula}</option>
+                                </c:forEach>
+                            </select>
+                    </div>
+
+                    <!-- Campo Sala -->
+                    <div class="mb-3 row">
+                        <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.id}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="sala" class="col-sm-2 col-form-label">Tipo de Sala:</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.tipoDeSala}" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Campo Fecha de Función -->
+                    <div class="mb-3 row">
+                        <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Función </label>
+                        <div class="col-sm-10">
+                            <!-- preguntar por que usando type="date" no me levanta las fecha pasada !!!!!!-->
+                            <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${funcion.fechaDeFuncion}" readonly> 
+                        </div>
+                    </div>
+
+                    <!-- Campo Horario  -->
+                    <div class="mb-3 row">
+                        <label for="horario" class="col-sm-2 col-form-label">Horario:</label>
+                        <div class="col-sm-10">
+                            <select id="horario" name="horario" class="form-control" required>
+                                <c:forEach items="${listaHorarios}" var="horario">
+                                    <option value="${horario}">${horario}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <input type="hidden" name="id_funcion" value="${funcion.id_funcion}" />
+                    <div class="mb-3 row">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
+                            <button type="reset" class="btn btn-secondary">Reiniciar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
+
 
             <!-- Botón de regresar -->
             <div class="d-flex justify-content-center mt-4">
