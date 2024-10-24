@@ -16,8 +16,6 @@ public class Usuario implements Serializable {
 
     }
 
-    
-
     public Usuario(int id, String nombre, String apellido, String email, String contrasenia, int credito,
             RolUsuario rolUsuario) {
         this.id = id;
@@ -28,8 +26,6 @@ public class Usuario implements Serializable {
         this.credito = credito;
         this.rolUsuario = rolUsuario;
     }
-
-
 
     public int getId() {
         return id;

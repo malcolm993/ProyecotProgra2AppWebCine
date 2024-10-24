@@ -17,17 +17,17 @@
                 <li class="nav-item"><a class="nav-link" href="#!">Acerca de nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Cartelera</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Proximamente</a></li>
-                <%-- <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Log in</a></li> --%>
-                <c:choose>
-                    <c:when test="${userLogueado == null}">
+                    <%-- <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Log in</a></li> --%>
+                    <c:choose>
+                        <c:when test="${userLogueado == null}">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">invitado</a></li>
-                    </c:when>
-                    <c:otherwise>
+                        </c:when>
+                        <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">${userLogueado.nombre} </a></li>
-                    </c:otherwise>
-                </c:choose> 
+                        </c:otherwise>
+                    </c:choose> 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop  ?? lo sacamos?</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

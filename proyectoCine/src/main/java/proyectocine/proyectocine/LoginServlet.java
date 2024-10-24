@@ -10,9 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import proyectocine.clasesDAO.UsuarioDAO;
 import proyectocine.clasesbeans.Usuario;
 
-public class LoginServlet extends HttpServlet{
-
-    
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,7 +29,7 @@ public class LoginServlet extends HttpServlet{
         if (user != null) {
             String haciaDondeIba = req.getParameter("deDondeViene");
             HttpSession session = req.getSession(); // Pido la sesión actual
-            session.setMaxInactiveInterval(60*60*24); // Seteo tiempo máximo de inactividad (en segundos)
+            session.setMaxInactiveInterval(60 * 60 * 24); // Seteo tiempo máximo de inactividad (en segundos)
             session.setAttribute("userLogueado", user); // Asigno la info del usuario a la sesión
             req.setAttribute("userLogueado", user);
             resp.sendRedirect(req.getContextPath() + haciaDondeIba);

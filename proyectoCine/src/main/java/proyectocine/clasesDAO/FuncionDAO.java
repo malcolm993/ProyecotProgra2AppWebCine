@@ -11,19 +11,19 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
 
     private static int contador = 1; // Simula un id autoincremental de base de datos
     private List<Funcion> funciones;
-    private static FuncionDAO funcionesHardcodeadas; 
+    private static FuncionDAO funcionesHardcodeadas;
     private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
 
-    private  FuncionDAO(List<Sala> x, List<Pelicula> y) {
+    private FuncionDAO(List<Sala> x, List<Pelicula> y) {
         this.funciones = new ArrayList<>();
-        cargarFuncionesFake(x,y);
+        cargarFuncionesFake(x, y);
     }
-    
-    public static FuncionDAO getInstance(List<Sala> x, List<Pelicula> y){
-        if(funcionesHardcodeadas == null){
+
+    public static FuncionDAO getInstance(List<Sala> x, List<Pelicula> y) {
+        if (funcionesHardcodeadas == null) {
             funcionesHardcodeadas = new FuncionDAO(x, y);
         }
-        
+
         return funcionesHardcodeadas;
     }
 
@@ -71,20 +71,18 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
         UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
         return funcion;
     }
-    
-    
-    public void cargarFuncionesFake(List<Sala> x, List<Pelicula> y){
+
+    public void cargarFuncionesFake(List<Sala> x, List<Pelicula> y) {
         int contSalas = 0;
-        while(x.size()>contSalas){
-                creacionFuncionPorSala(x.get(contSalas), y);
-                contSalas++;
+        while (x.size() > contSalas) {
+            creacionFuncionPorSala(x.get(contSalas), y);
+            contSalas++;
         }
     }
-    
-    public void creacionFuncionPorSala(Sala s,List<Pelicula> y){
+
+    public void creacionFuncionPorSala(Sala s, List<Pelicula> y) {
         int auxCont = 0;
         Pelicula p;
-        
 
         for (String horario : horarios) {
             p = y.get(auxCont);
@@ -92,8 +90,8 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
             auxCont++;
         }
     }
-    
-    public List<String> getListaHorarios(){
+
+    public List<String> getListaHorarios() {
         return this.horarios;
     }
 

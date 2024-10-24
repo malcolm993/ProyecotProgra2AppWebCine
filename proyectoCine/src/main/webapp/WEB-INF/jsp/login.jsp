@@ -29,7 +29,7 @@
             </div>
         </header>
         <!-- Section-->
-        
+
         <section class="py-5">
             <form class="flex" action="${pageContext.request.contextPath}/login" method="post">
                 <!-- Email input -->
@@ -68,7 +68,7 @@
                 <!-- Register buttons -->
                 <div class="text-center">
                     <p>Not a member? <a href="usuariocine/signupcine">Register</a></p>
-                    
+
                 </div>
                 <c:if test="${hayError}">
                     <div class="container mt-3 p-3 bg-danger text-light">

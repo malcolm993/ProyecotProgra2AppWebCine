@@ -7,22 +7,24 @@ import java.util.Iterator;
 import proyectocine.clasesbeans.RolUsuario;
 import proyectocine.clasesbeans.Usuario;
 
-public class UsuarioDAO implements DAO<Usuario,Integer>{
+public class UsuarioDAO implements DAO<Usuario, Integer> {
+
     private static int contador = 1; // Simula un id autoincremental de base de datos
     private List<Usuario> usuarios;
     private static UsuarioDAO usuarioshardcodeados;
 
-    public UsuarioDAO(){
+    public UsuarioDAO() {
         this.usuarios = new ArrayList<>();
         cargarUsuariosFake();
     }
 
-    public static UsuarioDAO getInstance(){
+    public static UsuarioDAO getInstance() {
         if (usuarioshardcodeados == null) {
             usuarioshardcodeados = new UsuarioDAO();
         }
         return usuarioshardcodeados;
     }
+
     @Override
     public void add(Usuario usuario) {
         // TODO Auto-generated method stub
@@ -70,19 +72,19 @@ public class UsuarioDAO implements DAO<Usuario,Integer>{
         return usuario;
     }
 
-    public Usuario getUser(String mail, String password){
+    public Usuario getUser(String mail, String password) {
         Usuario usuario = null;
         Iterator<Usuario> it = this.usuarios.iterator();
         while (it.hasNext() && usuario == null) {
             Usuario aux = it.next();
-            if (aux.getEmail().equals(mail) && aux.getContrasenia().equals(password)){
+            if (aux.getEmail().equals(mail) && aux.getContrasenia().equals(password)) {
                 usuario = aux;
             }
         }
         return usuario;
     }
 
-    public void cargarUsuariosFake(){
+    public void cargarUsuariosFake() {
         add(new Usuario(contador, "user1", "lastname1", "user1@gmail.com", "124", contador, RolUsuario.CLIENTE));
         add(new Usuario(contador, "admin1", "lastname2", "admin1@gmail.com", "123", contador, RolUsuario.ADMIN));
     }

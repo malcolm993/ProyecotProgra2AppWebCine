@@ -14,7 +14,7 @@
 
             <!-- Información de la función -->
             <div class="card p-4">
-                
+
                 <form id="formEditarFuncion" action="updateFuncion" method="post">
 
                     <!-- Campo Película -->
@@ -31,52 +31,52 @@
                                     <option value="${pelicula.nombre_pelicula}">${pelicula.nombre_pelicula}</option>
                                 </c:forEach>
                             </select>
-                    </div>
-
-                    <!-- Campo Sala -->
-                    <div class="mb-3 row">
-                        <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.id}" readonly>
                         </div>
-                    </div>
 
-                    <div class="mb-3 row">
-                        <label for="sala" class="col-sm-2 col-form-label">Tipo de Sala:</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.tipoDeSala}" readonly>
+                        <!-- Campo Sala -->
+                        <div class="mb-3 row">
+                            <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.id}" readonly>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Campo Fecha de Función -->
-                    <div class="mb-3 row">
-                        <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Función </label>
-                        <div class="col-sm-10">
-                            <!-- preguntar por que usando type="date" no me levanta las fecha pasada !!!!!!-->
-                            <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${funcion.fechaDeFuncion}" readonly> 
+                        <div class="mb-3 row">
+                            <label for="sala" class="col-sm-2 col-form-label">Tipo de Sala:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.tipoDeSala}" readonly>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Campo Horario  -->
-                    <div class="mb-3 row">
-                        <label for="horario" class="col-sm-2 col-form-label">Horario:</label>
-                        <div class="col-sm-10">
-                            <select id="horario" name="horario" class="form-control" required>
-                                <c:forEach items="${listaHorarios}" var="horario">
-                                    <option value="${horario}">${horario}</option>
-                                </c:forEach>
-                            </select>
+                        <!-- Campo Fecha de Función -->
+                        <div class="mb-3 row">
+                            <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Función </label>
+                            <div class="col-sm-10">
+                                <!-- preguntar por que usando type="date" no me levanta las fecha pasada !!!!!!-->
+                                <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${funcion.fechaDeFuncion}" readonly> 
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Botones de acción -->
-                    <input type="hidden" name="id_funcion" value="${funcion.id_funcion}" />
-                    <div class="mb-3 row">
-                        <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
-                            <button type="reset" class="btn btn-secondary">Reiniciar</button>
+                        <!-- Campo Horario  -->
+                        <div class="mb-3 row">
+                            <label for="horario" class="col-sm-2 col-form-label">Horario:</label>
+                            <div class="col-sm-10">
+                                <select id="horario" name="horario" class="form-control" required>
+                                    <c:forEach items="${listaHorarios}" var="horario">
+                                        <option value="${horario}">${horario}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+
+                        <!-- Botones de acción -->
+                        <input type="hidden" name="id_funcion" value="${funcion.id_funcion}" />
+                        <div class="mb-3 row">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
+                                <button type="reset" class="btn btn-secondary">Reiniciar</button>
+                            </div>
+                        </div>
                 </form>
             </div>
 

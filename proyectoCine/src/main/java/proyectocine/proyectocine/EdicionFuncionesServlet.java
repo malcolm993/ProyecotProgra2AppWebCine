@@ -37,19 +37,19 @@ public class EdicionFuncionesServlet extends HttpServlet {
         pelicuDaoHardcodeado = PeliculaDAO.getInstance();
         salasDaoHardcodeado = SalaDAO.getInstance();
         try {
-            funcionesHardcodeado= FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDaoHardcodeado.getAll());
+            funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDaoHardcodeado.getAll());
         } catch (Exception ex) {
             System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
             System.out.println("ERROS EN SERVLET FUNCIONES");
         }
-        
+
         try {
             System.out.println(pelicuDaoHardcodeado.getAll());
             System.out.println(salasDaoHardcodeado.getAll());
             System.out.println(funcionesHardcodeado.getAll());
         } catch (Exception ex) {
             System.out.println("ERROS EN SERVLET FUNCIONES salas !!!");
-    }
+        }
 
     }
 
@@ -60,11 +60,11 @@ public class EdicionFuncionesServlet extends HttpServlet {
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
             String idString = req.getParameter("idfuncion");
-            
+
             System.out.println("id funcion: " + idString);
             if (idString != null) {
                 req.setAttribute("funcion", funcionesHardcodeado.getById(Integer.parseInt(idString)));
-                System.out.println("???"+funcionesHardcodeado.getById(Integer.parseInt(idString)));
+                System.out.println("???" + funcionesHardcodeado.getById(Integer.parseInt(idString)));
             }
             switch (pathInfo) {
 
@@ -106,7 +106,6 @@ public class EdicionFuncionesServlet extends HttpServlet {
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
 
-            
             switch (pathInfo) {
 
                 case "/addFuncion": // Form de alta
@@ -136,9 +135,64 @@ public class EdicionFuncionesServlet extends HttpServlet {
         }
 
     }
-    
-    private void cargarFuncionParam(Funcion fun, HttpServletRequest req, HttpServletResponse res){
-        
+
+    private void cargarFuncionParam(Funcion fun, HttpServletRequest req, HttpServletResponse res) {
+        try {
+            // Obtenemos los parámetros del formulario
+            String peliculaNombre = req.getParameter("pelicula");
+            String salaId = req.getParameter("sala");
+            String fechaDeFuncion = req.getParameter("fechaDeFuncion");
+            String horario = req.getParameter("horario");
+
+            // Imprimimos los valores para depuración
+            System.out.println("Pelicula: " + peliculaNombre);
+            System.out.println("Sala ID: " + salaId);
+            System.out.println("Fecha de Funcion: " + fechaDeFuncion);
+            System.out.println("Horario: " + horario);
+
+            // Validamos que los parámetros no sean nulos o vacíos
+            if (peliculaNombre == null || salaId == null || fechaDeFuncion == null || horario == null) {
+                throw new NullPointerException("Uno o más parámetros son nulos.");
+            }
+
+            // Asignamos los valores recibidos al objeto 'Funcion'
+            // Primero debemos obtener el objeto Pelicula asociado al nombre recibido
+            // Asignamos la película a la función
+            fun.setPelicula(buscarPelicula(peliculaNombre));
+
+            // Asignamos la fecha y el horario
+            fun.setFechaDeFuncion(fechaDeFuncion);
+            fun.setHorario(horario);
+
+        } catch (NullPointerException e) {
+            System.out.println("Error: Parámetro nulo - " + e.getMessage());
+            try {
+                res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Faltan parámetros obligatorios.");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.out.println("Error: Ocurrió un error inesperado - " + e.getMessage());
+            try {
+                res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrió un error inesperado.");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+    }
+
+    private Pelicula buscarPelicula(String nombrePelicula) throws Exception {
+        Pelicula p = null;
+        int cont = 0;
+        while (pelicuDaoHardcodeado.getAll().size() > cont && p == null) {
+            Pelicula auxP = pelicuDaoHardcodeado.getById(cont);
+            if (auxP.getNombre_pelicula().equalsIgnoreCase(nombrePelicula)) {
+                p = auxP;
+            }
+            cont++;
+        }
+        return p;
+
     }
 
 }

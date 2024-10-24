@@ -13,16 +13,16 @@ import java.io.Serializable;
 public class Funcion implements Serializable {
 
     private int id_funcion;
-   
+
     private Sala sala;
     private Pelicula pelicula;
     private String fechaDeFuncion;
     private String horario;
 
-    public Funcion(int id_funcion,  Sala sala, Pelicula pelicula, String fechaDeFuncion,
+    public Funcion(int id_funcion, Sala sala, Pelicula pelicula, String fechaDeFuncion,
             String horario) {
         this.id_funcion = id_funcion;
-        
+
         this.sala = sala;
         this.pelicula = pelicula;
         this.fechaDeFuncion = fechaDeFuncion;
@@ -76,6 +76,5 @@ public class Funcion implements Serializable {
     public String toString() {
         return "Funcion{" + "id_funcion=" + id_funcion + ", sala=" + sala + ", pelicula=" + pelicula + ", fechaDeFuncion=" + fechaDeFuncion + ", horario=" + horario + '}';
     }
-    
 
 }

@@ -24,16 +24,16 @@ public class SalaDAO implements DAO<Sala, Integer> {
         this.salas = new ArrayList<>();
         cargarSalasFake();
     }
-    
+
     public static SalaDAO getInstance() {
-        if(salashardcodeadas == null){
+        if (salashardcodeadas == null) {
             salashardcodeadas = new SalaDAO();
         }
         return salashardcodeadas;
     }
 
     @Override
-    public void add(Sala sala)  {
+    public void add(Sala sala) {
         UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
         sala.setId(contador);
         salas.add(sala);
@@ -73,16 +73,15 @@ public class SalaDAO implements DAO<Sala, Integer> {
         UtilExceptions.checkObjetoNulo(sala, "No existe funcion con id " + id);
         return null;
     }
-    
+
     public void cargarSalasFake() {
         add(new Sala(contador, 20, TipoDeSala._2D));
         add(new Sala(contador, 20, TipoDeSala._3D));
-        add(new Sala(contador, 20, TipoDeSala.D_BOX));        
+        add(new Sala(contador, 20, TipoDeSala.D_BOX));
     }
-    
-    public int cantidadSalas(){
+
+    public int cantidadSalas() {
         return this.salas.size();
     }
-    
-    
+
 }
