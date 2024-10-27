@@ -63,7 +63,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
     @Override
     public void delete(Integer Id){
-        String query = "DELETE FROM ingrediente WHERE id = ?";
+        String query = "DELETE FROM pelicula WHERE id_pelicula = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setInt(1, Id);
             preparedStatement.executeUpdate();
@@ -147,7 +147,20 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
     @Override
     public void update(Pelicula pelicula){
-        
+        String query = "update pelicula set duracion_min = ?,nombre_pelicula = ?,sinopsis = ?, Apto_publico = ?, fecha_estreno = ?,director = ?,estado_pelicula = ?, imagen = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1,pelicula.getDuracion_min());
+            preparedStatement.setString(2, pelicula.getNombre_pelicula());
+            preparedStatement.setString(3, pelicula.getSinopsis());
+            preparedStatement.setString(4, pelicula.getApto_publico());
+            preparedStatement.setString(5, pelicula.getFechaDeEstreno());
+            preparedStatement.setString(6, pelicula.getDirector());
+            preparedStatement.setString(7, pelicula.getEstadoPelicula().toString());
+            preparedStatement.setString(8, pelicula.getFoto());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Pelicula rsRowToPelicula(ResultSet rs) throws SQLException  {
