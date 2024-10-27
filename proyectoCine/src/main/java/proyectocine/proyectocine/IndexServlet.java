@@ -27,7 +27,7 @@ public class IndexServlet extends HttpServlet {
     public void init() throws ServletException {
         // peliculaDaoHardcodeado = PeliculaDAO.getInstance();
         // salaDaoHardcodeado = SalaDAO.getInstance();
-
+        peliculaDao = new PeliculaDAO();
     }
 
     @Override

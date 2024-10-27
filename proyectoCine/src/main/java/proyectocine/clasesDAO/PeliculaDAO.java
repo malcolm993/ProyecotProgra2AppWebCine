@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud;
-
 import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 
@@ -65,7 +63,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
     @Override
     public void delete(Integer id){
-        
+
     }
     // @Override
     // public List<Pelicula> getAll() {
@@ -140,6 +138,11 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
     //         peliculas.set(idx, pelicula);
     //     }
     // }
+
+    @Override
+    public void update(Pelicula pelicula){
+        
+    }
 
     private Pelicula rsRowToPelicula(ResultSet rs) throws SQLException  {
         return new Pelicula(
