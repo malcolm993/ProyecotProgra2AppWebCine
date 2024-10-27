@@ -29,13 +29,31 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
         return peliculashardcodeadas;
     }
 
+    // @Override
+    // public void add(Pelicula pelicula) {
+    //     // TODO Auto-generated method stub
+    //     UtilExceptions.checkObjetoNulo(pelicula, "La pelicula no pueder nula");
+    //     pelicula.setId(contador);
+    //     peliculas.add(pelicula);
+    //     contador++;
+    // }
     @Override
-    public void add(Pelicula pelicula) {
-        // TODO Auto-generated method stub
-        UtilExceptions.checkObjetoNulo(pelicula, "La pelicula no pueder nula");
-        pelicula.setId(contador);
-        peliculas.add(pelicula);
-        contador++;
+    public void add(Pelicula pelicula){
+        String query = "insert into pelicula (id_pelicula,duracion_min,nombre_pelicula,sinopsis,Apto_publico,fecha_extreno,director,estado_pelicula,imagen) values(?,?,?,?,?,?,?,?,?)";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1,pelicula.getId());
+            preparedStatement.setInt(2,pelicula.getDuracion_min());
+            preparedStatement.setString(3, pelicula.getNombre_pelicula());
+            preparedStatement.setString(4, pelicula.getSinopsis());
+            preparedStatement.setString(5, pelicula.getApto_publico());
+            preparedStatement.setString(6, pelicula.getFechaDeEstreno());
+            preparedStatement.setString(7, pelicula.getDirector());
+            preparedStatement.setString(8, pelicula.getEstadoPelicula().toString());
+            preparedStatement.setString(9, pelicula.getFoto());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
