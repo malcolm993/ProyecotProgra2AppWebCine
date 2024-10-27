@@ -39,7 +39,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
     // }
     @Override
     public void add(Pelicula pelicula){
-        String query = "insert into pelicula (duracion_min,nombre_pelicula,sinopsis,Apto_publico,fecha_extreno,director,estado_pelicula,imagen) values(?,?,?,?,?,?,?,?)";
+        String query = "insert into pelicula (duracion_min,nombre_pelicula,sinopsis,Apto_publico,fecha_estreno,director,estado_pelicula,imagen) values(?,?,?,?,?,?,?,?)";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
             preparedStatement.setInt(1,pelicula.getDuracion_min());
             preparedStatement.setString(2, pelicula.getNombre_pelicula());
