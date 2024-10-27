@@ -62,8 +62,14 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
     // }
 
     @Override
-    public void delete(Integer id){
-
+    public void delete(Integer Id){
+        String query = "DELETE FROM ingrediente WHERE id = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setInt(1, Id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
     // @Override
     // public List<Pelicula> getAll() {
