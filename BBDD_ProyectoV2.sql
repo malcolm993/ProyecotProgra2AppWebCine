@@ -18,12 +18,12 @@ USE `BBDD-ProyectoProgra2` ;
 -- Table `BBDD-ProyectoProgra2`.`PELICULA`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`PELICULA` (
-  `id_pelicula` INT NOT NULL,
+  `id_pelicula` INT NOT NULL auto_increment,
   `duracion_min` INT NOT NULL,
   `nombre_pelicula` VARCHAR(45) NOT NULL,
-  `sinopsis` VARCHAR(100) NOT NULL,
+  `sinopsis` VARCHAR(200) NOT NULL,
   `Apto_publico` VARCHAR(45) NOT NULL,
-  `fecha_estreno` DATE NOT NULL,
+  `fecha_estreno` VARCHAR(20) NOT NULL,
   `director` VARCHAR(45) NOT NULL,
   `imagen` VARCHAR(20) NOT NULL,
   `estado_pelicula` ENUM("cartelera", "proximamente") NOT NULL,
@@ -35,7 +35,7 @@ ENGINE = InnoDB;
 -- Table `BBDD-ProyectoProgra2`.`SALA`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`SALA` (
-  `id_sala` VARCHAR(2) NOT NULL,
+  `id_sala` int NOT NULL auto_increment,
   `cantidad_butacas` INT NOT NULL,
   PRIMARY KEY (`id_sala`))
 ENGINE = InnoDB;
@@ -45,12 +45,12 @@ ENGINE = InnoDB;
 -- Table `BBDD-ProyectoProgra2`.`FUNCION`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`FUNCION` (
-  `id_funcion` VARCHAR(8) NOT NULL,
+  `id_funcion` int NOT NULL auto_increment,
   `horario_funcion` DATETIME NOT NULL,
   `id_pelicula` INT NOT NULL,
   `tipo_funcion` ENUM("_2D", "_3D", "D-BOX") NOT NULL,
   `idioma` ENUM("INGLES-SUB", "ESPAÑOL") NOT NULL,
-  `id_sala` VARCHAR(2) NOT NULL,
+  `id_sala` int NOT NULL,
   `fecha_estreno` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_funcion`),
   INDEX `fk_FUNCION_PELICULA1_idx` (`id_pelicula` ASC) VISIBLE,
@@ -72,7 +72,7 @@ ENGINE = InnoDB;
 -- Table `BBDD-ProyectoProgra2`.`USUARIO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`USUARIO` (
-  `id_cliente` INT NOT NULL,
+  `id_cliente` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -87,8 +87,8 @@ ENGINE = InnoDB;
 -- Table `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (
-  `id_reserva_entrada` INT NOT NULL,
-  `id_funcion` VARCHAR(8) NOT NULL,
+  `id_reserva_entrada` INT NOT NULL auto_increment,
+  `id_funcion` int NOT NULL,
   `id_reserva_butaca` INT NOT NULL,
   `costo_reserva` DECIMAL(2) NOT NULL,
   `fecha_reservada` DATETIME NOT NULL,
@@ -114,9 +114,9 @@ ENGINE = InnoDB;
 -- Table `BBDD-ProyectoProgra2`.`BUTACA`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`BUTACA` (
-  `id_butaca` INT NOT NULL,
+  `id_butaca` INT NOT NULL auto_increment,
   `ubicacion_butaca` VARCHAR(45) NOT NULL,
-  `id_sala` VARCHAR(2) NOT NULL,
+  `id_sala` int NOT NULL,
   `RESERVA_ENTRADA_id_reserva_entrada` INT NOT NULL,
   PRIMARY KEY (`id_butaca`),
   INDEX `fk_BUTACA_SALA1_idx` (`id_sala` ASC) VISIBLE,
