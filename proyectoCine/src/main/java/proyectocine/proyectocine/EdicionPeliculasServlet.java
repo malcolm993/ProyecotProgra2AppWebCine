@@ -125,7 +125,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
             String duracionStr = req.getParameter("duracion"); // Se necesita convertir a Integer
             String fechaEstreno = req.getParameter("fechaEstreno");
             String sinopsis = req.getParameter("sinopsis");
-            String foto = "placeholder.png";
+            String foto = "placeholder.jpg";
             String estadoPelicula = req.getParameter("estadoPelicula");
             System.out.println(nombre);
             System.out.println(aptoPara);

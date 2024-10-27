@@ -147,7 +147,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
     @Override
     public void update(Pelicula pelicula){
-        String query = "update pelicula set duracion_min = ?,nombre_pelicula = ?,sinopsis = ?, Apto_publico = ?, fecha_estreno = ?,director = ?,estado_pelicula = ?, imagen = ?";
+        String query = "update pelicula set duracion_min = ?,nombre_pelicula = ?,sinopsis = ?, Apto_publico = ?, fecha_estreno = ?,director = ?,estado_pelicula = ?, imagen = ? where id_pelicula = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
             preparedStatement.setInt(1,pelicula.getDuracion_min());
             preparedStatement.setString(2, pelicula.getNombre_pelicula());
@@ -157,6 +157,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
             preparedStatement.setString(6, pelicula.getDirector());
             preparedStatement.setString(7, pelicula.getEstadoPelicula().toString());
             preparedStatement.setString(8, pelicula.getFoto());
+            preparedStatement.setInt(9, pelicula.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

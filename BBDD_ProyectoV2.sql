@@ -37,6 +37,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`SALA` (
   `id_sala` int NOT NULL auto_increment,
   `cantidad_butacas` INT NOT NULL,
+  `tipo_sala` ENUM("_2D", "_3D", "D-BOX") NOT NULL,
   PRIMARY KEY (`id_sala`))
 ENGINE = InnoDB;
 
@@ -46,12 +47,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`FUNCION` (
   `id_funcion` int NOT NULL auto_increment,
-  `horario_funcion` DATETIME NOT NULL,
+  `horario` enum("HS12","HS14","HS16","HS18","HS20") NOT NULL,
+  `fecha` varchar(20) not null,
   `id_pelicula` INT NOT NULL,
-  `tipo_funcion` ENUM("_2D", "_3D", "D-BOX") NOT NULL,
   `idioma` ENUM("INGLES-SUB", "ESPAÑOL") NOT NULL,
   `id_sala` int NOT NULL,
-  `fecha_estreno` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_funcion`),
   INDEX `fk_FUNCION_PELICULA1_idx` (`id_pelicula` ASC) VISIBLE,
   INDEX `fk_FUNCION_SALA1_idx` (`id_sala` ASC) VISIBLE,
@@ -88,14 +88,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (
   `id_reserva_entrada` INT NOT NULL auto_increment,
+  `id_sala` int not null,
   `id_funcion` int NOT NULL,
-  `id_reserva_butaca` INT NOT NULL,
-  `costo_reserva` DECIMAL(2) NOT NULL,
-  `fecha_reservada` DATETIME NOT NULL,
+  `costo_reserva` int NOT NULL,
+  `fecha_reserva` varchar(20) not null,
+  `horario_reserva` varchar(10) not null,
   `USUARIO_id_cliente` INT NOT NULL,
   `cantidad_entradas` INT NOT NULL,
   PRIMARY KEY (`id_reserva_entrada`),
-  INDEX `fk_RESERVA_CAPACIDAD_FUNCION1_idx` (`id_funcion` ASC) VISIBLE,
+  INDEX `fk_RESERVA_ENTRADA_FUNCION1_idx` (`id_funcion` ASC) VISIBLE,
+  INDEX `fk_RESERVA_ENTRADA_SALA1_idx` (`id_sala` ASC) VISIBLE,
   INDEX `fk_RESERVA_ENTRADA_USUARIO1_idx` (`USUARIO_id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_RESERVA_CAPACIDAD_FUNCION1`
     FOREIGN KEY (`id_funcion`)
@@ -110,28 +112,6 @@ CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `BBDD-ProyectoProgra2`.`BUTACA`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`BUTACA` (
-  `id_butaca` INT NOT NULL auto_increment,
-  `ubicacion_butaca` VARCHAR(45) NOT NULL,
-  `id_sala` int NOT NULL,
-  `RESERVA_ENTRADA_id_reserva_entrada` INT NOT NULL,
-  PRIMARY KEY (`id_butaca`),
-  INDEX `fk_BUTACA_SALA1_idx` (`id_sala` ASC) VISIBLE,
-  INDEX `fk_BUTACA_RESERVA_ENTRADA1_idx` (`RESERVA_ENTRADA_id_reserva_entrada` ASC) VISIBLE,
-  CONSTRAINT `fk_BUTACA_SALA1`
-    FOREIGN KEY (`id_sala`)
-    REFERENCES `BBDD-ProyectoProgra2`.`SALA` (`id_sala`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_BUTACA_RESERVA_ENTRADA1`
-    FOREIGN KEY (`RESERVA_ENTRADA_id_reserva_entrada`)
-    REFERENCES `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (`id_reserva_entrada`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
