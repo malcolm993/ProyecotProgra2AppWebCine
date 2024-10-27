@@ -4,15 +4,12 @@
  */
 package proyectocine.proyectocine;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
@@ -23,11 +20,11 @@ import proyectocine.clasesbeans.Pelicula;
  */
 public class EdicionPeliculasServlet extends HttpServlet {
 
-    private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
+    private PeliculaDAO peliculaDao;
 
     @Override
     public void init() throws ServletException {
-        peliculaDaoHardcodeado = PeliculaDAO.getInstance();
+        peliculaDao = new PeliculaDAO();
     }
 
     @Override
@@ -40,7 +37,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
             String idString = req.getParameter("id");
 
             if (idString != null) {
-                req.setAttribute("pelicula", peliculaDaoHardcodeado.getById(Integer.parseInt(idString)));
+                req.setAttribute("pelicula", peliculaDao.getById(Integer.parseInt(idString)));
             }
             switch (pathInfo) {
                 case "/addPelicula": // Form de alta
@@ -60,7 +57,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
                     break;
 
                 default: // pagina log In
-                    req.setAttribute("listaPeliculas", peliculaDaoHardcodeado.getAll());
+                    req.setAttribute("listaPeliculas", peliculaDao.getAll());
                     destino = "/WEB-INF/jsp/peliculasLista.jsp";
             }
 
@@ -85,20 +82,20 @@ public class EdicionPeliculasServlet extends HttpServlet {
                 case "/addPelicula": // Form de alta
                     p = new Pelicula();
                     cargarPeliculaParams(p, req, resp);
-                    peliculaDaoHardcodeado.add(p);
+                    peliculaDao.add(p);
                     break;
 
                 case "/updatePelicula": // Form de alta
                     id_p = Integer.parseInt(req.getParameter("id"));
-                    p = peliculaDaoHardcodeado.getById(id_p);
+                    p = peliculaDao.getById(id_p);
                     cargarPeliculaParams(p, req, resp);
-                    peliculaDaoHardcodeado.update(p);
+                    peliculaDao.update(p);
                     break;
 
                 case "/deletePelicula": // Form de alta
                     id_p = Integer.parseInt(req.getParameter("id"));
 
-                    peliculaDaoHardcodeado.delete(id_p);
+                    peliculaDao.delete(id_p);
                     break;
 
             }
