@@ -41,14 +41,14 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
     public void add(Pelicula pelicula){
         String query = "insert into pelicula (duracion_min,nombre_pelicula,sinopsis,Apto_publico,fecha_extreno,director,estado_pelicula,imagen) values(?,?,?,?,?,?,?,?)";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
-            preparedStatement.setInt(2,pelicula.getDuracion_min());
-            preparedStatement.setString(3, pelicula.getNombre_pelicula());
-            preparedStatement.setString(4, pelicula.getSinopsis());
-            preparedStatement.setString(5, pelicula.getApto_publico());
-            preparedStatement.setString(6, pelicula.getFechaDeEstreno());
-            preparedStatement.setString(7, pelicula.getDirector());
-            preparedStatement.setString(8, pelicula.getEstadoPelicula().toString());
-            preparedStatement.setString(9, pelicula.getFoto());
+            preparedStatement.setInt(1,pelicula.getDuracion_min());
+            preparedStatement.setString(2, pelicula.getNombre_pelicula());
+            preparedStatement.setString(3, pelicula.getSinopsis());
+            preparedStatement.setString(4, pelicula.getApto_publico());
+            preparedStatement.setString(5, pelicula.getFechaDeEstreno());
+            preparedStatement.setString(6, pelicula.getDirector());
+            preparedStatement.setString(7, pelicula.getEstadoPelicula().toString());
+            preparedStatement.setString(8, pelicula.getFoto());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -153,7 +153,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
                 rs.getString("Apto_publico"),
                 null,
                 rs.getString("director"),
-                EstadoPelicula.valueOf("estado_pelicula"),
+                EstadoPelicula.valueOf(rs.getString("estado_pelicula").toUpperCase()),
                 rs.getString("imagen")
         );
     }
