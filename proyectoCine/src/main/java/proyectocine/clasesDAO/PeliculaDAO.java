@@ -1,11 +1,15 @@
 package proyectocine.clasesDAO;
 
-import proyectocine.clasesbeans.EstadoPelicula;
-import proyectocine.clasesbeans.Pelicula;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import proyectocine.clasesbeans.EstadoPelicula;
+import proyectocine.clasesbeans.Pelicula;
 
 public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
@@ -41,10 +45,23 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
         this.peliculas.remove(getById(id));
     }
 
+    // @Override
+    // public List<Pelicula> getAll() {
+    //     // TODO Auto-generated method stub
+    //     return new ArrayList<>(this.peliculas);
+    // }
     @Override
     public List<Pelicula> getAll() {
-        // TODO Auto-generated method stub
-        return new ArrayList<>(this.peliculas);
+        List<Pelicula> peliculas = new ArrayList<>();
+        String query = "select * from pelicula";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()){
+                peliculas.add(rsRowToPelicula(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return peliculas;
     }
 
     @Override
@@ -82,6 +99,20 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
         if (idx > 0) {
             peliculas.set(idx, pelicula);
         }
+    }
+
+    private Pelicula rsRowToPelicula(ResultSet rs) throws SQLException  {
+        return new Pelicula(
+                rs.getInt("id_pelicula"),
+                rs.getInt("duracion_min"),
+                rs.getString("nombre_pelicula"),
+                rs.getString("sinopsis"),
+                rs.getString("Apto_publico"),
+                null,
+                rs.getString("director"),
+                EstadoPelicula.valueOf("estado_pelicula"),
+                rs.getString("imagen")
+        );
     }
 
 }
