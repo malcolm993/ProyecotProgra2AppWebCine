@@ -125,6 +125,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
             String duracionStr = req.getParameter("duracion"); // Se necesita convertir a Integer
             String fechaEstreno = req.getParameter("fechaEstreno");
             String sinopsis = req.getParameter("sinopsis");
+            String foto = "placeholder.png";
             String estadoPelicula = req.getParameter("estadoPelicula");
             System.out.println(nombre);
             System.out.println(aptoPara);
@@ -151,6 +152,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
             peli.setFechaDeEstreno(fechaEstreno);
             peli.setSinopsis(sinopsis);
             peli.setEstadoPelicula(EstadoPelicula.valueOf(estadoPelicula));
+            peli.setFoto(foto);
 
         } catch (NullPointerException e) {
             // Aquí manejamos si algún parámetro es nulo

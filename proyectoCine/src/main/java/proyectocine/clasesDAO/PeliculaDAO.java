@@ -151,7 +151,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
                 rs.getString("nombre_pelicula"),
                 rs.getString("sinopsis"),
                 rs.getString("Apto_publico"),
-                null,
+                rs.getString("fecha_estreno"),
                 rs.getString("director"),
                 EstadoPelicula.valueOf(rs.getString("estado_pelicula").toUpperCase()),
                 rs.getString("imagen")
