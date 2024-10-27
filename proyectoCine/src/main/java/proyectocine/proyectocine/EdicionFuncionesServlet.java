@@ -4,14 +4,13 @@
  */
 package proyectocine.proyectocine;
 
+import java.io.IOException;
+import java.util.List;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
@@ -26,7 +25,7 @@ import proyectocine.clasesbeans.Sala;
  */
 public class EdicionFuncionesServlet extends HttpServlet {
 
-    private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
+    private PeliculaDAO pelicuDao;
     private DAO<Sala, Integer> salasDaoHardcodeado;
     private DAO<Funcion, Integer> funcionesHardcodeado;
     private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
@@ -34,17 +33,17 @@ public class EdicionFuncionesServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         System.out.println("inicio");
-        pelicuDaoHardcodeado = PeliculaDAO.getInstance();
+        pelicuDao = new PeliculaDAO();
         salasDaoHardcodeado = SalaDAO.getInstance();
         try {
-            funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDaoHardcodeado.getAll());
+            funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDao.getAll());
         } catch (Exception ex) {
             System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
             System.out.println("ERROS EN SERVLET FUNCIONES");
         }
 
         try {
-            System.out.println(pelicuDaoHardcodeado.getAll());
+            System.out.println(pelicuDao.getAll());
             System.out.println(salasDaoHardcodeado.getAll());
             System.out.println(funcionesHardcodeado.getAll());
         } catch (Exception ex) {
@@ -74,7 +73,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
                 case "/updateFuncion": // Form de alta
                     req.setAttribute("listaHorarios", horarios);
-                    req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
+                    req.setAttribute("listaPeliculas", pelicuDao.getAll());
                     destino = "/WEB-INF/jsp/edicionFuncion.jsp";
                     break;
 
@@ -125,7 +124,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
                     funcionesHardcodeado.delete(id_f);
                     break;
                 default: // pagina log In
-                    req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
+                    req.setAttribute("listaPeliculas", pelicuDao.getAll());
                     destino = "/WEB-INF/jsp/funcionesLista.jsp";
             }
 
@@ -184,8 +183,8 @@ public class EdicionFuncionesServlet extends HttpServlet {
     private Pelicula buscarPelicula(String nombrePelicula) throws Exception {
         Pelicula p = null;
         int cont = 0;
-        while (pelicuDaoHardcodeado.getAll().size() > cont && p == null) {
-            Pelicula auxP = pelicuDaoHardcodeado.getById(cont);
+        while (pelicuDao.getAll().size() > cont && p == null) {
+            Pelicula auxP = pelicuDao.getById(cont);
             if (auxP.getNombre_pelicula().equalsIgnoreCase(nombrePelicula)) {
                 p = auxP;
             }
