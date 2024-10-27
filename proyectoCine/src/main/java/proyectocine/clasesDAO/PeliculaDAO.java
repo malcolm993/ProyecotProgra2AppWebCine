@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import proyectocine.clasesbeans.EstadoPelicula;
@@ -64,21 +63,39 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
         return peliculas;
     }
 
+    // @Override
+    // public Pelicula getById(Integer id) {
+    //     // TODO Auto-generated method stub
+    //     UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+    //     Pelicula pelicula = null;
+    //     Iterator<Pelicula> it = this.peliculas.iterator();
+    //     while (it.hasNext() && pelicula == null) {
+    //         Pelicula aux = it.next();
+    //         if (aux.getId() == id) {
+    //             pelicula = aux;
+    //         }
+    //     }
+    //     UtilExceptions.checkObjetoNulo(pelicula, "No existe receta con id " + id);
+    //     return pelicula;
+    // }
+
     @Override
-    public Pelicula getById(Integer id) {
-        // TODO Auto-generated method stub
-        UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+    public Pelicula getById(Integer Id) {
+        String query = "SELECT * FROM pelicula WHERE id_pelicula = ?";
         Pelicula pelicula = null;
-        Iterator<Pelicula> it = this.peliculas.iterator();
-        while (it.hasNext() && pelicula == null) {
-            Pelicula aux = it.next();
-            if (aux.getId() == id) {
-                pelicula = aux;
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setInt(1, Id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    pelicula = rsRowToPelicula(resultSet);
+                }
             }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
-        UtilExceptions.checkObjetoNulo(pelicula, "No existe receta con id " + id);
         return pelicula;
     }
+
 
     public void cargerPeliculasFake() {
         add(new Pelicula(contador, 143, "The avengers: los vengadores", "El director de la Agencia SHIELD decide reclutar a un equipo para salvar al mundo de un desastre casi seguro cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial.", "si", "2024-05-02", "Josh Weadon", EstadoPelicula.CARTELERA, "vengadores.jpg"));
