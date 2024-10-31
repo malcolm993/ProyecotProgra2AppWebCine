@@ -71,7 +71,7 @@ public class SalaDAO implements DAO<Sala, Integer> {
             }
         }
         UtilExceptions.checkObjetoNulo(sala, "No existe funcion con id " + id);
-        return null;
+        return sala;
     }
 
     public void cargarSalasFake() {

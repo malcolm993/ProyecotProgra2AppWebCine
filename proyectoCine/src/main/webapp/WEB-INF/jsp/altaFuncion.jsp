@@ -1,128 +1,93 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Alta de Función</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            />
-        <!-- jQuery UI for Datepicker -->
-        <link
-            href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-            rel="stylesheet"
-            />
+        <title>Detalles y Edición de Función de Cine</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center mb-4">Alta de Función</h1>
-            <form action="ruta_del_servidor_para_guardar_la_funcion" method="POST">
-                <!-- Película -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Película</span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Nombre de la película"
-                        name="pelicula"
-                        aria-label="Película"
-                        required
-                        />
-                </div>
+            <h1 class="text-center">Detalles de la Función ID : ${funcion.id_funcion}</h1>
 
-                <!-- Fecha de Función (Datepicker) -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon2">Fecha</span>
-                    <input
-                        type="text"
-                        id="fechaFuncion"
-                        class="form-control"
-                        placeholder="Selecciona la fecha"
-                        name="fecha"
-                        aria-label="Fecha"
-                        required
-                        />
-                </div>
+            <!-- Información de la función -->
+            <div class="card p-4">
 
-                <!-- Horario de Función -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">Horario</span>
-                    <input
-                        type="time"
-                        class="form-control"
-                        name="horario"
-                        aria-label="Horario"
-                        required
-                        />
-                </div>
+                <form id="formEditarFuncion" action="addFuncion" method="post">
 
-                <!-- Tipo de Función -->
-                <label for="tipoFuncion" class="form-label">Tipo de Función</label>
-                <div class="input-group mb-3">
-                    <select class="form-select" id="tipoFuncion" name="tipoFuncion" required>
-                        <option value="2D">2D</option>
-                        <option value="3D">3D</option>
-                        <option value="D-Box">D-Box</option>
-                    </select>
-                </div>
+                    <!-- Campo Película -->
+                    <div class="mb-3 row">
+                        <label for="pelicula" class="col-sm-2 col-form-label">Película:</label>
+                        <div class="col-sm-10">
+                             <!-- <input type="text" id="pelicula" name="pelicula" class="form-control" value="${funcion.pelicula.nombre_pelicula}" readonly> -->
+                            <select id="pelicula" name="pelicula" class="form-control" required>
 
-                <!-- Idioma -->
-                <label for="idioma" class="form-label">Idioma</label>
-                <div class="input-group mb-3">
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Ej: Español, Inglés"
-                        name="idioma"
-                        aria-label="Idioma"
-                        required
-                        />
-                </div>
+                                <!-- Lista de otras opciones de películas -->
+                                <c:forEach items="${listaPeliculas}" var="pelicula">
+                                    <option value="${pelicula.nombre_pelicula}">${pelicula.nombre_pelicula}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-                <!-- Subtitulado -->
-                <label for="subtitulado" class="form-label">Subtitulado</label>
-                <div class="input-group mb-3">
-                    <select class="form-select" id="subtitulado" name="subtitulado" required>
-                        <option value="Sí">Sí</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
+                        <!-- Campo Sala -->
+                        <div class="mb-3 row">
+                            <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="sala" name="sala" class="form-control" value="${sala.id}" readonly>
+                            </div>
+                        </div>
 
-                <!-- ID Sala -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon5">ID Sala</span>
-                    <input
-                        type="number"
-                        class="form-control"
-                        placeholder="ID de la sala"
-                        name="idSala"
-                        aria-label="ID Sala"
-                        required
-                        />
-                </div>
+                        <div class="mb-3 row">
+                            <label for="sala" class="col-sm-2 col-form-label">Tipo de Sala:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="sala" name="sala" class="form-control" value="${sala.tipoDeSala}" readonly>
+                            </div>
+                        </div>
 
-                <!-- Botón para enviar -->
-                <div class="d-grid gap-2 mt-4">
-                    <button class="btn btn-success" type="submit">Guardar Función</button>
-                </div>
-            </form>
+                        <!-- Campo Fecha de Función -->
+                        <div class="mb-3 row">
+                            <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Función </label>
+                            <div class="col-sm-10">
+                                <!-- preguntar por que usando type="date" no me levanta las fecha pasada !!!!!!-->
+                                <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${funcion.fechaDeFuncion}" readonly> 
+                            </div>
+                        </div>
+
+                        <!-- Campo Horario  -->
+                        <div class="mb-3 row">
+                            <label for="horario" class="col-sm-2 col-form-label">Horario:</label>
+                            <div class="col-sm-10">
+                                <select id="horario" name="horario" class="form-control" required>
+                                <!-- Lista de horarios -->
+                                <c:forEach items="${listaHorarios}" var="hora">
+                                    <option value="${hora}">${hora}</option>
+                                </c:forEach>
+                            </select>
+                            </div>
+                        </div>
+               
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <input type="hidden" name="idFuncion" value="${funcion.id_funcion}" />
+                    <div class="mb-3 row">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>
+                            <button type="reset" class="btn btn-secondary">Reiniciar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- Botón de regresar -->
+            <div class="d-flex justify-content-center mt-4">
+                <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
+            </div>
         </div>
 
-        <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- jQuery and jQuery UI for Datepicker -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            // Initialize Datepicker for Fecha de Función
-            $(function () {
-                $("#fechaFuncion").datepicker({
-                    dateFormat: "dd-mm-yy",
-                    changeMonth: true,
-                    changeYear: true
-                });
-            });
-        </script>
     </body>
 </html>

@@ -61,16 +61,13 @@
                         <div class="mb-3 row">
                             <label for="horario" class="col-sm-2 col-form-label">Horario:</label>
                             <div class="col-sm-10">
-                                <select id="horario" name="horario" class="form-control" required>
-                                    <c:forEach items="${listaHorarios}" var="horario">
-                                        <option value="${horario}">${horario}</option>
-                                    </c:forEach>
-                                </select>
+                                <input type="text" id="horario" name="horario" class="form-control" value="${funcion.horario}" readonly> 
+                            </div>
                             </div>
                         </div>
 
                         <!-- Botones de acción -->
-                        <input type="hidden" name="id_funcion" value="${funcion.id_funcion}" />
+                        <input type="hidden" name="idFuncion" value="${funcion.id_funcion}" />
                         <div class="mb-3 row">
                             <div class="col-sm-12 text-center">
                                 <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>

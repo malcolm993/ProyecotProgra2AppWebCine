@@ -61,14 +61,19 @@ public class EdicionFuncionesServlet extends HttpServlet {
             pathInfo = pathInfo == null ? "" : pathInfo;
             String idString = req.getParameter("idfuncion");
 
-            System.out.println("id funcion: " + idString);
+            //System.out.println("id funcion: " + idString);
             if (idString != null) {
                 req.setAttribute("funcion", funcionesHardcodeado.getById(Integer.parseInt(idString)));
-                System.out.println("???" + funcionesHardcodeado.getById(Integer.parseInt(idString)));
+                //System.out.println("???" + funcionesHardcodeado.getById(Integer.parseInt(idString)));
             }
             switch (pathInfo) {
 
                 case "/addFuncion": // Form de alta
+                    String salaFija = req.getParameter("tipoSala");
+                    Sala salaAdd = buscarSalaPorTipo(salaFija);
+                    req.setAttribute("sala", salaAdd);
+                    req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
+                    req.setAttribute("listaHorarios", horarios);
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
                     break;
 
@@ -109,6 +114,8 @@ public class EdicionFuncionesServlet extends HttpServlet {
             switch (pathInfo) {
 
                 case "/addFuncion": // Form de alta
+                    
+                    
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
                     break;
 
@@ -183,8 +190,8 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
     private Pelicula buscarPelicula(String nombrePelicula) throws Exception {
         Pelicula p = null;
-        int cont = 0;
-        while (pelicuDaoHardcodeado.getAll().size() > cont && p == null) {
+        int cont = 1;
+        while (pelicuDaoHardcodeado.getAll().size() >= cont && p == null) {
             Pelicula auxP = pelicuDaoHardcodeado.getById(cont);
             if (auxP.getNombre_pelicula().equalsIgnoreCase(nombrePelicula)) {
                 p = auxP;
@@ -193,6 +200,21 @@ public class EdicionFuncionesServlet extends HttpServlet {
         }
         return p;
 
+    }
+    
+    private Sala buscarSalaPorTipo( String x) throws Exception {
+    Sala s = null;
+    int cont = 1;
+    while(salasDaoHardcodeado.getAll().size() >= cont && s == null){
+        System.out.println(x);
+        Sala aux = salasDaoHardcodeado.getById(cont);
+        System.out.println(aux);
+        if(aux.getTipoDeSala().toString().equals(x)){
+            s=aux;
+        }
+        cont++;
+    }
+    return s;
     }
 
 }

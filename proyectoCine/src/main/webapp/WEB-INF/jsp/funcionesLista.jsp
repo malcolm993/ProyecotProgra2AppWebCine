@@ -37,7 +37,7 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">
-                                                    <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
+                                                    <p>ID Funcion: ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                                 </div>
                                                 ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
                                                 Horario de funcion: ${funcion.horario} | Fecha proyeccion: ${funcion.fechaDeFuncion}
@@ -53,7 +53,7 @@
                             </ol>
                             <!-- Botón Añadir Función para 2D -->
                             <div class="mt-3">
-                                <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">Añadir Función 2D</a>
+                               <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">Añadir Función 2D</a>    
                             </div>
                         </div>
                     </div>
