@@ -13,5 +13,11 @@ public class UtilExceptions {
             throw new RuntimeException(mensajeDeError);
         }
     }
+    
+    public static void checkDisponibilidad(boolean x, String mensajeDeError){
+        if(x == false){
+            throw  new RuntimeException(mensajeDeError);
+        }
+    }
 
 }

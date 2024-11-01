@@ -7,13 +7,14 @@ import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.Pelicula;
 import proyectocine.clasesbeans.Sala;
 
-public class FuncionDAO implements DAO<Funcion, Integer> {
+public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
 
     private static int contador = 1; // Simula un id autoincremental de base de datos
     private List<Funcion> funciones;
     private static FuncionDAO funcionesHardcodeadas;
     private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
-
+    private final String fechaFuncionFija= "2024-12-01";
+    
     private FuncionDAO(List<Sala> x, List<Pelicula> y) {
         this.funciones = new ArrayList<>();
         cargarFuncionesFake(x, y);
@@ -30,6 +31,7 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
     @Override
     public void add(Funcion funcion) {
         // TODO Auto-generated method stub
+
         UtilExceptions.checkObjetoNulo(funcion, "La funcion no pueder nula");
         funcion.setId_funcion(contador);
         funciones.add(funcion);
@@ -86,13 +88,46 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
 
         for (String horario : horarios) {
             p = y.get(auxCont);
-            add(new Funcion(contador, s, p, "2024-20-10", horario));
+            add(new Funcion(contador, s, p, fechaFuncionFija, horario));
             auxCont++;
         }
     }
 
-    public List<String> getListaHorarios() {
+    
+
+    @Override
+    public List<String> getHorarios() throws Exception {
         return this.horarios;
+    }
+
+    @Override
+    public String getFechaFuncion() throws Exception {
+        return this.fechaFuncionFija;
+    }
+    
+    private boolean verificarDisponibilidadSala(Funcion f){
+        int cont =1;
+        String fechaA= f.getHorario();
+        boolean auxB = false;
+        
+        while(funcionesHardcodeadas.getAll().size()>= cont && auxB == false){
+            Funcion fAux = funcionesHardcodeadas.getById(cont);
+            if(fAux.getHorario().equalsIgnoreCase(fechaA)){
+                auxB = true;
+            }
+            cont++;
+        }
+        
+        return auxB;
+    }
+
+    @Override
+    public void addPorSala(Funcion funcion) throws Exception {
+        boolean verif = verificarDisponibilidadSala(funcion);
+        UtilExceptions.checkDisponibilidad(verif, "No hay capacidad en la Sala o ya esta ocupada el horario");
+        if(verif == true){
+            add(funcion);
+        }
     }
 
 }

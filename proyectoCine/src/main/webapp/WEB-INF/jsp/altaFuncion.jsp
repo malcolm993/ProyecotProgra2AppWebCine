@@ -35,14 +35,14 @@
                         <div class="mb-3 row">
                             <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="sala" name="sala" class="form-control" value="${sala.id}" readonly>
+                                <input type="text" id="salaId" name="salaId" class="form-control" value="${sala.id}" readonly>
                             </div>
                         </div>
 
                         <div class="mb-3 row">
                             <label for="sala" class="col-sm-2 col-form-label">Tipo de Sala:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="sala" name="sala" class="form-control" value="${sala.tipoDeSala}" readonly>
+                                <input type="text" id="salaTipo" name="salaTipo" class="form-control" value="${sala.tipoDeSala}" readonly>
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                             <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Función </label>
                             <div class="col-sm-10">
                                 <!-- preguntar por que usando type="date" no me levanta las fecha pasada !!!!!!-->
-                                <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${funcion.fechaDeFuncion}" readonly> 
+                                <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${fechaFuncion}" readonly> 
                             </div>
                         </div>
 
@@ -71,7 +71,6 @@
                     </div>
 
                     <!-- Botones de acción -->
-                    <input type="hidden" name="idFuncion" value="${funcion.id_funcion}" />
                     <div class="mb-3 row">
                         <div class="col-sm-12 text-center">
                             <button type="submit" class="btn btn-success me-2">Confirmar cambios</button>

@@ -37,14 +37,14 @@
                         <div class="mb-3 row">
                             <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.id}" readonly>
+                                <input type="text" id="salaId" name="salaId" class="form-control" value="${funcion.sala.id}" readonly>
                             </div>
                         </div>
 
                         <div class="mb-3 row">
                             <label for="sala" class="col-sm-2 col-form-label">Tipo de Sala:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="sala" name="sala" class="form-control" value="${funcion.sala.tipoDeSala}" readonly>
+                                <input type="text" id="salaTipo" name="salaTipo" class="form-control" value="${funcion.sala.tipoDeSala}" readonly>
                             </div>
                         </div>
 

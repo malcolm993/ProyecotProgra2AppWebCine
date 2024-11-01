@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocine.clasesDAO.DAO;
+import proyectocine.clasesDAO.DAOFuncion;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesDAO.SalaDAO;
@@ -28,12 +29,12 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
     private DAO<Pelicula, Integer> pelicuDaoHardcodeado;
     private DAO<Sala, Integer> salasDaoHardcodeado;
-    private DAO<Funcion, Integer> funcionesHardcodeado;
-    private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
+    private DAOFuncion<Funcion, Integer> funcionesHardcodeado;
+    
 
     @Override
     public void init() throws ServletException {
-        System.out.println("inicio");
+        System.out.println("inicio servlet funciones");
         pelicuDaoHardcodeado = PeliculaDAO.getInstance();
         salasDaoHardcodeado = SalaDAO.getInstance();
         try {
@@ -69,16 +70,17 @@ public class EdicionFuncionesServlet extends HttpServlet {
             switch (pathInfo) {
 
                 case "/addFuncion": // Form de alta
+                    
                     String salaFija = req.getParameter("tipoSala");
-                    Sala salaAdd = buscarSalaPorTipo(salaFija);
-                    req.setAttribute("sala", salaAdd);
+                    req.setAttribute("sala", buscarSalaPorTipo(salaFija));
+                    req.setAttribute("fechaFuncion", funcionesHardcodeado.getFechaFuncion());
                     req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
-                    req.setAttribute("listaHorarios", horarios);
+                    req.setAttribute("listaHorarios", funcionesHardcodeado.getHorarios());
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
                     break;
 
                 case "/updateFuncion": // Form de alta
-                    req.setAttribute("listaHorarios", horarios);
+                    req.setAttribute("listaHorarios", funcionesHardcodeado.getHorarios());
                     req.setAttribute("listaPeliculas", pelicuDaoHardcodeado.getAll());
                     destino = "/WEB-INF/jsp/edicionFuncion.jsp";
                     break;
@@ -114,8 +116,9 @@ public class EdicionFuncionesServlet extends HttpServlet {
             switch (pathInfo) {
 
                 case "/addFuncion": // Form de alta
-                    
-                    
+                    f = new Funcion();
+                    cargarFuncionParam(f, req, resp);
+                    funcionesHardcodeado.addPorSala(f);
                     destino = "/WEB-INF/jsp/altaFuncion.jsp";
                     break;
 
@@ -147,7 +150,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
         try {
             // Obtenemos los parámetros del formulario
             String peliculaNombre = req.getParameter("pelicula");
-            String salaId = req.getParameter("sala");
+            String salaId = req.getParameter("salaId");
             String fechaDeFuncion = req.getParameter("fechaDeFuncion");
             String horario = req.getParameter("horario");
 
@@ -166,7 +169,8 @@ public class EdicionFuncionesServlet extends HttpServlet {
             // Primero debemos obtener el objeto Pelicula asociado al nombre recibido
             // Asignamos la película a la función
             fun.setPelicula(buscarPelicula(peliculaNombre));
-
+            //Asignamos la Sala
+            fun.setSala(salasDaoHardcodeado.getById(Integer.parseInt(salaId)));
             // Asignamos la fecha y el horario
             fun.setFechaDeFuncion(fechaDeFuncion);
             fun.setHorario(horario);

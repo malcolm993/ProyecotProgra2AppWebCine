@@ -13,11 +13,11 @@ import java.io.Serializable;
 public class Funcion implements Serializable {
 
     private int id_funcion;
-
     private Sala sala;
     private Pelicula pelicula;
     private String fechaDeFuncion;
     private String horario;
+    
 
     public Funcion(int id_funcion, Sala sala, Pelicula pelicula, String fechaDeFuncion,
             String horario) {
@@ -71,6 +71,8 @@ public class Funcion implements Serializable {
     public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
     }
+
+    
 
     @Override
     public String toString() {
