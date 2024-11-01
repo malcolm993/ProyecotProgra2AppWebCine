@@ -4,9 +4,12 @@
  */
 package proyectocine.clasesDAO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import proyectocine.clasesbeans.Sala;
 import proyectocine.clasesbeans.TipoDeSala;
 
@@ -82,6 +85,14 @@ public class SalaDAO implements DAO<Sala, Integer> {
 
     public int cantidadSalas() {
         return this.salas.size();
+    }
+
+    private Sala rsRowToSala(ResultSet rs) throws SQLException{
+        return new Sala(
+            rs.getInt("id_sala"),
+            rs.getInt("cantDeButacas"),
+            TipoDeSala.valueOf(rs.getString("tipo_sala"))
+        );
     }
 
 }
