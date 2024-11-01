@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import proyectocine.clasesbeans.Sala;
@@ -78,19 +77,36 @@ public class SalaDAO implements DAO<Sala, Integer> {
         return salas;
     }
 
+    //@Override
+    // public Sala getById(Integer id) {
+    //     UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+    //     Sala sala = null;
+    //     Iterator<Sala> it = this.salas.iterator();
+    //     while (it.hasNext() && sala == null) {
+    //         Sala aux = it.next();
+    //         if (aux.getId() == id) {
+    //             sala = aux;
+    //         }
+    //     }
+    //     UtilExceptions.checkObjetoNulo(sala, "No existe funcion con id " + id);
+    //     return null;
+    // }
+
     @Override
-    public Sala getById(Integer id) {
-        UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+    public Sala getById(Integer id){
+        String query = "select * from sala where id_sala = ?";
         Sala sala = null;
-        Iterator<Sala> it = this.salas.iterator();
-        while (it.hasNext() && sala == null) {
-            Sala aux = it.next();
-            if (aux.getId() == id) {
-                sala = aux;
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                if (resultSet.next()) {
+                    sala = rsRowToSala(resultSet);
+                }
+            } catch (Exception e) {
             }
+        } catch (Exception e) {
         }
-        UtilExceptions.checkObjetoNulo(sala, "No existe funcion con id " + id);
-        return null;
+        return sala;
     }
 
     public void cargarSalasFake() {
