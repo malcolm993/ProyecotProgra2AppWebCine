@@ -4,6 +4,8 @@
  */
 package proyectocine.clasesDAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -57,9 +59,23 @@ public class SalaDAO implements DAO<Sala, Integer> {
         this.salas.remove(getById(id));
     }
 
+    // @Override
+    // public List<Sala> getAll() throws Exception {
+    //     return new ArrayList<>(this.salas);
+    // }
+
     @Override
-    public List<Sala> getAll() throws Exception {
-        return new ArrayList<>(this.salas);
+    public List<Sala> getAll(){
+        List<Sala> salas = new ArrayList<>();
+        String query = "select * from sala";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()){
+            while (resultSet.next()) { 
+                salas.add(rsRowToSala(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return salas;
     }
 
     @Override
@@ -90,7 +106,7 @@ public class SalaDAO implements DAO<Sala, Integer> {
     private Sala rsRowToSala(ResultSet rs) throws SQLException{
         return new Sala(
             rs.getInt("id_sala"),
-            rs.getInt("cantDeButacas"),
+            rs.getInt("cantidad_butacas"),
             TipoDeSala.valueOf(rs.getString("tipo_sala"))
         );
     }
