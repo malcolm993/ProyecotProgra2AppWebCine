@@ -12,12 +12,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import proyectocine.clasesDAO.DAO;
-import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesDAO.SalaDAO;
 import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.Pelicula;
-import proyectocine.clasesbeans.Sala;
 
 /**
  *
@@ -26,7 +24,7 @@ import proyectocine.clasesbeans.Sala;
 public class EdicionFuncionesServlet extends HttpServlet {
 
     private PeliculaDAO pelicuDao;
-    private DAO<Sala, Integer> salasDaoHardcodeado;
+    private SalaDAO salaDao;
     private DAO<Funcion, Integer> funcionesHardcodeado;
     private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
 
@@ -34,17 +32,18 @@ public class EdicionFuncionesServlet extends HttpServlet {
     public void init() throws ServletException {
         System.out.println("inicio");
         pelicuDao = new PeliculaDAO();
-        salasDaoHardcodeado = SalaDAO.getInstance();
-        try {
-            funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDao.getAll());
-        } catch (Exception ex) {
-            System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
-            System.out.println("ERROS EN SERVLET FUNCIONES");
-        }
+        salaDao = new SalaDAO();
+        // funcionDao = new FuncionDAO();
+        // try {
+        //     funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDao.getAll());
+        // } catch (Exception ex) {
+        //     System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
+        //     System.out.println("ERROS EN SERVLET FUNCIONES");
+        // }
 
         try {
             System.out.println(pelicuDao.getAll());
-            System.out.println(salasDaoHardcodeado.getAll());
+            System.out.println(salaDao.getAll());
             System.out.println(funcionesHardcodeado.getAll());
         } catch (Exception ex) {
             System.out.println("ERROS EN SERVLET FUNCIONES salas !!!");
