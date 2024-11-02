@@ -53,11 +53,21 @@ public class SalaDAO implements DAO<Sala, Integer> {
         }
     }
 
+    // @Override
+    // public void delete(Integer id) {
+    //     this.salas.remove(getById(id));
+    // }
+    
     @Override
     public void delete(Integer id) {
-        this.salas.remove(getById(id));
+        String query = "DELETE FROM sala WHERE id_sala = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
-
     // @Override
     // public List<Sala> getAll() throws Exception {
     //     return new ArrayList<>(this.salas);
