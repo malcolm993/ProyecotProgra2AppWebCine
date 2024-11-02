@@ -11,7 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import proyectocine.clasesDAO.DAO;
+import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesDAO.SalaDAO;
 import proyectocine.clasesbeans.Funcion;
@@ -26,7 +26,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
     private PeliculaDAO pelicuDao;
     private SalaDAO salaDao;
-    private DAO<Funcion, Integer> funcionesHardcodeado;
+    private FuncionDAO funcionDAO;
     private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
 
     @Override
@@ -45,7 +45,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
         try {
             System.out.println(pelicuDao.getAll());
             System.out.println(salaDao.getAll());
-            System.out.println(funcionesHardcodeado.getAll());
+            System.out.println(funcionDAO.getAll());
         } catch (Exception ex) {
             System.out.println("ERROS EN SERVLET FUNCIONES salas !!!");
         }
@@ -62,8 +62,8 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
             System.out.println("id funcion: " + idString);
             if (idString != null) {
-                req.setAttribute("funcion", funcionesHardcodeado.getById(Integer.parseInt(idString)));
-                System.out.println("???" + funcionesHardcodeado.getById(Integer.parseInt(idString)));
+                req.setAttribute("funcion", funcionDAO.getById(Integer.parseInt(idString)));
+                System.out.println("???" + funcionDAO.getById(Integer.parseInt(idString)));
             }
             switch (pathInfo) {
 
@@ -85,7 +85,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
                     destino = "/WEB-INF/jsp/eliminarFuncion.jsp";
                     break;
                 default: // pagina log In
-                    req.setAttribute("listaFunciones", funcionesHardcodeado.getAll());
+                    req.setAttribute("listaFunciones", funcionDAO.getAll());
                     destino = "/WEB-INF/jsp/funcionesLista.jsp";
             }
 
@@ -113,15 +113,15 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
                 case "/updateFuncion": // Form de alta
                     id_f = Integer.parseInt(req.getParameter("idFuncion"));
-                    f = funcionesHardcodeado.getById(id_f);
+                    f = funcionDAO.getById(id_f);
                     cargarFuncionParam(f, req, resp);
-                    funcionesHardcodeado.update(f);
+                    funcionDAO.update(f);
                     break;
 
                 case "/deleteFuncion": // Form de alta
                     id_f = Integer.parseInt(req.getParameter("idFuncion"));
                     System.out.println("id de funcion:" + id_f);
-                    funcionesHardcodeado.delete(id_f);
+                    funcionDAO.delete(id_f);
                     break;
                 default: // pagina log In
                     req.setAttribute("listaPeliculas", pelicuDao.getAll());
