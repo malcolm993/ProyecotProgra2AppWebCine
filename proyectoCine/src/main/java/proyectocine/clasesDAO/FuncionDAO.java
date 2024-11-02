@@ -60,7 +60,16 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
 
     @Override
     public List<Funcion> getAll() {
-        return new ArrayList<>(this.funciones);
+        List<Funcion> funciones = new ArrayList<>();
+        String query = "select * from funcion";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()){
+            while (resultSet.next()) { 
+                funciones.add(rsRowToFuncion(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return funciones;
     }
 
     // @Override
