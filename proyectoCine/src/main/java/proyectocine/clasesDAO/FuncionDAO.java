@@ -43,7 +43,16 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
     public void add(Funcion funcion) {
         // TODO Auto-generated method stub
         UtilExceptions.checkObjetoNulo(funcion, "La funcion no pueder nula");
-        
+        String query = "INSERT INTO funcion(horario,fecha,id_pelicula,id_sala) VALUES(?,?,?,?)";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setString(1, funcion.getHorarioFuncion().toString());
+            preparedStatement.setString(2,funcion.getFechaDeFuncion());
+            preparedStatement.setInt(3, funcion.getPelicula().getId());
+            preparedStatement.setInt(4, funcion.getSala().getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // @Override
