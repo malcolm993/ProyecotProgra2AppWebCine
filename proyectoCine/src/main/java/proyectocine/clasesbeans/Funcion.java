@@ -17,16 +17,16 @@ public class Funcion implements Serializable {
     private Sala sala;
     private Pelicula pelicula;
     private String fechaDeFuncion;
-    private String horario;
+    private HorarioFuncion horarioFuncion;
 
     public Funcion(int id_funcion, Sala sala, Pelicula pelicula, String fechaDeFuncion,
-            String horario) {
+            HorarioFuncion horarioFuncion) {
         this.id_funcion = id_funcion;
 
         this.sala = sala;
         this.pelicula = pelicula;
         this.fechaDeFuncion = fechaDeFuncion;
-        this.horario = horario;
+        this.horarioFuncion = horarioFuncion;
     }
 
     public String getFechaDeFuncion() {
@@ -37,12 +37,12 @@ public class Funcion implements Serializable {
         this.fechaDeFuncion = fechaDeFuncion;
     }
 
-    public String getHorario() {
-        return horario;
+    public HorarioFuncion getHorario() {
+        return horarioFuncion;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setHorarioFuncion(HorarioFuncion horarioFuncion) {
+        this.horarioFuncion = horarioFuncion;
     }
 
     public Funcion() {
@@ -74,7 +74,7 @@ public class Funcion implements Serializable {
 
     @Override
     public String toString() {
-        return "Funcion{" + "id_funcion=" + id_funcion + ", sala=" + sala + ", pelicula=" + pelicula + ", fechaDeFuncion=" + fechaDeFuncion + ", horario=" + horario + '}';
+        return "Funcion{" + "id_funcion=" + id_funcion + ", sala=" + sala + ", pelicula=" + pelicula + ", fechaDeFuncion=" + fechaDeFuncion + ", horario=" + horarioFuncion + '}';
     }
 
 }
