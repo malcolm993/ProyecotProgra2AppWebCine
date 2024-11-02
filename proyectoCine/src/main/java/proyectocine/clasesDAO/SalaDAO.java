@@ -36,12 +36,25 @@ public class SalaDAO implements DAO<Sala, Integer> {
         return salashardcodeadas;
     }
 
+    // @Override
+    // public void add(Sala sala) {
+    //     UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
+    //     sala.setId(contador);
+    //     salas.add(sala);
+    //     contador++;
+    // }
+
     @Override
     public void add(Sala sala) {
         UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
-        sala.setId(contador);
-        salas.add(sala);
-        contador++;
+        String query = "insert into sala(cantidad_butacas,tipo_sala) values (?, ?)";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1,sala.getCantDeButacas());
+            preparedStatement.setString(2,sala.getTipoDeSala().toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // @Override
