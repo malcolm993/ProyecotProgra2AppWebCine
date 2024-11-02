@@ -37,7 +37,7 @@ public class Funcion implements Serializable {
         this.fechaDeFuncion = fechaDeFuncion;
     }
 
-    public HorarioFuncion getHorario() {
+    public HorarioFuncion getHorarioFuncion() {
         return horarioFuncion;
     }
 
