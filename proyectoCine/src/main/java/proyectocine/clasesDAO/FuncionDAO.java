@@ -3,6 +3,13 @@ package proyectocine.clasesDAO;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import proyectocine.clasesbeans.HorarioFuncion;
 import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.Pelicula;
 import proyectocine.clasesbeans.Sala;
@@ -56,10 +63,27 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
         return new ArrayList<>(this.funciones);
     }
 
+    // @Override
+    // public Funcion getById(Integer id) {
+    //     // TODO Auto-generated method stub
+    //     UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+    //     Funcion funcion = null;
+    //     Iterator<Funcion> it = this.funciones.iterator();
+    //     while (it.hasNext() && funcion == null) {
+    //         Funcion aux = it.next();
+    //         if (aux.getId_funcion() == id) {
+    //             funcion = aux;
+    //         }
+    //     }
+    //     UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
+    //     return funcion;
+    // }
+
     @Override
     public Funcion getById(Integer id) {
         // TODO Auto-generated method stub
         UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+        String query = "select * from funcion where id_funcion = ?";
         Funcion funcion = null;
         Iterator<Funcion> it = this.funciones.iterator();
         while (it.hasNext() && funcion == null) {
@@ -93,6 +117,18 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
 
     public List<String> getListaHorarios() {
         return this.horarios;
+    }
+
+    private Funcion rsRowToFuncion(ResultSet rs) throws SQLException{
+        SalaDAO salaDao = new SalaDAO();
+        PeliculaDAO peliculaDao = new PeliculaDAO();
+        return new Funcion(
+        rs.getInt("id_funcion"), 
+        salaDao.getById(rs.getInt("id_sala")),
+        peliculaDao.getById(rs.getInt("id_pelicula")), 
+        rs.getString("fecha"),
+        HorarioFuncion.valueOf(rs.getString("horario"))
+        );
     }
 
 }
