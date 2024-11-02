@@ -68,7 +68,13 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
 
     @Override
     public void delete(Integer id) {
-        
+        String query = "delete from funcion where id_funcion = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public List<Funcion> getAll() {
