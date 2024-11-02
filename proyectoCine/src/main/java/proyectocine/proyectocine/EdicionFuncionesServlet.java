@@ -15,6 +15,7 @@ import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesDAO.SalaDAO;
 import proyectocine.clasesbeans.Funcion;
+import proyectocine.clasesbeans.HorarioFuncion;
 import proyectocine.clasesbeans.Pelicula;
 
 /**
@@ -160,7 +161,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
             // Asignamos la fecha y el horario
             fun.setFechaDeFuncion(fechaDeFuncion);
-            fun.setHorario(horario);
+            fun.setHorarioFuncion(HorarioFuncion.valueOf(horario));
 
         } catch (NullPointerException e) {
             System.out.println("Error: Parámetro nulo - " + e.getMessage());
