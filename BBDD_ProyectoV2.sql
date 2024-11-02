@@ -50,7 +50,6 @@ CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`FUNCION` (
   `horario` enum("HS12","HS14","HS16","HS18","HS20") NOT NULL,
   `fecha` varchar(20) not null,
   `id_pelicula` INT NOT NULL,
-  `idioma` ENUM("INGLES-SUB", "ESPAÑOL") NOT NULL,
   `id_sala` int NOT NULL,
   PRIMARY KEY (`id_funcion`),
   INDEX `fk_FUNCION_PELICULA1_idx` (`id_pelicula` ASC) VISIBLE,
