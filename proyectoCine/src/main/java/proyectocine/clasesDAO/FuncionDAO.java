@@ -6,6 +6,7 @@ import java.util.List;
 import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.Pelicula;
 import proyectocine.clasesbeans.Sala;
+import proyectocine.clasesbeans.TipoDeSala;
 
 public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
 
@@ -106,17 +107,19 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
     }
     
     private boolean verificarDisponibilidadSala(Funcion f){
-        int cont =1;
+        System.out.println("hola");
+        int cont =0;
         String fechaA= f.getHorario();
-        boolean auxB = false;
-        
-        while(funcionesHardcodeadas.getAll().size()>= cont && auxB == false){
-            Funcion fAux = funcionesHardcodeadas.getById(cont);
+        boolean auxB = true;
+        ArrayList<Funcion> lista = listaFuncionesTipo(f.getSala().getTipoDeSala());
+        while(lista.size()> cont && auxB == true){
+            Funcion fAux = lista.get(cont);
             if(fAux.getHorario().equalsIgnoreCase(fechaA)){
-                auxB = true;
+                auxB = false;
             }
             cont++;
         }
+        System.out.println(lista);
         
         return auxB;
     }
@@ -128,6 +131,24 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         if(verif == true){
             add(funcion);
         }
+    }
+    
+    
+    private ArrayList<Funcion> listaFuncionesTipo( TipoDeSala tipo){
+        System.out.println("ok");
+        Funcion aux= null;
+        int cont=0;
+        ArrayList<Funcion> listaPorTipoSala = new ArrayList<>();
+        while(cont < funcionesHardcodeadas.getAll().size()){
+            aux=funcionesHardcodeadas.getAll().get(cont);
+            if(aux.getSala().getTipoDeSala() == tipo){
+                listaPorTipoSala.add(aux);
+            }
+            cont++;
+        }
+        
+        System.out.println("ok???");
+        return listaPorTipoSala;
     }
 
 }
