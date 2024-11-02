@@ -82,7 +82,7 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
     @Override
     public Funcion getById(Integer id) {
         // TODO Auto-generated method stub
-        UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
+        //UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
         String query = "select * from funcion where id_funcion = ?";
         Funcion funcion = null;
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
@@ -95,7 +95,7 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
+        //UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
         return funcion;
     }
 
