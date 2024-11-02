@@ -85,12 +85,15 @@ public class FuncionDAO implements DAO<Funcion, Integer> {
         UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
         String query = "select * from funcion where id_funcion = ?";
         Funcion funcion = null;
-        Iterator<Funcion> it = this.funciones.iterator();
-        while (it.hasNext() && funcion == null) {
-            Funcion aux = it.next();
-            if (aux.getId_funcion() == id) {
-                funcion = aux;
-            }
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                if(resultSet.next()){
+                    funcion = rsRowToFuncion(resultSet);
+                }
+            } 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
         return funcion;
