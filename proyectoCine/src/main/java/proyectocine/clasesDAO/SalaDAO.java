@@ -44,12 +44,26 @@ public class SalaDAO implements DAO<Sala, Integer> {
         contador++;
     }
 
+    // @Override
+    // public void update(Sala sala) {
+    //     UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
+    //     int idx = salas.indexOf(sala);
+    //     if (idx > 0) {
+    //         salas.set(idx, sala);
+    //     }
+    // }
+
     @Override
     public void update(Sala sala) {
-        UtilExceptions.checkObjetoNulo(sala, "La funcion no pueder nula");
-        int idx = salas.indexOf(sala);
-        if (idx > 0) {
-            salas.set(idx, sala);
+        UtilExceptions.checkObjetoNulo(sala, "La sala no pueder nula");
+        String query = "update sala set cantidad_butacas = ?, tipo_sala = ? where id_sala = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1,sala.getCantDeButacas());
+            preparedStatement.setString(2,sala.getTipoDeSala().toString());
+            preparedStatement.setInt(3,sala.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
