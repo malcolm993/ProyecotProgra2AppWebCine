@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface DAO<T, K> {
 
-    void add(T entidad) throws Exception;
+    void add(T registro) throws Exception;
 
-    void update(T entidad) throws Exception;
+    void update(T registro) throws Exception;
 
     void delete(K id) throws Exception;
 
