@@ -20,21 +20,21 @@ import proyectocine.clasesbeans.TipoDeSala;
  */
 public class SalaDAO implements DAO<Sala, Integer> {
 
-    private static int contador = 1; // Simula un id autoincremental de base de datos
-    private List<Sala> salas;
-    private static SalaDAO salashardcodeadas;
+    // private static int contador = 1; // Simula un id autoincremental de base de datos
+    // private List<Sala> salas;
+    // private static SalaDAO salashardcodeadas;
 
-    private SalaDAO() {
-        this.salas = new ArrayList<>();
-        cargarSalasFake();
-    }
+    // private SalaDAO() {
+    //     this.salas = new ArrayList<>();
+    //     cargarSalasFake();
+    // }
 
-    public static SalaDAO getInstance() {
-        if (salashardcodeadas == null) {
-            salashardcodeadas = new SalaDAO();
-        }
-        return salashardcodeadas;
-    }
+    // public static SalaDAO getInstance() {
+    //     if (salashardcodeadas == null) {
+    //         salashardcodeadas = new SalaDAO();
+    //     }
+    //     return salashardcodeadas;
+    // }
 
     // @Override
     // public void add(Sala sala) {
@@ -146,14 +146,14 @@ public class SalaDAO implements DAO<Sala, Integer> {
         return sala;
     }
 
-    public void cargarSalasFake() {
-        add(new Sala(contador, 20, TipoDeSala._2D));
-        add(new Sala(contador, 20, TipoDeSala._3D));
-        add(new Sala(contador, 20, TipoDeSala.D_BOX));
-    }
+    // public void cargarSalasFake() {
+    //     add(new Sala(contador, 20, TipoDeSala._2D));
+    //     add(new Sala(contador, 20, TipoDeSala._3D));
+    //     add(new Sala(contador, 20, TipoDeSala.D_BOX));
+    // }
 
     public int cantidadSalas() {
-        return this.salas.size();
+        return this.getAll().size();
     }
 
     private Sala rsRowToSala(ResultSet rs) throws SQLException{
