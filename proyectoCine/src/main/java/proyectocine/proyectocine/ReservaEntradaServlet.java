@@ -26,26 +26,31 @@ import proyectocine.clasesbeans.Sala;
  */
 public class ReservaEntradaServlet extends HttpServlet{
     
-    private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
-    private DAOFuncion<Funcion, Integer> funcionesHardcodeado;
-    private DAO<Sala, Integer> salasDaoHardcodeado;
+    // private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
+    // private DAOFuncion<Funcion, Integer> funcionesHardcodeado;
+    // private DAO<Sala, Integer> salasDaoHardcodeado;
+
+    private PeliculaDAO pelicuDao;
+    private SalaDAO salaDao;
+    private FuncionDAO funcionDAO;
     
 
     @Override
     public void init() throws ServletException {
-        salasDaoHardcodeado = SalaDAO.getInstance();
-        peliculaDaoHardcodeado = PeliculaDAO.getInstance();
+        pelicuDao = new PeliculaDAO();
+        salaDao = new SalaDAO();
+        funcionDAO = new FuncionDAO();
+        // try {
+        //     funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(), pelicuDao.getAll());
+        // } catch (Exception ex) {
+        //     System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
+        //     System.out.println("ERROS EN SERVLET FUNCIONES");
+        // }
+
         try {
-            funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(),peliculaDaoHardcodeado.getAll() );
-        } catch (Exception ex) {
-            System.out.println("Error: Ocurrió un error inesperado - " + ex.getMessage());
-            System.out.println("ERROS EN SERVLET FUNCIONES");
-        }
-        
-        try {
-            System.out.println(peliculaDaoHardcodeado.getAll());
-            System.out.println(salasDaoHardcodeado.getAll());
-            System.out.println(funcionesHardcodeado.getAll());
+            System.out.println(pelicuDao.getAll());
+            System.out.println(salaDao.getAll());
+            System.out.println(funcionDAO.getAll());
         } catch (Exception ex) {
             System.out.println("ERROS EN SERVLET FUNCIONES salas !!!");
         }
@@ -60,7 +65,7 @@ public class ReservaEntradaServlet extends HttpServlet{
             String idString = req.getParameter("idfuncion");
             
              if (idString != null) {
-                req.setAttribute("funcion", funcionesHardcodeado.getById(Integer.parseInt(idString)));
+                req.setAttribute("funcion", funcionDAO.getById(Integer.parseInt(idString)));
                 //System.out.println("???" + funcionesHardcodeado.getById(Integer.parseInt(idString)));
             }
              
@@ -68,13 +73,13 @@ public class ReservaEntradaServlet extends HttpServlet{
                 case "/confirmarReserva":
                     
                     int id_f = Integer.parseInt(req.getParameter("idfuncion"));
-                    Funcion f = funcionesHardcodeado.getById(id_f);
+                    Funcion f = funcionDAO.getById(id_f);
                     req.setAttribute("funcionSelecionada", f);
                     req.getRequestDispatcher("/WEB-INF/jsp/confirmarReserva.jsp").forward(req, resp);
 
                     break;
                 default:
-                    req.setAttribute("listaFunciones", funcionesHardcodeado.getAll());
+                    req.setAttribute("listaFunciones", funcionDAO.getAll());
                     req.getRequestDispatcher("/WEB-INF/jsp/reserva.jsp").forward(req, resp);
             }
 
