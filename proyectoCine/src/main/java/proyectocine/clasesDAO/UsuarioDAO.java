@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import proyectocine.clasesbeans.RolUsuario;
@@ -80,7 +81,16 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     @Override
     public List<Usuario> getAll() throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        List<Usuario> usuarios = new ArrayList<>();
+        String query = "select * from usuario";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) { 
+                usuarios.add(rsRowToUsuario(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usuarios;
     }
 
     // @Override
