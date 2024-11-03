@@ -71,7 +71,7 @@ ENGINE = InnoDB;
 -- Table `BBDD-ProyectoProgra2`.`USUARIO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`USUARIO` (
-  `id_cliente` INT NOT NULL auto_increment,
+  `id_usuario` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
