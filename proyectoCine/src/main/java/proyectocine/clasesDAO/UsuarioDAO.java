@@ -39,9 +39,20 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
 
     @Override
     public void add(Usuario usuario) {
-        // TODO Auto-generated method stub
         UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
-        
+        String query = "update set nombre = ?, apellido = ?, email = ?, contrasenia = ?, credito = ?, rol_usuario = ? where id_usuario = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, usuario.getNombre());
+            preparedStatement.setString(2, usuario.getApellido());
+            preparedStatement.setString(3, usuario.getEmail());
+            preparedStatement.setString(4, usuario.getContrasenia());
+            preparedStatement.setInt(5, usuario.getCredito());
+            preparedStatement.setString(6, usuario.getRolUsuario().toString());
+            preparedStatement.setInt(7, usuario.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // @Override
@@ -58,6 +69,19 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     public void update(Usuario usuario) throws Exception {
         // TODO Auto-generated method stub
         UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
+        String query = "update set nombre = ?, apellido = ?, email = ?, contrasenia = ?, credito = ?, rol_usuario = ? where id_usuario = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, usuario.getNombre());
+            preparedStatement.setString(2, usuario.getApellido());
+            preparedStatement.setString(3, usuario.getEmail());
+            preparedStatement.setString(4, usuario.getContrasenia());
+            preparedStatement.setInt(5, usuario.getCredito());
+            preparedStatement.setString(6, usuario.getRolUsuario().toString());
+            preparedStatement.setInt(7, usuario.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         
     }
 
@@ -69,7 +93,13 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
 
     @Override
     public void delete(Integer id) throws Exception {
-        
+        String query = "delete from usuario where id_usuario = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // @Override
