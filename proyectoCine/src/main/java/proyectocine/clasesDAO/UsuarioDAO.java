@@ -167,6 +167,18 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
         //         usuario = aux;
         //     }
         // }
+        String query = "select * from usuario where email = ? and contrasenia = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, mail);
+            preparedStatement.setString(2, password);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    usuario = rsRowToUsuario(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return usuario;
     }
 
