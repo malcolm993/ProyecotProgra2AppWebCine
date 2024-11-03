@@ -30,6 +30,10 @@
         <servlet-name>funciones-servlet</servlet-name>
         <servlet-class>proyectocine.proyectocine.EdicionFuncionesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>reserva-servlet</servlet-name>
+        <servlet-class>proyectocine.proyectocine.ReservaEntradaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>usuario-servlet</servlet-name>
         <url-pattern>/usuariocine/*</url-pattern>
@@ -53,6 +57,10 @@
     <servlet-mapping>
         <servlet-name>funciones-servlet</servlet-name>
         <url-pattern>/edicionfunciones/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reserva-servlet</servlet-name>
+        <url-pattern>/reserva/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
