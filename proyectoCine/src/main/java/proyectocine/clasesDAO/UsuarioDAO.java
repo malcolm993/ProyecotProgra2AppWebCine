@@ -1,8 +1,10 @@
 package proyectocine.clasesDAO;
 
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import proyectocine.clasesbeans.RolUsuario;
 import proyectocine.clasesbeans.Usuario;
@@ -89,4 +91,14 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
         add(new Usuario(contador, "admin1", "lastname2", "admin1@gmail.com", "123", contador, RolUsuario.ADMIN));
     }
 
+    public Usuario rsRowToUsuario(ResultSet rs) throws SQLException {
+        return new Usuario(
+            rs.getInt("id_usuario"), 
+            rs.getString("nombre"), 
+            rs.getNString("apellido"), 
+            rs.getString("email"), 
+            rs.getString("contrasenia"), 
+            rs.getInt("credito"), 
+            RolUsuario.valueOf(rs.getString("rol_usuario").toUpperCase()));
+    }
 }
