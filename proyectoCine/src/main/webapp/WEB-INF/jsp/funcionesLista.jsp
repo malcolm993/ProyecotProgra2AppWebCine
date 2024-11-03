@@ -10,7 +10,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Gestion de Peli­culas</title>
+        <title>Gestion de Peliï¿½culas</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
@@ -40,7 +40,7 @@
                                                     <p>ID Funcion: ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                                 </div>
                                                 ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
-                                                Horario de funcion: ${funcion.horario} | Fecha proyeccion: ${funcion.fechaDeFuncion}
+                                                Horario de funcion: ${funcion.horarioFuncion} | Fecha proyeccion: ${funcion.fechaDeFuncion}
                                             </div>
                                             <div class="btn-group" role="group">
                                                 <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
@@ -51,9 +51,9 @@
                                     </c:if>
                                 </c:forEach>
                             </ol>
-                            <!-- Botón Añadir Función para 2D -->
+                            <!-- Botï¿½n Aï¿½adir Funciï¿½n para 2D -->
                             <div class="mt-3">
-                               <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">Añadir Función 2D</a>    
+                               <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">Aï¿½adir Funciï¿½n 2D</a>    
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                                                     <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                                 </div>
                                                 ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
-                                                Horario de funcion: ${funcion.horario}
+                                                Horario de funcion: ${funcion.horarioFuncion}
                                             </div>
                                             <div class="btn-group" role="group">
                                                 <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
@@ -90,9 +90,9 @@
                                     </c:if>
                                 </c:forEach>
                             </ol>
-                            <!-- Botón Añadir Función para 3D -->
+                            <!-- Botï¿½n Aï¿½adir Funciï¿½n para 3D -->
                             <div class="mt-3">
-                                <a href="edicionfunciones/addFuncion?tipoSala=_3D" class="btn btn-success">Añadir Función 3D</a>
+                                <a href="edicionfunciones/addFuncion?tipoSala=_3D" class="btn btn-success">Aï¿½adir Funciï¿½n 3D</a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                                     <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                                 </div>
                                                 ${funcion.pelicula.nombre_pelicula} | duracion: ${funcion.pelicula.duracion_min} min |
-                                                Horario de funcion: ${funcion.horario}
+                                                Horario de funcion: ${funcion.horarioFuncion}
                                             </div>
                                             <div class="btn-group" role="group">
                                                 <a href="edicionfunciones/updateFuncion?idfuncion=${funcion.id_funcion}" class="btn btn-warning btn-sm">Modificar</a>
@@ -129,9 +129,9 @@
                                     </c:if>
                                 </c:forEach>
                             </ol>
-                            <!-- Botón Añadir Función para D-BOX -->
+                            <!-- Botï¿½n Aï¿½adir Funciï¿½n para D-BOX -->
                             <div class="mt-3">
-                                <a href="edicionfunciones/addFuncion?tipoSala=D_BOX" class="btn btn-success">Añadir Función D-BOX</a>
+                                <a href="edicionfunciones/addFuncion?tipoSala=D_BOX" class="btn btn-success">Aï¿½adir Funciï¿½n D-BOX</a>
                             </div>
                         </div>
                     </div>

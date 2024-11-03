@@ -21,7 +21,7 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
     // private static int contador = 1; // Simula un id autoincremental de base de datos
     // private List<Funcion> funciones;
     // private static FuncionDAO funcionesHardcodeadas;
-    private List<String> horarios = List.of("12:00 hs", "14:00 hs", "16:00 hs", "18:00 hs", "20:00 hs");
+    private List<String> horarios = List.of("HS12", "HS14", "HS16", "HS18", "HS20");
     private final String fechaFuncionFija= "2024-12-01";
     
         // private FuncionDAO(List<Sala> x, List<Pelicula> y) {
@@ -74,7 +74,7 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
 
     @Override
     public void update(Funcion funcion) {
-        String query = "update set horario = ?, fecha = ?, id_pelicula = ?, id_sala = ? where id_funcion = ?";
+        String query = "update funcion set horario = ?, fecha = ?, id_pelicula = ?, id_sala = ? where id_funcion = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
             preparedStatement.setString(1, funcion.getHorarioFuncion().toString());
             preparedStatement.setString(2,funcion.getFechaDeFuncion());
