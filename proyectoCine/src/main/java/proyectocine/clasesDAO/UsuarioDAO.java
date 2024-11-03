@@ -1,5 +1,7 @@
 package proyectocine.clasesDAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -102,7 +104,17 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
         // TODO Auto-generated method stub
         UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
         Usuario usuario = null;
-        
+        String query = "select * from usuario where id_usuario = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                if (resultSet.next()) {
+                    usuario = rsRowToUsuario(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         UtilExceptions.checkObjetoNulo(usuario, "No existe receta con id " + id);
         return usuario;
     }
