@@ -14,7 +14,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
     @Override
     public void add(Reserva reserva) {
         UtilExceptions.checkObjetoNulo(reserva, "La reserva no puede ser nula");
-        String query = "INSERT INTO reserva_entrada(id_sala,id_funcion, id_usuario, costo_reserva, fecha_reserva, cantidad_entradas,horaario) VALUES(?, ?, ?, ?, ?,?,?)";
+        String query = "INSERT INTO reserva_entrada(id_sala,id_funcion, id_usuario, costo_reserva, fecha_reserva, cantidad_entradas,horario) VALUES(?, ?, ?, ?, ?,?,?)";
         try (Connection con = ConnectionPool.getInstance().getConnection(); 
              PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setInt(1, reserva.getSala().getId());
@@ -42,7 +42,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
             preparedStatement.setString(5, reserva.getFechaReserva());
             preparedStatement.setInt(6, reserva.getCantidadEntradas());
             preparedStatement.setString(7, reserva.getHorario());
-            preparedStatement.setInt(6, reserva.getId());
+            preparedStatement.setInt(8, reserva.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -127,14 +127,13 @@ public class ReservaEntradaServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 Usuario user = (Usuario) session.getAttribute("userLogueado");
                 //HASTA ACA LLEGUEE
-                reservaEntradasSala(cantEntradas, salaReservada);
-                actualizacionCreditoUsario(user,cantEntradas);
+               
 
 
 
 
-                if(!reservaEntradasSala(cantEntradas, salaReservada)){
-                    req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(request, response);
+                if(!reservaEntradasSala(cantEntradas, salaReservada) && !actualizacionCreditoUsario(user, cantEntradas)){
+                    req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
                 }
                 break;
 
@@ -147,6 +146,12 @@ public class ReservaEntradaServlet extends HttpServlet {
             resp.sendError(500, ex.getMessage());       
          }
     
+        }
+
+
+        private void cargarParametroReserva(){
+            
+
         }
 
 
