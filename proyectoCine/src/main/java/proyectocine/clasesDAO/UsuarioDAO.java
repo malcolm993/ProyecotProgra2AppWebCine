@@ -139,7 +139,7 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     // }
 
     @Override
-    public Usuario getById(Integer id) throws Exception {
+    public Usuario getById(Integer id) {
         // TODO Auto-generated method stub
         UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
         Usuario usuario = null;
