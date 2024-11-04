@@ -129,6 +129,18 @@ public class ReservaEntradaServlet extends HttpServlet {
                 //HASTA ACA LLEGUEE
                 reservaEntradasSala(cantEntradas, salaReservada);
                 actualizacionCreditoUsario(user,cantEntradas);
+
+
+
+
+                if(!reservaEntradasSala(cantEntradas, salaReservada)){
+                    req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(request, response);
+                }
+                break;
+
+
+                case "/errorReserva":
+                
                 break;
             }
          } catch (Exception ex){
@@ -138,15 +150,19 @@ public class ReservaEntradaServlet extends HttpServlet {
         }
 
 
-        private void reservaEntradasSala(int x, Sala sala){
-            if(butacasDisponibles(x, sala)){
+        private boolean reservaEntradasSala(int x, Sala sala){
+            boolean auxBoo = false;
+            if(isButacasDisponibles(x, sala)){
                 sala.setCantDeButacas(sala.getCantDeButacas()-x);
+                auxBoo = true;
             }
 
             System.out.println(sala.getCantDeButacas());
+            return auxBoo;
+
         }
     
-        private boolean butacasDisponibles(int a, Sala s){
+        private boolean isButacasDisponibles(int a, Sala s){
             boolean auxB = true;
             if(a> s.getCantDeButacas()){
                 auxB = false;
@@ -154,11 +170,14 @@ public class ReservaEntradaServlet extends HttpServlet {
             return auxB;
         }
 
-        private void actualizacionCreditoUsario (Usuario u, int cantE){
+        private boolean actualizacionCreditoUsario (Usuario u, int cantE){
+            boolean auxBool = false;
             if(creditoSuficiente(u , cantE)){
-
                 u.setCredito(u.getCredito()-cantE*costoEntrada);
+                auxBool = true;
             }
+
+            return auxBool;
         }
 
         private boolean creditoSuficiente(Usuario x , int y){
