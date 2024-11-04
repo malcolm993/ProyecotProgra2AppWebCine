@@ -64,7 +64,7 @@
                     </div>
 
                     <!-- Botones de acci�n -->
-                        <input type="hidden" name="idFuncion" value="${funcion.id_funcion}" />
+                        <input type="hidden" name="idFuncion" value="${funcion.idFuncion}" />
                         <input type="hidden" name="idSala" value="${funcion.sala.id}" />
                         <div class="mb-3 row">
                             <div class="col-sm-12 text-center">
