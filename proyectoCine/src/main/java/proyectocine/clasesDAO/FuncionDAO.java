@@ -242,4 +242,9 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         return listaPorTipoSala;
     }
 
+    public void holamundo(){
+        System.out.println("hola");
+    }
+
 }
+

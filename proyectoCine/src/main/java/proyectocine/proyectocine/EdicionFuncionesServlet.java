@@ -67,6 +67,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
             pathInfo = pathInfo == null ? "" : pathInfo;
             String idString = req.getParameter("idfuncion");
+            
 
             //System.out.println("id funcion: " + idString);
                 if (idString != null) {

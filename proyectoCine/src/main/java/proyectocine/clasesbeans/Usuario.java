@@ -83,4 +83,12 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
+                + ", contrasenia=" + contrasenia + ", credito=" + credito + ", rolUsuario=" + rolUsuario + "]";
+    }
+
+    
+
 }

@@ -14,7 +14,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
     @Override
     public void add(Reserva reserva) {
         UtilExceptions.checkObjetoNulo(reserva, "La reserva no puede ser nula");
-        String query = "INSERT INTO reserva_entrada(id_funcion, id_usuario, costo_reserva, fecha_reserva, cantidad_entradas,horario) VALUES(?, ?, ?, ?, ?,?,?)";
+        String query = "INSERT INTO reserva_entrada(id_funcion, id_usuario, costo_reserva, fecha_reserva, cantidad_entradas,horario_reserva) VALUES( ?, ?, ?, ?,?,?)";
         try (Connection con = ConnectionPool.getInstance().getConnection(); 
              PreparedStatement preparedStatement = con.prepareStatement(query)) {
             //preparedStatement.setInt(1, reserva.getSala().getId());
@@ -32,7 +32,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
 
     @Override
     public void update(Reserva reserva) {
-        String query = "UPDATE reserva_entrada SET id_funcion = ?, id_usuario = ?, costo_reserva = ?, fecha_reserva = ?, cantidad_entradas = ?, horario = ? WHERE id_reserva_entrada = ?";
+        String query = "UPDATE reserva_entrada SET id_funcion = ?, id_usuario = ?, costo_reserva = ?, fecha_reserva = ?, cantidad_entradas = ?, horario_reserva = ? WHERE id_reserva_entrada = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); 
              PreparedStatement preparedStatement = con.prepareStatement(query)) {
             //preparedStatement.setInt(1, reserva.getSala().getId());

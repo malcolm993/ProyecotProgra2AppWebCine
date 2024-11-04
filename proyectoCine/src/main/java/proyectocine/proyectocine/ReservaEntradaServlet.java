@@ -132,21 +132,28 @@ public class ReservaEntradaServlet extends HttpServlet {
 
             switch (pathInfo) {
                 case "/confirmarReserva":
-                salaReservada = salaDao.getById(Integer.parseInt(req.getParameter("idSala")));
-                cantEntradas = Integer.parseInt(req.getParameter("cantidadEntradas"));
-                userA = usuarioDao.getById(Integer.parseInt(req.getSession().getId()));
-                if(!reservaEntradasSala(cantEntradas, salaReservada) && !actualizacionCreditoUsario(userA, cantEntradas)){
-                    resp.sendRedirect(getServletContext().getContextPath() + "/errorReserva"); // ULTIMA MODIFICAION
-                    
-                    //es viable poner " req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);"??
-                }
-                reser = new Reserva();
-                cargarParametroReserva(reser , req , resp);
-                reservaDao.add(reser);
+                    salaReservada = salaDao.getById(Integer.parseInt(req.getParameter("idSala")));
+                    System.out.println(salaReservada);
+                    cantEntradas = Integer.parseInt(req.getParameter("cantidadEntradas"));
+                    System.out.println(cantEntradas);
+                    userA = usuarioDao.getById(Integer.parseInt(req.getParameter("idUsuario")));
+                    // HttpSession session = req.getSession();
+                    // userA = (Usuario) session.getAttribute("userLogueado");
+                    System.out.println(userA);
+                    if (!reservaEntradasSala(cantEntradas, salaReservada) && !actualizacionCreditoUsario(userA, cantEntradas)) {
+                        resp.sendRedirect(getServletContext().getContextPath() + "/errorReserva"); // ULTIMA MODIFICAION
 
-   
+                        //es viable poner " req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);"??
+                    } else {
+
+                        reser = new Reserva();
+                        cargarParametroReserva(reser, req, resp);
+                        reservaDao.add(reser);
+                    }
+
             }
-         } catch (Exception ex){
+            resp.sendRedirect(getServletContext().getContextPath());
+        } catch (Exception ex){
             resp.sendError(500, ex.getMessage());       
          }
     
@@ -159,7 +166,7 @@ public class ReservaEntradaServlet extends HttpServlet {
             String funcionId = req.getParameter("idFuncion");
             
             String fechaReserva = LocalDate.now().toString();
-            String usuarioId = req.getSession().getId();
+            String usuarioId = req.getParameter("idUsuario");
             String horarioReserva = LocalTime.now().toString();    
             // Imprimimos los valores para depuración
             System.out.println("funcion id : " + funcionId);

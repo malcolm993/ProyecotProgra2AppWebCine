@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`SALA` (
   `id_sala` int NOT NULL auto_increment,
   `cantidad_butacas` INT NOT NULL,
-  `tipo_sala` ENUM("_2D", "_3D", "D-BOX") NOT NULL,
+  `tipo_sala` ENUM("_2D", "_3D", "D_BOX") NOT NULL,
   PRIMARY KEY (`id_sala`))
 ENGINE = InnoDB;
 
@@ -87,24 +87,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`RESERVA_ENTRADA` (
   `id_reserva_entrada` INT NOT NULL auto_increment,
-  `id_sala` int not null,
   `id_funcion` int NOT NULL,
   `costo_reserva` int NOT NULL,
   `fecha_reserva` varchar(20) not null,
-  `horario_reserva` varchar(10) not null,
-  `USUARIO_id_usuario` INT NOT NULL,
+  `horario_reserva` varchar(40) not null,
+  `id_usuario` INT NOT NULL,
   `cantidad_entradas` INT NOT NULL,
   PRIMARY KEY (`id_reserva_entrada`),
   INDEX `fk_RESERVA_ENTRADA_FUNCION1_idx` (`id_funcion` ASC) VISIBLE,
-  INDEX `fk_RESERVA_ENTRADA_SALA1_idx` (`id_sala` ASC) VISIBLE,
-  INDEX `fk_RESERVA_ENTRADA_USUARIO1_idx` (`USUARIO_id_usuario` ASC) VISIBLE,
+  INDEX `fk_RESERVA_ENTRADA_USUARIO1_idx` (`id_usuario` ASC) VISIBLE,
   CONSTRAINT `fk_RESERVA_CAPACIDAD_FUNCION1`
     FOREIGN KEY (`id_funcion`)
     REFERENCES `BBDD-ProyectoProgra2`.`FUNCION` (`id_funcion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_RESERVA_ENTRADA_USUARIO1`
-    FOREIGN KEY (`USUARIO_id_usuario`)
+    FOREIGN KEY (`id_usuario`)
     REFERENCES `BBDD-ProyectoProgra2`.`USUARIO` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

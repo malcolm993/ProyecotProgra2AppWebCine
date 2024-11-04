@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Detalles y Ediciï¿½n de Funciï¿½n de Cine</title>
+        <title>Detalles y Edición de Función de Cine</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     </head>
@@ -12,14 +12,14 @@
         <div class="container mt-5">
             <h1 class="text-center">Confirmacion de Reserva de Entradas</h1>
 
-            <!-- Informaciï¿½n de la funciï¿½n -->
+            <!-- Información de la función -->
             <div class="card p-4">
 
                 <form id="formConfirmarReserva" action="confirmarReserva" method="post">
 
-                    <!-- Campo Pelï¿½cula -->
+                    <!-- Campo Pelicula -->
                     <div class="mb-3 row">
-                        <label for="pelicula" class="col-sm-2 col-form-label">Pelï¿½cula:</label>
+                        <label for="pelicula" class="col-sm-2 col-form-label">Pelicula:</label>
                         <div class="col-sm-10">
                             <input type="text" id="pelicula" name="pelicula" class="form-control" value="${funcion.pelicula.nombre_pelicula}" readonly>
 
@@ -34,9 +34,9 @@
                             </div>
                         </div>
 
-                        <!-- Campo Fecha de Funciï¿½n -->
+                        <!-- Campo Fecha de Función -->
                         <div class="mb-3 row">
-                            <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Funciï¿½n </label>
+                            <label for="fechaDeFuncion" class="col-sm-2 col-form-label">Fecha de Función </label>
                             <div class="col-sm-10">
                                 <!-- preguntar por que usando type="date" no me levanta las fecha pasada !!!!!!-->
                                 <input type="text" id="fechaDeFuncion" name="fechaDeFuncion" class="form-control" value="${funcion.fechaDeFuncion}" readonly> 
@@ -63,9 +63,10 @@
                         </div>
                     </div>
 
-                    <!-- Botones de acciï¿½n -->
-                        <input type="hidden" name="idFuncion" value="${funcion.idFuncion}" />
+                    <!-- Botones de acción -->
+                        <input type="hidden" name="idFuncion" value="${funcion.id_funcion}" />
                         <input type="hidden" name="idSala" value="${funcion.sala.id}" />
+                        <input type="hidden" name="idUsuario" value="${userLogueado.id}">
                         <div class="mb-3 row">
                             <div class="col-sm-12 text-center">
                                 <button type="submit" class="btn btn-success me-2">Confirmar Compra</button>
@@ -75,7 +76,7 @@
             </div>
 
 
-            <!-- Botï¿½n de regresar -->
+            <!-- Botón de regresar -->
             <div class="d-flex justify-content-center mt-4">
                 <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
             </div>
