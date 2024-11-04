@@ -60,6 +60,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>reserva-servlet</servlet-name>
+        <url-pattern>/reserva</url-pattern>
         <url-pattern>/reserva/*</url-pattern>
     </servlet-mapping>
     <session-config>
