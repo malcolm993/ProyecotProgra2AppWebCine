@@ -12,15 +12,20 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.DAOFuncion;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
+import proyectocine.clasesDAO.ReservaDAO;
 import proyectocine.clasesDAO.SalaDAO;
+import proyectocine.clasesDAO.UsuarioDAO;
 import proyectocine.clasesbeans.Funcion;
+import proyectocine.clasesbeans.HorarioFuncion;
 import proyectocine.clasesbeans.Pelicula;
+import proyectocine.clasesbeans.Reserva;
 import proyectocine.clasesbeans.Sala;
 import proyectocine.clasesbeans.Usuario;
 
@@ -37,6 +42,8 @@ public class ReservaEntradaServlet extends HttpServlet {
     private PeliculaDAO pelicuDao;
     private SalaDAO salaDao;
     private FuncionDAO funcionDAO;
+    private ReservaDAO reservaDao;
+    private UsuarioDAO usuarioDao;
     private final int costoEntrada = 1000;
 
     @Override
@@ -44,6 +51,9 @@ public class ReservaEntradaServlet extends HttpServlet {
         pelicuDao = new PeliculaDAO();
         salaDao = new SalaDAO();
         funcionDAO = new FuncionDAO();
+        reservaDao = new ReservaDAO();
+        usuarioDao = new UsuarioDAO();
+        
         // try {
         // funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(),
         // pelicuDao.getAll());
@@ -88,6 +98,10 @@ public class ReservaEntradaServlet extends HttpServlet {
                     req.getRequestDispatcher("/WEB-INF/jsp/confirmarReserva.jsp").forward(req, resp);
 
                     break;
+
+                case "/errorReserva":
+                req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
+                break;
                 default:
                 HttpSession session = req.getSession();
                 Usuario user = (Usuario) session.getAttribute("userLogueado");
@@ -106,41 +120,31 @@ public class ReservaEntradaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Funcion f;
-            int id_f;
+            //Funcion f;
+            //int id_f;
             Sala salaReservada;
             int cantEntradas;
-            String destino;
-            String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
+            Usuario userA;
+            //String destino;
+            String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/***"
+            Reserva reser;
             pathInfo = pathInfo == null ? "" : pathInfo;
 
             switch (pathInfo) {
                 case "/confirmarReserva":
-                System.out.println(req.getParameter("idSala"));
-                System.out.println(req.getParameter("cantidadEntradas"));
-                id_f=Integer.parseInt("idFuncion");
-                salaReservada=salaDao.getById(Integer.parseInt(req.getParameter("idSala")));
+                salaReservada = salaDao.getById(Integer.parseInt(req.getParameter("idSala")));
                 cantEntradas = Integer.parseInt(req.getParameter("cantidadEntradas"));
-                f=funcionDAO.getById(id_f);
-                String fechaReserva= LocalDate.now().toString();
-                String fechaDeFuncion = funcionDAO.getFechaFuncion();
-                HttpSession session = req.getSession();
-                Usuario user = (Usuario) session.getAttribute("userLogueado");
-                //HASTA ACA LLEGUEE
-               
-
-
-
-
-                if(!reservaEntradasSala(cantEntradas, salaReservada) && !actualizacionCreditoUsario(user, cantEntradas)){
-                    req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
+                userA = usuarioDao.getById(Integer.parseInt(req.getSession().getId()));
+                if(!reservaEntradasSala(cantEntradas, salaReservada) && !actualizacionCreditoUsario(userA, cantEntradas)){
+                    resp.sendRedirect(getServletContext().getContextPath() + "/errorReserva"); // ULTIMA MODIFICAION
+                    
+                    //es viable poner " req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);"??
                 }
-                break;
+                reser = new Reserva();
+                cargarParametroReserva(reser , req , resp);
+                reservaDao.add(reser);
 
-
-                case "/errorReserva":
-                
-                break;
+   
             }
          } catch (Exception ex){
             resp.sendError(500, ex.getMessage());       
@@ -149,11 +153,54 @@ public class ReservaEntradaServlet extends HttpServlet {
         }
 
 
-        private void cargarParametroReserva(){
+        private void cargarParametroReserva(Reserva r, HttpServletRequest req, HttpServletResponse res){
+              try {
+            // Obtenemos los parámetros del formulario
+            String funcionId = req.getParameter("idFuncion");
             
+            String fechaReserva = LocalDate.now().toString();
+            String usuarioId = req.getSession().getId();
+            String horarioReserva = LocalTime.now().toString();    
+            // Imprimimos los valores para depuración
+            System.out.println("funcion id : " + funcionId);
+            
+            System.out.println("Fecha de reservada: " + fechaReserva);
+            System.out.println("usuario id : " + usuarioId);
 
+            // Validamos que los parámetros no sean nulos o vacíos
+            if (funcionId == null || fechaReserva == null || usuarioId == null) {
+                throw new NullPointerException("Uno o más parámetros son nulos.");
+            }
+
+            // Asignamos los valores recibidos al objeto 'Reserva'
+ 
+            // Asignamos la funcion a la reserva
+            r.setFuncion(funcionDAO.getById(Integer.parseInt(funcionId)));;
+            //Asignamos la Sala
+            r.setCostoReserva(costoEntrada);
+            // Asignamos la fecha y el horario
+            r.setFechaReserva(fechaReserva);
+            r.setHorario(horarioReserva);
+            r.setUsuario(usuarioDao.getById(Integer.parseInt(usuarioId)));
+
+        } catch (NullPointerException e) {
+            System.out.println("Error: Parámetro nulo - " + e.getMessage());
+            try {
+                res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Faltan parámetros obligatorios.");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.out.println("Error: Ocurrió un error inesperado - " + e.getMessage());
+            try {
+                res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrió un error inesperado.");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
+    }
 
+ 
 
         private boolean reservaEntradasSala(int x, Sala sala){
             boolean auxBoo = false;

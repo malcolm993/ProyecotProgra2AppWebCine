@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Reserva implements Serializable {
 
-    private int id;
+    private int id;     
     private Funcion funcion;
-    private Sala sala;
+    //private Sala sala;
     private int costoReserva;
     private String fechaReserva;
     private String horario;
@@ -16,14 +16,14 @@ public class Reserva implements Serializable {
     public Reserva() {
     }
 
-    public Reserva(int cantidadEntradas, int costoReserva, String fechaReserva, Funcion funcion, String horario, int id, Sala sala, Usuario usuario) {
+    public Reserva(int cantidadEntradas, int costoReserva, String fechaReserva, Funcion funcion, String horario, int id, Usuario usuario) {
         this.cantidadEntradas = cantidadEntradas;
         this.costoReserva = costoReserva;
         this.fechaReserva = fechaReserva;
         this.funcion = funcion;
         this.horario = horario;
         this.id = id;
-        this.sala = sala;
+        //this.sala = sala;
         this.usuario = usuario;
     }
 
@@ -78,6 +78,7 @@ public class Reserva implements Serializable {
         this.cantidadEntradas = cantidadEntradas;
     }
 
+    /*
     public Sala getSala() {
         return sala;
     }
@@ -85,6 +86,7 @@ public class Reserva implements Serializable {
     public void setSala(Sala sala) {
         this.sala = sala;
     }
+    */
 
     public String getHorario() {
         return horario;

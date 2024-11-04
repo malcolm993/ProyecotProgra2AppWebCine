@@ -14,16 +14,16 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
     @Override
     public void add(Reserva reserva) {
         UtilExceptions.checkObjetoNulo(reserva, "La reserva no puede ser nula");
-        String query = "INSERT INTO reserva_entrada(id_sala,id_funcion, id_usuario, costo_reserva, fecha_reserva, cantidad_entradas,horario) VALUES(?, ?, ?, ?, ?,?,?)";
+        String query = "INSERT INTO reserva_entrada(id_funcion, id_usuario, costo_reserva, fecha_reserva, cantidad_entradas,horario) VALUES(?, ?, ?, ?, ?,?,?)";
         try (Connection con = ConnectionPool.getInstance().getConnection(); 
              PreparedStatement preparedStatement = con.prepareStatement(query)) {
-            preparedStatement.setInt(1, reserva.getSala().getId());
-            preparedStatement.setInt(2, reserva.getFuncion().getId_funcion());
-            preparedStatement.setInt(3, reserva.getUsuario().getId());
-            preparedStatement.setInt(4, reserva.getCostoReserva());
-            preparedStatement.setString(5, reserva.getFechaReserva());
-            preparedStatement.setInt(6, reserva.getCantidadEntradas());
-            preparedStatement.setString(7, reserva.getHorario());
+            //preparedStatement.setInt(1, reserva.getSala().getId());
+            preparedStatement.setInt(1, reserva.getFuncion().getId_funcion());
+            preparedStatement.setInt(2, reserva.getUsuario().getId());
+            preparedStatement.setInt(3, reserva.getCostoReserva());
+            preparedStatement.setString(4, reserva.getFechaReserva());
+            preparedStatement.setInt(5, reserva.getCantidadEntradas());
+            preparedStatement.setString(6, reserva.getHorario());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -32,17 +32,17 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
 
     @Override
     public void update(Reserva reserva) {
-        String query = "UPDATE reserva_entrada SET id_sala = ?, id_funcion = ?, id_usuario = ?, costo_reserva = ?, fecha_reserva = ?, cantidad_entradas = ?, horario = ? WHERE id_reserva_entrada = ?";
+        String query = "UPDATE reserva_entrada SET id_funcion = ?, id_usuario = ?, costo_reserva = ?, fecha_reserva = ?, cantidad_entradas = ?, horario = ? WHERE id_reserva_entrada = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); 
              PreparedStatement preparedStatement = con.prepareStatement(query)) {
-            preparedStatement.setInt(1, reserva.getSala().getId());
-            preparedStatement.setInt(2, reserva.getFuncion().getId_funcion());
-            preparedStatement.setInt(3, reserva.getUsuario().getId());
-            preparedStatement.setInt(4, reserva.getCostoReserva());
-            preparedStatement.setString(5, reserva.getFechaReserva());
-            preparedStatement.setInt(6, reserva.getCantidadEntradas());
-            preparedStatement.setString(7, reserva.getHorario());
-            preparedStatement.setInt(8, reserva.getId());
+            //preparedStatement.setInt(1, reserva.getSala().getId());
+            preparedStatement.setInt(1, reserva.getFuncion().getId_funcion());
+            preparedStatement.setInt(2, reserva.getUsuario().getId());
+            preparedStatement.setInt(3, reserva.getCostoReserva());
+            preparedStatement.setString(4, reserva.getFechaReserva());
+            preparedStatement.setInt(5, reserva.getCantidadEntradas());
+            preparedStatement.setString(6, reserva.getHorario());
+            preparedStatement.setInt(7, reserva.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -105,7 +105,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
         funcionDao.getById(rs.getInt("id_funcion")), 
         rs.getString("horario"), 
         rs.getInt("id_reserva_entrada"), 
-        salaDAO.getById(rs.getInt("id_sala")), 
+        //salaDAO.getById(rs.getInt("id_sala")), 
         usuarioDao.getById(rs.getInt("id_usuario")));
     }
 }
