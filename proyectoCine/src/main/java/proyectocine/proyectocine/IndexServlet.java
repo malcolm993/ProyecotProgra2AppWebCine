@@ -4,17 +4,13 @@
  */
 package proyectocine.proyectocine;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import proyectocine.clasesDAO.DAO;
-import proyectocine.clasesDAO.SalaDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
-import proyectocine.clasesbeans.Funcion;
-import proyectocine.clasesbeans.Pelicula;
-import proyectocine.clasesbeans.Sala;
 
 /**
  *
@@ -22,21 +18,22 @@ import proyectocine.clasesbeans.Sala;
  */
 public class IndexServlet extends HttpServlet {
 
-    private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
-    private DAO<Sala, Integer> salaDaoHardcodeado;
-    private DAO<Funcion, Integer> funcionDaoHardcodeado;
+    // private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
+    // private DAO<Sala, Integer> salaDaoHardcodeado;
+    // private DAO<Funcion, Integer> funcionDaoHardcodeado;
+    private PeliculaDAO peliculaDao;
 
     @Override
     public void init() throws ServletException {
-        peliculaDaoHardcodeado = PeliculaDAO.getInstance();
-        salaDaoHardcodeado = SalaDAO.getInstance();
-
+        // peliculaDaoHardcodeado = PeliculaDAO.getInstance();
+        // salaDaoHardcodeado = SalaDAO.getInstance();
+        peliculaDao = new PeliculaDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            req.setAttribute("listaPeliculas", peliculaDaoHardcodeado.getAll());
+            req.setAttribute("listaPeliculas", peliculaDao.getAll());
             req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
 
         } catch (Exception ex) {

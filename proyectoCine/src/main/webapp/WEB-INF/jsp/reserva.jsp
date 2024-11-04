@@ -46,7 +46,7 @@
                                                 <p>ID Funcion: ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                             </div>
                                             ${funcion.pelicula.nombre_pelicula} | Duración: ${funcion.pelicula.duracion_min} min |
-                                            Horario de función: ${funcion.horario} | Fecha proyección: ${funcion.fechaDeFuncion}
+                                            Horario de función: ${funcion.horarioFuncion} | Fecha proyección: ${funcion.fechaDeFuncion}
                                         </div>
                                         <div class="btn-group" role="group">
                                             <a href="reserva/confirmarReserva?idfuncion=${funcion.id_funcion}" class="btn btn-success btn-sm">Comprar Entrada</a>
@@ -79,7 +79,7 @@
                                                 <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                             </div>
                                             ${funcion.pelicula.nombre_pelicula} | Duración: ${funcion.pelicula.duracion_min} min |
-                                            Horario de función: ${funcion.horario}
+                                            Horario de función: ${funcion.horarioFuncion}
                                         </div>
                                         <div class="btn-group" role="group">
                                             <a href="reserva/confirmarReserva?idfuncion=${funcion.id_funcion}" class="btn btn-success btn-sm">Comprar Entrada</a>
@@ -112,7 +112,7 @@
                                                 <p>ID : ${funcion.id_funcion} | Sala: ${funcion.sala.id} | Tipo Sala: ${funcion.sala.tipoDeSala}</p>
                                             </div>
                                             ${funcion.pelicula.nombre_pelicula} | Duración: ${funcion.pelicula.duracion_min} min |
-                                            Horario de función: ${funcion.horario}
+                                            Horario de función: ${funcion.horarioFuncion}
                                         </div>
                                         <div class="btn-group" role="group">
                                             <a href="reserva/confirmarReserva?idfuncion=${funcion.id_funcion}" class="btn btn-success btn-sm">Comprar Entrada</a>
