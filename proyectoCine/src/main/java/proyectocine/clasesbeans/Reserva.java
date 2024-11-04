@@ -6,13 +6,28 @@ public class Reserva implements Serializable {
 
     private int id;
     private Funcion funcion;
+    private Sala sala;
     private int costoReserva;
     private String fechaReserva;
+    private String horario;
     private Usuario usuario;
     private int cantidadEntradas;
 
     public Reserva() {
     }
+
+    public Reserva(int cantidadEntradas, int costoReserva, String fechaReserva, Funcion funcion, String horario, int id, Sala sala, Usuario usuario) {
+        this.cantidadEntradas = cantidadEntradas;
+        this.costoReserva = costoReserva;
+        this.fechaReserva = fechaReserva;
+        this.funcion = funcion;
+        this.horario = horario;
+        this.id = id;
+        this.sala = sala;
+        this.usuario = usuario;
+    }
+
+
 
     public int getId() {
         return id;
@@ -58,8 +73,25 @@ public class Reserva implements Serializable {
         return cantidadEntradas;
     }
 
+    
     public void setCantidadEntradas(int cantidadEntradas) {
         this.cantidadEntradas = cantidadEntradas;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
 }
