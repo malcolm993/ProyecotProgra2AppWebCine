@@ -3,6 +3,14 @@
     <welcome-file-list>
         <welcome-file>inicio</welcome-file>
     </welcome-file-list>
+    <filter>
+        <filter-name>auth-filter</filter-name>
+        <filter-class>proyectocine.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>auth-filter</filter-name>
+        <url-pattern>/reserva</url-pattern>
+    </filter-mapping>
     <servlet>
         <description>controlador de logeo del usuario</description>
         <servlet-name>usuario-servlet</servlet-name>
@@ -60,6 +68,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>reserva-servlet</servlet-name>
+        <url-pattern>/reserva</url-pattern>
         <url-pattern>/reserva/*</url-pattern>
     </servlet-mapping>
     <session-config>
