@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocine.clasesDAO.DAO;
@@ -36,6 +37,7 @@ public class ReservaEntradaServlet extends HttpServlet {
     private PeliculaDAO pelicuDao;
     private SalaDAO salaDao;
     private FuncionDAO funcionDAO;
+    private final int costoEntrada = 1000;
 
     @Override
     public void init() throws ServletException {
@@ -90,6 +92,7 @@ public class ReservaEntradaServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 Usuario user = (Usuario) session.getAttribute("userLogueado");
                 req.setAttribute("userLogueado", user);
+                
                     req.setAttribute("listaFunciones", funcionDAO.getAll());
                     req.getRequestDispatcher("/WEB-INF/jsp/reserva.jsp").forward(req, resp);
             }
@@ -115,10 +118,17 @@ public class ReservaEntradaServlet extends HttpServlet {
                 case "/confirmarReserva":
                 System.out.println(req.getParameter("idSala"));
                 System.out.println(req.getParameter("cantidadEntradas"));
+                id_f=Integer.parseInt("idFuncion");
                 salaReservada=salaDao.getById(Integer.parseInt(req.getParameter("idSala")));
                 cantEntradas = Integer.parseInt(req.getParameter("cantidadEntradas"));
-
+                f=funcionDAO.getById(id_f);
+                String fechaReserva= LocalDate.now().toString();
+                String fechaDeFuncion = funcionDAO.getFechaFuncion();
+                HttpSession session = req.getSession();
+                Usuario user = (Usuario) session.getAttribute("userLogueado");
+                //HASTA ACA LLEGUEE
                 reservaEntradasSala(cantEntradas, salaReservada);
+                actualizacionCreditoUsario(user,cantEntradas);
                 break;
             }
          } catch (Exception ex){
@@ -141,6 +151,23 @@ public class ReservaEntradaServlet extends HttpServlet {
             if(a> s.getCantDeButacas()){
                 auxB = false;
             }
+            return auxB;
+        }
+
+        private void actualizacionCreditoUsario (Usuario u, int cantE){
+            if(creditoSuficiente(u , cantE)){
+
+                u.setCredito(u.getCredito()-cantE*costoEntrada);
+            }
+        }
+
+        private boolean creditoSuficiente(Usuario x , int y){
+            boolean auxB = true;
+            if(y*costoEntrada > x.getCredito()){
+
+                auxB = false;
+            }
+
             return auxB;
         }
             
