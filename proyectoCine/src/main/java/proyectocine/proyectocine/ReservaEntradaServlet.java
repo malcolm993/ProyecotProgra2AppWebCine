@@ -140,7 +140,7 @@ public class ReservaEntradaServlet extends HttpServlet {
                     // HttpSession session = req.getSession();
                     // userA = (Usuario) session.getAttribute("userLogueado");
                     System.out.println(userA);
-                    if (!reservaEntradasSala(cantEntradas, salaReservada) && !actualizacionCreditoUsario(userA, cantEntradas)) {
+                    if (!reservaEntradasSala(cantEntradas, salaReservada) || !actualizacionCreditoUsario(userA, cantEntradas)) {
                         resp.sendRedirect(getServletContext().getContextPath() + "/errorReserva"); // ULTIMA MODIFICAION
 
                         //es viable poner " req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);"??

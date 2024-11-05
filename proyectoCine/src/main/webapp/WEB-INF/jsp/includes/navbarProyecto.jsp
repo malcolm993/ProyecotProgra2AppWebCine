@@ -24,19 +24,18 @@
                         <li class="nav-item"><a class="nav-link" href="#">invitado</a></li>
                         </c:when>
                         <c:otherwise>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">${userLogueado.nombre} </a></li>
-                        </c:otherwise>
-                    </c:choose> 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop  ?? lo sacamos?</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">All Products</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                    </ul>
-                </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">${userLogueado.nombre}</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">logout</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Revisar Compras</a></li>
+
+                            </ul>
+                        </li>
+                    </c:otherwise>
+                </c:choose> 
+
             </ul>
             <form class="d-flex">
                 <button class="btn btn-outline-dark" type="submit">

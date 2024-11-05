@@ -8,6 +8,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,6 +23,7 @@ import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.HorarioFuncion;
 import proyectocine.clasesbeans.Pelicula;
 import proyectocine.clasesbeans.Sala;
+import proyectocine.clasesbeans.Usuario;
 
 /**
  *
@@ -62,6 +65,9 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Usuario user = (Usuario) session.getAttribute("userLogueado");
+        req.setAttribute("userLogueado", user);
         try {
             String destino;
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"

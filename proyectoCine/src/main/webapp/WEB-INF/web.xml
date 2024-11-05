@@ -7,9 +7,20 @@
         <filter-name>auth-filter</filter-name>
         <filter-class>proyectocine.filter.AuthFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>admin-filter</filter-name>
+        <filter-class>proyectocine.filter.AdminFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>auth-filter</filter-name>
         <url-pattern>/reserva</url-pattern>
+        <url-pattern>/edicionfunciones</url-pattern>
+        <url-pattern>/edicionpeliculas</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>admin-filter</filter-name>
+        <url-pattern>/edicionfunciones</url-pattern>
+        <url-pattern>/edicionpeliculas</url-pattern>
     </filter-mapping>
     <servlet>
         <description>controlador de logeo del usuario</description>
