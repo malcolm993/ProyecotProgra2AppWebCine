@@ -100,13 +100,14 @@ public class ReservaEntradaServlet extends HttpServlet {
                     break;
 
                 case "/errorReserva":
-                req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
-                break;
+                    System.out.println("aca entro??");    
+                    req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
+                    break;
                 default:
-                HttpSession session = req.getSession();
-                Usuario user = (Usuario) session.getAttribute("userLogueado");
-                req.setAttribute("userLogueado", user);
-                
+                    HttpSession session = req.getSession();
+                    Usuario user = (Usuario) session.getAttribute("userLogueado");
+                    req.setAttribute("userLogueado", user);
+
                     req.setAttribute("listaFunciones", funcionDAO.getAll());
                     req.getRequestDispatcher("/WEB-INF/jsp/reserva.jsp").forward(req, resp);
             }
@@ -125,7 +126,7 @@ public class ReservaEntradaServlet extends HttpServlet {
             Sala salaReservada;
             int cantEntradas;
             Usuario userA;
-            //String destino;
+            String destino=null;
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/***"
             Reserva reser;
             pathInfo = pathInfo == null ? "" : pathInfo;
@@ -141,18 +142,19 @@ public class ReservaEntradaServlet extends HttpServlet {
                     // userA = (Usuario) session.getAttribute("userLogueado");
                     System.out.println(userA);
                     if (!reservaEntradasSala(cantEntradas, salaReservada) || !actualizacionCreditoUsario(userA, cantEntradas)) {
-                        resp.sendRedirect(getServletContext().getContextPath() + "/errorReserva"); // ULTIMA MODIFICAION
-
+                        destino=getServletContext().getContextPath() + "/reserva/errorReserva"; // ULTIMA MODIFICAION
+                        System.out.println(destino + "???");
                         //es viable poner " req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);"??
                     } else {
 
                         reser = new Reserva();
                         cargarParametroReserva(reser, req, resp);
                         reservaDao.add(reser);
+                        destino = getServletContext().getContextPath();
                     }
 
             }
-            resp.sendRedirect(getServletContext().getContextPath());
+            resp.sendRedirect(destino);
         } catch (Exception ex){
             resp.sendError(500, ex.getMessage());       
          }
