@@ -120,6 +120,7 @@ public class PeliculaDAO implements DAO<Pelicula, Integer> {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+        UtilExceptions.checkObjetoNulo(pelicula, "ERROR CON LA ID");
         return pelicula;
     }
 

@@ -4,14 +4,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Eliminar Película</title>
+        <title>Eliminar Pelï¿½cula</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center text-danger">Confirmar Eliminación de Película</h1>
+            <h1 class="text-center text-danger">Confirmar Eliminaciï¿½n de Pelï¿½cula</h1>
 
-            <!-- Información de la película -->
+            <!-- Informaciï¿½n de la pelï¿½cula -->
             <div class="card mt-4">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -20,7 +20,7 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${pelicula.nombre_pelicula}</h5>
-                            <p class="card-text"><strong>Duración:</strong> ${pelicula.duracion_min} min</p>
+                            <p class="card-text"><strong>Duraciï¿½n:</strong> ${pelicula.duracion_min} min</p>
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
                             <p class="card-text"><strong>Estado:</strong> ${pelicula.estadoPelicula}</p>
@@ -29,7 +29,11 @@
                 </div>
             </div>
 
-            <!-- Botón de confirmación -->
+            <div>
+                <h2>SE RECUERDA AL USUARIO QUE AL ELIMINAR UNA PELICULA SE ELIMINARA LAS FUNCIONES EN CARTELERA YA SEA EL CASO QUE LAS TENGA</h2>
+            </div>
+
+            <!-- Botï¿½n de confirmaciï¿½n -->
             <div class="d-flex justify-content-center mt-4">
                 <form id ="formBorrarPelicula" action="deletePelicula" method="post">
                     <input type="hidden" name="id" value="${pelicula.id}" />

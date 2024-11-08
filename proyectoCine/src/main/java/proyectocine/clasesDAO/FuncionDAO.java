@@ -148,7 +148,7 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
+        UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id" );
         return funcion;
     }
 
@@ -242,8 +242,14 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         return listaPorTipoSala;
     }
 
-    public void holamundo(){
-        System.out.println("hola");
+    public void deletePorIdPelicula(Integer idPelicula) {
+        String query = "delete from funcion where id_pelicula = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)){
+            preparedStatement.setInt(1, idPelicula);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

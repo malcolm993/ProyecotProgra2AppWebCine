@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
@@ -21,10 +22,12 @@ import proyectocine.clasesbeans.Pelicula;
 public class EdicionPeliculasServlet extends HttpServlet {
 
     private PeliculaDAO peliculaDao;
+    private FuncionDAO funcionDao;
 
     @Override
     public void init() throws ServletException {
         peliculaDao = new PeliculaDAO();
+        funcionDao = new FuncionDAO();
     }
 
     @Override
@@ -94,7 +97,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
                 case "/deletePelicula": // Form de alta
                     id_p = Integer.parseInt(req.getParameter("id"));
-
+                    funcionDao.deletePorIdPelicula(id_p); //consultar con nico
                     peliculaDao.delete(id_p);
                     break;
 
