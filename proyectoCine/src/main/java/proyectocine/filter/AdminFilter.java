@@ -23,7 +23,8 @@ public class AdminFilter  implements Filter{
         HttpSession session = httpRequest.getSession();
         if (session != null && session.getAttribute("userLogueado") != null) {         
             Usuario userLogueado = (Usuario) session.getAttribute("userLogueado");
-            if (userLogueado.getRolUsuario().equals("admin")) {
+            System.out.println(userLogueado.getRolUsuario());
+            if (userLogueado.getRolUsuario().name().equals("ADMIN")) {
                 chain.doFilter(httpRequest, httpResponse); // Ir al siguiente en la cadena de filters
             } else {
                 session.invalidate();
