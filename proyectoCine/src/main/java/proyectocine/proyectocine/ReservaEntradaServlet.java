@@ -4,27 +4,21 @@
  */
 package proyectocine.proyectocine;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import proyectocine.clasesDAO.DAO;
-import proyectocine.clasesDAO.DAOFuncion;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesDAO.ReservaDAO;
 import proyectocine.clasesDAO.SalaDAO;
 import proyectocine.clasesDAO.UsuarioDAO;
 import proyectocine.clasesbeans.Funcion;
-import proyectocine.clasesbeans.HorarioFuncion;
-import proyectocine.clasesbeans.Pelicula;
 import proyectocine.clasesbeans.Reserva;
 import proyectocine.clasesbeans.Sala;
 import proyectocine.clasesbeans.Usuario;
@@ -169,7 +163,8 @@ public class ReservaEntradaServlet extends HttpServlet {
             
             String fechaReserva = LocalDate.now().toString();
             String usuarioId = req.getParameter("idUsuario");
-            String horarioReserva = LocalTime.now().toString();    
+            String horarioReserva = LocalTime.now().toString();  
+            String cantidadEntradas = req.getParameter("cantidadEntradas");  
             // Imprimimos los valores para depuración
             System.out.println("funcion id : " + funcionId);
             
@@ -191,6 +186,7 @@ public class ReservaEntradaServlet extends HttpServlet {
             r.setFechaReserva(fechaReserva);
             r.setHorario(horarioReserva);
             r.setUsuario(usuarioDao.getById(Integer.parseInt(usuarioId)));
+            r.setCantidadEntradas(Integer.parseInt(cantidadEntradas));
 
         } catch (NullPointerException e) {
             System.out.println("Error: Parámetro nulo - " + e.getMessage());
