@@ -40,7 +40,7 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     @Override
     public void add(Usuario usuario) {
         UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
-        String query = "insert into usuario(nombre,apellido,enail,contrasenia,credito,rol_usuario) values(?,?,?,?,?,?)";
+        String query = "insert into usuario(nombre,apellido,email,contrasenia,credito,rol_usuario) values(?,?,?,?,?,?)";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setString(1, usuario.getNombre());
             preparedStatement.setString(2, usuario.getApellido());
@@ -186,6 +186,23 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     //     add(new Usuario(contador, "user1", "lastname1", "user1@gmail.com", "124", contador, RolUsuario.CLIENTE));
     //     add(new Usuario(contador, "admin1", "lastname2", "admin1@gmail.com", "123", contador, RolUsuario.ADMIN));
     // }
+
+    public Usuario verificarUsuario(String nombre, String mail){
+        Usuario usuario = null;
+        String query = "select * from usuario where email = ? and nombre = ?";
+        try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setString(1, mail);
+            preparedStatement.setString(2, nombre);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    usuario = rsRowToUsuario(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usuario;
+    }
 
     public Usuario rsRowToUsuario(ResultSet rs) throws SQLException {
         return new Usuario(
