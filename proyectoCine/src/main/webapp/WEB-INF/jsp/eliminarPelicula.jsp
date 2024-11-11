@@ -4,14 +4,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Eliminar Pel�cula</title>
+        <title>Eliminar Pelicula</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container mt-5">
-            <h1 class="text-center text-danger">Confirmar Eliminaci�n de Pel�cula</h1>
+            <h1 class="text-center text-danger">Confirmar Eliminacion de Pelicula</h1>
 
-            <!-- Informaci�n de la pel�cula -->
+            <!-- Informacion de la pelicula -->
             <div class="card mt-4">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -20,7 +20,7 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${pelicula.nombre_pelicula}</h5>
-                            <p class="card-text"><strong>Duraci�n:</strong> ${pelicula.duracion_min} min</p>
+                            <p class="card-text"><strong>Duraciin:</strong> ${pelicula.duracion_min} min</p>
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
                             <p class="card-text"><strong>Estado:</strong> ${pelicula.estadoPelicula}</p>
@@ -33,7 +33,7 @@
                 <h2>SE RECUERDA AL USUARIO QUE AL ELIMINAR UNA PELICULA SE ELIMINARA LAS FUNCIONES EN CARTELERA YA SEA EL CASO QUE LAS TENGA</h2>
             </div>
 
-            <!-- Bot�n de confirmaci�n -->
+            <!-- Botin de confirmacion -->
             <div class="d-flex justify-content-center mt-4">
                 <form id ="formBorrarPelicula" action="deletePelicula" method="post">
                     <input type="hidden" name="id" value="${pelicula.id}" />

@@ -10,7 +10,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Gestion de Peli�culas</title>
+        <title>Gestion de Peliculas</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
@@ -51,9 +51,9 @@
                                     </c:if>
                                 </c:forEach>
                             </ol>
-                            <!-- Bot�n A�adir Funci�n para 2D -->
+                            <!-- Botin Aiadir Funciin para 2D -->
                             <div class="mt-3">
-                               <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">A�adir Funci�n 2D</a>    
+                               <a href="edicionfunciones/addFuncion?tipoSala=_2D" class="btn btn-success">Añadir Funciin 2D</a>    
                             </div>
                         </div>
                     </div>
@@ -90,9 +90,9 @@
                                     </c:if>
                                 </c:forEach>
                             </ol>
-                            <!-- Bot�n A�adir Funci�n para 3D -->
+                            <!-- Botin Aiadir Funciin para 3D -->
                             <div class="mt-3">
-                                <a href="edicionfunciones/addFuncion?tipoSala=_3D" class="btn btn-success">A�adir Funci�n 3D</a>
+                                <a href="edicionfunciones/addFuncion?tipoSala=_3D" class="btn btn-success">Añadir Funcion 3D</a>
                             </div>
                         </div>
                     </div>
@@ -129,9 +129,9 @@
                                     </c:if>
                                 </c:forEach>
                             </ol>
-                            <!-- Bot�n A�adir Funci�n para D-BOX -->
+                            <!-- Botin Aiadir Funciin para D-BOX -->
                             <div class="mt-3">
-                                <a href="edicionfunciones/addFuncion?tipoSala=D_BOX" class="btn btn-success">A�adir Funci�n D-BOX</a>
+                                <a href="edicionfunciones/addFuncion?tipoSala=D_BOX" class="btn btn-success">Añadir Funcion D-BOX</a>
                             </div>
                         </div>
                     </div>
