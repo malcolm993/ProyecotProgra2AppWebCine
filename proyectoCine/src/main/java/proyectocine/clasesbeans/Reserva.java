@@ -96,4 +96,11 @@ public class Reserva implements Serializable {
         this.horario = horario;
     }
 
+    @Override
+    public String toString() {
+        return "Reserva{" + "funcion=" + funcion + ", fechaReserva=" + fechaReserva + ", horario=" + horario + ", usuario=" + usuario + ", cantidadEntradas=" + cantidadEntradas + '}';
+    }
+    
+    
+
 }

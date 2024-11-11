@@ -32,7 +32,6 @@ public class ReservaEntradaServlet extends HttpServlet {
     // private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
     // private DAOFuncion<Funcion, Integer> funcionesHardcodeado;
     // private DAO<Sala, Integer> salasDaoHardcodeado;
-
     private PeliculaDAO pelicuDao;
     private SalaDAO salaDao;
     private FuncionDAO funcionDAO;
@@ -47,7 +46,7 @@ public class ReservaEntradaServlet extends HttpServlet {
         funcionDAO = new FuncionDAO();
         reservaDao = new ReservaDAO();
         usuarioDao = new UsuarioDAO();
-        
+
         // try {
         // funcionesHardcodeado = FuncionDAO.getInstance(salasDaoHardcodeado.getAll(),
         // pelicuDao.getAll());
@@ -56,7 +55,6 @@ public class ReservaEntradaServlet extends HttpServlet {
         // ex.getMessage());
         // System.out.println("ERROS EN SERVLET FUNCIONES");
         // }
-
         try {
             System.out.println(pelicuDao.getAll());
             System.out.println(salaDao.getAll());
@@ -69,8 +67,6 @@ public class ReservaEntradaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            
-
 
             String destino;
             String pathInfo = req.getPathInfo();
@@ -94,9 +90,14 @@ public class ReservaEntradaServlet extends HttpServlet {
                     break;
 
                 case "/errorReserva":
-                    System.out.println("aca entro??");    
+                    System.out.println("aca entro??");
                     req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
                     break;
+
+                case "/finOperacion":
+                resp.sendRedirect(getServletContext().getContextPath());
+                
+                break;    
                 default:
                     HttpSession session = req.getSession();
                     Usuario user = (Usuario) session.getAttribute("userLogueado");
@@ -120,7 +121,7 @@ public class ReservaEntradaServlet extends HttpServlet {
             Sala salaReservada;
             int cantEntradas;
             Usuario userA;
-            String destino=null;
+            String destino = null;
             String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/***"
             Reserva reser;
             pathInfo = pathInfo == null ? "" : pathInfo;
@@ -136,7 +137,8 @@ public class ReservaEntradaServlet extends HttpServlet {
                     // userA = (Usuario) session.getAttribute("userLogueado");
                     System.out.println(userA);
                     if (!reservaEntradasSala(cantEntradas, salaReservada) || !actualizacionCreditoUsario(userA, cantEntradas)) {
-                        destino=getServletContext().getContextPath() + "/reserva/errorReserva"; // ULTIMA MODIFICAION
+                        //destino = getServletContext().getContextPath() + "/reserva/errorReserva"; 
+                        destino = "/WEB-INF/jsp/errorReservaEntrada.jsp";
                         System.out.println(destino + "???");
                         //es viable poner " req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);"??
                     } else {
@@ -144,30 +146,33 @@ public class ReservaEntradaServlet extends HttpServlet {
                         reser = new Reserva();
                         cargarParametroReserva(reser, req, resp);
                         reservaDao.add(reser);
-                        destino = getServletContext().getContextPath();
+                        //destino = getServletContext().getContextPath();
+                        req.setAttribute("entradaReserva", reser);
+                        System.out.println(reser);
+                        destino = "/WEB-INF/jsp/exitoReservaEntrada.jsp";
                     }
 
             }
-            resp.sendRedirect(destino);
-        } catch (Exception ex){
-            resp.sendError(500, ex.getMessage());       
-         }
-    
+            //resp.sendRedirect(destino);
+            req.getRequestDispatcher(destino).forward(req, resp);
+        } catch (Exception ex) {
+            resp.sendError(500, ex.getMessage());
         }
 
+    }
 
-        private void cargarParametroReserva(Reserva r, HttpServletRequest req, HttpServletResponse res){
-              try {
+    private void cargarParametroReserva(Reserva r, HttpServletRequest req, HttpServletResponse res) {
+        try {
             // Obtenemos los parámetros del formulario
             String funcionId = req.getParameter("idFuncion");
-            
+
             String fechaReserva = LocalDate.now().toString();
             String usuarioId = req.getParameter("idUsuario");
-            String horarioReserva = LocalTime.now().toString();  
-            String cantidadEntradas = req.getParameter("cantidadEntradas");  
+            String horarioReserva = LocalTime.now().toString();
+            String cantidadEntradas = req.getParameter("cantidadEntradas");
             // Imprimimos los valores para depuración
             System.out.println("funcion id : " + funcionId);
-            
+
             System.out.println("Fecha de reservada: " + fechaReserva);
             System.out.println("usuario id : " + usuarioId);
 
@@ -177,7 +182,6 @@ public class ReservaEntradaServlet extends HttpServlet {
             }
 
             // Asignamos los valores recibidos al objeto 'Reserva'
- 
             // Asignamos la funcion a la reserva
             r.setFuncion(funcionDAO.getById(Integer.parseInt(funcionId)));;
             //Asignamos la Sala
@@ -205,46 +209,44 @@ public class ReservaEntradaServlet extends HttpServlet {
         }
     }
 
- 
-
-        private boolean reservaEntradasSala(int x, Sala sala){
-            boolean auxBoo = false;
-            if(isButacasDisponibles(x, sala)){
-                sala.setCantDeButacas(sala.getCantDeButacas()-x);
-                auxBoo = true;
-            }
-
-            System.out.println(sala.getCantDeButacas());
-            return auxBoo;
-
-        }
-    
-        private boolean isButacasDisponibles(int a, Sala s){
-            boolean auxB = true;
-            if(a> s.getCantDeButacas()){
-                auxB = false;
-            }
-            return auxB;
+    private boolean reservaEntradasSala(int x, Sala sala) {
+        boolean auxBoo = false;
+        if (isButacasDisponibles(x, sala)) {
+            sala.setCantDeButacas(sala.getCantDeButacas() - x);
+            auxBoo = true;
         }
 
-        private boolean actualizacionCreditoUsario (Usuario u, int cantE){
-            boolean auxBool = false;
-            if(creditoSuficiente(u , cantE)){
-                u.setCredito(u.getCredito()-cantE*costoEntrada);
-                auxBool = true;
-            }
+        System.out.println(sala.getCantDeButacas());
+        return auxBoo;
 
-            return auxBool;
+    }
+
+    private boolean isButacasDisponibles(int a, Sala s) {
+        boolean auxB = true;
+        if (a > s.getCantDeButacas()) {
+            auxB = false;
+        }
+        return auxB;
+    }
+
+    private boolean actualizacionCreditoUsario(Usuario u, int cantE) {
+        boolean auxBool = false;
+        if (creditoSuficiente(u, cantE)) {
+            u.setCredito(u.getCredito() - cantE * costoEntrada);
+            auxBool = true;
         }
 
-        private boolean creditoSuficiente(Usuario x , int y){
-            boolean auxB = true;
-            if(y*costoEntrada > x.getCredito()){
+        return auxBool;
+    }
 
-                auxB = false;
-            }
+    private boolean creditoSuficiente(Usuario x, int y) {
+        boolean auxB = true;
+        if (y * costoEntrada > x.getCredito()) {
 
-            return auxB;
+            auxB = false;
         }
-            
+
+        return auxB;
+    }
+
 }
