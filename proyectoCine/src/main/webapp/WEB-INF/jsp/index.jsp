@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Shop Homepage - Start Bootstrap Template</title>
+        <title>Inicio</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -21,15 +21,15 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <h1 class="display-4 fw-bolder">Cine UTN</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Proyecciones Tecnologicas</p>
                 </div>
             </div>
         </header>
         <!-- Section-->
         <!--CARTELERA-->
         <section class="py-5">
-            <h2 class="titulo-centrado"> CARTELERA !!!!</h2>
+            <h2 class="titulo-centrado"> CARTELERA</h2>
             <!-- enlace a servlet edicion peliculas -->
             <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
                 <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
@@ -48,12 +48,12 @@
                                             <!-- Product name-->
                                             <h5 class="fw-bolder"> ${pelicula.nombre_pelicula}</h5>
                                             <!-- Product price-->
-                                            $40.00 - $80.00
+                                            $1000
                                         </div>
                                     </div>
                                     <!-- Product actions-->
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Info</a></div>
+                                        <!--<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Info</a></div>-->
                                         <br>
                                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath}/reserva">Comprar</a></div>
                                     </div>
@@ -68,7 +68,7 @@
         <!--PROXIMAMENTE-->
         <section class="py-5">
             <h2 class="titulo-centrado">PROXIMAMENTE</h2>
-            <!<!-- enlace a servlet edicion peliculas -->
+            <!-- enlace a servlet edicion peliculas -->
             <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
                 <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
             </c:if>

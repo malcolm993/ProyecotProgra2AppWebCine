@@ -213,6 +213,7 @@ public class ReservaEntradaServlet extends HttpServlet {
         boolean auxBoo = false;
         if (isButacasDisponibles(x, sala)) {
             sala.setCantDeButacas(sala.getCantDeButacas() - x);
+            salaDao.update(sala);
             auxBoo = true;
         }
 
