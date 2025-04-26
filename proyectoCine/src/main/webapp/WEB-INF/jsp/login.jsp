@@ -23,59 +23,63 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <h1 class="display-4">Cine UTN</h1>
+                    <p class="lead">Tu cine, tu comunidad</p>
                 </div>
             </div>
         </header>
         <!-- Section-->
 
         <section class="py-5">
-            <form class="flex" action="${pageContext.request.contextPath}/login" method="post">
-                <!-- Email input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="email" id="form2Example1" class="form-control" name = "mail"/>
-                    <label class="form-label" for="form2Example1">Email address</label>
-                </div>
-
-                <!-- Password input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form2Example2" class="form-control" name = "password" />
-                    <label class="form-label" for="form2Example2">Password</label>
-                </div>
-
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                    <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                            <label class="form-check-label" for="form2Example31"> Remember me </label>
+            <div class="row justify-content-center"> 
+                <div class="col-md-4 col-lg-4">
+                    <form  action="${pageContext.request.contextPath}/login" method="post">
+                        <!-- Email input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="email" id="form2Example1" class="form-control" name = "mail"/>
+                            <label class="form-label" for="form2Example1">Email address</label>
                         </div>
-                    </div>
 
-                    <div class="col">
-                        <!-- Simple link -->
-                        <a href="#!">Forgot password?</a>
-                    </div>
+                        <!-- Password input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="password" id="form2Example2" class="form-control" name = "password" />
+                            <label class="form-label" for="form2Example2">Password</label>
+                        </div>
+
+                        <!-- 2 column grid layout for inline styling -->
+                        <div class="row mb-4">
+                            <div class="col d-flex justify-content-center">
+                                <!-- Checkbox -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                    <label class="form-check-label" for="form2Example31"> Remember me </label>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <!-- Simple link -->
+                                <a href="#!">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        
+                        <input type="hidden" name="deDondeViene" value="${param.origen}">
+                        <input type="submit" value="iniciar sesion">
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>Not a member? <a href="usuariocine/signupcine">Register</a></p>
+
+                        </div>
+                        <c:if test="${hayError}">
+                            <div class="container mt-3 p-3 bg-danger text-light">
+                                <h2>${mensajeError}</h2>
+                            </div>
+                        </c:if>
+                    </form>
                 </div>
-
-                <!-- Submit button -->
-                
-                <input type="hidden" name="deDondeViene" value="${param.origen}">
-                <input type="submit" value="iniciar sesion">
-
-                <!-- Register buttons -->
-                <div class="text-center">
-                    <p>Not a member? <a href="usuariocine/signupcine">Register</a></p>
-
-                </div>
-                <c:if test="${hayError}">
-                    <div class="container mt-3 p-3 bg-danger text-light">
-                        <h2>${mensajeError}</h2>
-                    </div>
-                </c:if>
-            </form>
+            </div>    
         </section>
 
 
