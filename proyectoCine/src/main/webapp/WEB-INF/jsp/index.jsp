@@ -29,11 +29,15 @@
         <!-- Section-->
         <!--CARTELERA-->
         <section class="py-5">
-            <h2 class="titulo-centrado"> CARTELERA</h2>
-            <!-- enlace a servlet edicion peliculas -->
-            <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
-                <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
-            </c:if>
+            <div class = "container px-4 px-lg-5"> 
+                <div class="text-center"> 
+                    <h2> CARTELERA</h2>
+                    <!-- enlace a servlet edicion peliculas -->
+                    <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
+                        <a href="edicionpeliculas" class="btn btn-outline-primary mt-3">ABM PELICULAS</a>
+                    </c:if>
+                </div>
+            </div>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${listaPeliculas}" var="pelicula">
@@ -67,11 +71,14 @@
         </section>
         <!--PROXIMAMENTE-->
         <section class="py-5">
-            <h2 class="titulo-centrado">PROXIMAMENTE</h2>
+          <div class="container px-4 px-lg-5 my-5 text-center">
+            
+            <h2>PROXIMAMENTE</h2>
             <!-- enlace a servlet edicion peliculas -->
             <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
-                <a href="edicionpeliculas" class="btn btn-outline-primary float-end">EDITAR</a>
+                <a href="edicionpeliculas" class="btn btn-outline-primary">ABM ESTRENOS</a>
             </c:if>
+          </div>  
 
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -103,9 +110,12 @@
             </div>
         </section>
         <section class="py-5">
+          <div class="container px-4 px-lg-5 my-5 text-center">
             <c:if test = "${userLogueado.rolUsuario == 'ADMIN'}">
-                <a href="edicionfunciones" class="btn btn-outline-primary float-end">FUNCIONES</a>
+                <a href="edicionfunciones" class="btn btn-outline-primary ">FUNCIONES</a>
             </c:if>
+          </div>
+            
 
 
         </section>
