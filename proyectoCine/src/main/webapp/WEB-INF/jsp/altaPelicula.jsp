@@ -86,11 +86,11 @@
                 <!-- Estado de la pel�cula -->
                 <!-- Campo Estado Pel�cula -->
                 <div class="mb-3 row">
-                    <label for="estadoPelicula" class="col-sm-2 col-form-label">Estado Pel�cula:</label>
+                    <label for="estadoPelicula" class="col-sm-2 col-form-label">En Cartelera:</label>
                     <div class="col-sm-10">
-                        <select id="estadoPelicula" name="estadoPelicula" class="form-select" required>
-                            <option value="CARTELERA" ${pelicula.estadoPelicula == 'CARTELERA' ? 'selected' : ''}>Cartelera</option>
-                            <option value="PROXIMAMENTE" ${pelicula.estadoPelicula == 'PROXIMAMENTE' ? 'selected' : ''}>Proximamente</option>
+                        <select id="is_Cartelera" name="is_Cartelera" class="form-select" required>
+                            <option value="true" ${pelicula.is_Cartelera ? 'selected' : ''}>Si</option>
+                            <option value="false" ${not pelicula.is_Cartelera ? 'selected' : ''}>No</option>
                         </select>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
 
                 <!-- Bot�n para enviar -->
                 <div class="d-grid gap-2 mt-4">
-                    <button class="btn btn-success" type="submit">Guardar Pel�cula</button>
+                    <button class="btn btn-success" type="submit">Guardar Pelicula</button>
                 </div>
             </form>
         </div>

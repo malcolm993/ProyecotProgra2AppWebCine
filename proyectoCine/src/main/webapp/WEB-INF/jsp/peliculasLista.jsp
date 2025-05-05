@@ -34,7 +34,7 @@
                             <ol class="list-group list-group-numbered">
                                 <!-- aca arranca cada lista del acordion -->
                                 <c:forEach items="${listaPeliculas}" var="pelicula">
-                                    <c:if test = "${pelicula.estadoPelicula == 'CARTELERA'}">
+                                    <c:if test = "${pelicula.is_Cartelera}">
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold"> <p>${pelicula.nombre_pelicula}</p> </div>
@@ -71,7 +71,7 @@
                             <ol class="list-group list-group-numbered">
                                 <!-- aca arranca cada lista del acordion -->
                                 <c:forEach items="${listaPeliculas}" var="pelicula">
-                                    <c:if test = "${pelicula.estadoPelicula == 'PROXIMAMENTE'}">
+                                    <c:if test = "${!pelicula.is_Cartelera}">
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold"> <p>${pelicula.nombre_pelicula}</p> </div>

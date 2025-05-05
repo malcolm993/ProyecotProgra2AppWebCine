@@ -74,7 +74,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            Pelicula p;
+            Pelicula p, p2;
             int id_p;
             String aux = "nadas";
 
@@ -86,6 +86,8 @@ public class EdicionPeliculasServlet extends HttpServlet {
                     p = new Pelicula();
                     cargarPeliculaParams(p, req, resp);
                     peliculaDao.add(p);
+                    
+
                     break;
 
                 case "/updatePelicula": // Form de alta
@@ -129,18 +131,18 @@ public class EdicionPeliculasServlet extends HttpServlet {
             String fechaEstreno = req.getParameter("fechaEstreno");
             String sinopsis = req.getParameter("sinopsis");
             String foto = "placeholder.jpg";
-            String estadoPelicula = req.getParameter("estadoPelicula");
+            String isCartelera = req.getParameter("is_Cartelera"); // se necesita convertir a boolean?
             System.out.println(nombre);
             System.out.println(aptoPara);
             System.out.println(director);
             System.out.println(duracionStr);
             System.out.println(fechaEstreno);
             System.out.println(sinopsis);
-            System.out.println(estadoPelicula);
+            System.out.println(isCartelera);
 
             // Validar si los parámetros recibidos son nulos
-            if (nombre == null || aptoPara == null || director == null || duracionStr == null || fechaEstreno == null || sinopsis == null) {
-                throw new NullPointerException("Uno o más parámetros son nulos");
+            if (nombre == null || aptoPara == null || director == null || duracionStr == null || fechaEstreno == null || sinopsis == null || isCartelera == null) {
+                throw new NullPointerException("Uno o mas parametros son nulos");
             }
 
             // Si todos los valores están presentes, procedemos a asignar
@@ -154,24 +156,24 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
             peli.setFechaDeEstreno(fechaEstreno);
             peli.setSinopsis(sinopsis);
-            peli.setEstadoPelicula(EstadoPelicula.valueOf(estadoPelicula));
+            peli.setIs_Cartelera(Boolean.parseBoolean(isCartelera));
             peli.setFoto(foto);
 
         } catch (NullPointerException e) {
             // Aquí manejamos si algún parámetro es nulo
-            System.out.println("Error: Parámetro nulo - " + e.getMessage());
+            System.out.println("Error: Parametro nulo - " + e.getMessage());
             // Puedes redirigir a una página de error o devolver un mensaje de error
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Faltan parámetros obligatorios.");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Faltan parametros obligatorios.");
 
         } catch (NumberFormatException e) {
-            // Aquí manejamos el caso de que la duración no sea un número válido
-            System.out.println("Error: La duración no es un número válido - " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "La duración debe ser un número válido.");
+            // Aquí manejamos el caso de que la duracion no sea un numero valido
+            System.out.println("Error: La duracion no es un número válido - " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "La duracion debe ser un número válido.");
 
         } catch (Exception e) {
-            // Captura cualquier otra excepción que pudiera ocurrir
-            System.out.println("Error: Ocurrió un error inesperado - " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrió un error inesperado.");
+            // Captura cualquier otra excepcion que pudiera ocurrir
+            System.out.println("Error: Ocurrio un error inesperado - " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrio un error inesperado.");
         }
     }
 

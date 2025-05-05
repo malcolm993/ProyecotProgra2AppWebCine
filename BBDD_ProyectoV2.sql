@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `BBDD-ProyectoProgra2`.`PELICULA` (
   `fecha_estreno` VARCHAR(20) NOT NULL,
   `director` VARCHAR(45) NOT NULL,
   `imagen` VARCHAR(20) NOT NULL,
-  `estado_pelicula` ENUM("cartelera", "proximamente") NOT NULL,
+  `is_cartelera` BOOLEAN NOT NULL,
   PRIMARY KEY (`id_pelicula`))
 ENGINE = InnoDB;
 

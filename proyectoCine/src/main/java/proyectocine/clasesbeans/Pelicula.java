@@ -13,16 +13,16 @@ public class Pelicula implements Serializable {
     private String Apto_publico;
     private String fechaDeEstreno;
     private String director;
-    private EstadoPelicula estadoPelicula;
+    private boolean is_cartelera;
     private String fotopeli;
     private static final String FOTO_DEFAULT = "placeholder.png";
 
     public Pelicula() {
-        this(0, 0, "", "", "", "", "", null, null);
+        this(0, 0, "", "", "", "", "", false, null);
     }
 
     public Pelicula(int id, int duracion_min, String nombre_pelicula, String sinopsis, String apto_publico,
-            String fechaDeEstreno, String director, EstadoPelicula estadoPelicula, String foto) {
+            String fechaDeEstreno, String director, boolean x, String foto) {
         this.id = id;
         this.duracion_min = duracion_min;
         this.nombre_pelicula = nombre_pelicula;
@@ -30,7 +30,7 @@ public class Pelicula implements Serializable {
         Apto_publico = apto_publico;
         this.fechaDeEstreno = fechaDeEstreno;
         this.director = director;
-        this.estadoPelicula = estadoPelicula;
+        this.is_cartelera = x;
         this.fotopeli = foto;
 
     }
@@ -91,13 +91,17 @@ public class Pelicula implements Serializable {
         this.director = director;
     }
 
-    public EstadoPelicula getEstadoPelicula() {
-        return estadoPelicula;
+    public boolean getIs_Cartelera() {
+        return is_cartelera;
     }
 
-    public void setEstadoPelicula(EstadoPelicula estadoPelicula) {
-        this.estadoPelicula = estadoPelicula;
+    
+
+    public void setIs_Cartelera(boolean isCartelera) {
+        this.is_cartelera = isCartelera;
     }
+
+    
 
     public String getFoto() {
         return fotopeli;
@@ -117,6 +121,6 @@ public class Pelicula implements Serializable {
 
     @Override
     public String toString() {
-        return "Pelicula{" + "id=" + id + ", duracion_min=" + duracion_min + ", nombre_pelicula=" + nombre_pelicula + ", estadoPelicula=" + estadoPelicula + '}';
+        return "Pelicula{" + "id=" + id + ", duracion_min=" + duracion_min + ", nombre_pelicula=" + nombre_pelicula + ", estadoPelicula=" + is_cartelera + '}';
     }
 }
