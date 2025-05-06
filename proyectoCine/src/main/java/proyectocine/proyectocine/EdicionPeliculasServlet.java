@@ -86,7 +86,8 @@ public class EdicionPeliculasServlet extends HttpServlet {
                     p = new Pelicula();
                     cargarPeliculaParams(p, req, resp);
                     peliculaDao.add(p);
-                    
+                    req.setAttribute("peliculaAltaFuncion", p);
+                    req.getRequestDispatcher("/edicionpeliculas/addFuncion").forward(req, resp);
 
                     break;
 
