@@ -87,8 +87,10 @@ public class EdicionPeliculasServlet extends HttpServlet {
                     cargarPeliculaParams(p, req, resp);
                     peliculaDao.add(p);
                     req.setAttribute("peliculaAltaFuncion", p);
-                    req.getRequestDispatcher("/edicionpeliculas/addFuncion").forward(req, resp);
-
+                    if(p.getIs_Cartelera()){ 
+                        System.out.println("ingreso en el If por que Esta En Cartelera");
+                        req.getRequestDispatcher("/edicionpeliculas/addFuncion").forward(req, resp);
+                    }    
                     break;
 
                 case "/updatePelicula": // Form de alta
