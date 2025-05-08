@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,31 +23,9 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
     // private static int contador = 1; // Simula un id autoincremental de base de datos
     // private List<Funcion> funciones;
     // private static FuncionDAO funcionesHardcodeadas;
-    private List<String> horarios = List.of("HS12", "HS14", "HS16", "HS18", "HS20");
+    private List<String> horarios = List.of("18:00", "21:00", "23:30");
     private final String fechaFuncionFija= "2024-12-01";
     
-        // private FuncionDAO(List<Sala> x, List<Pelicula> y) {
-    //     this.funciones = new ArrayList<>();
-    //     cargarFuncionesFake(x, y);
-    // }
-
-    // public static FuncionDAO getInstance(List<Sala> x, List<Pelicula> y) {
-    //     if (funcionesHardcodeadas == null) {
-    //         funcionesHardcodeadas = new FuncionDAO(x, y);
-    //     }
-
-    //     return funcionesHardcodeadas;
-    // }
-
-    // @Override
-    // public void add(Funcion funcion) {
-    //     // TODO Auto-generated method stub
-    //     UtilExceptions.checkObjetoNulo(funcion, "La funcion no pueder nula");
-    //     funcion.setId_funcion(contador);
-    //     funciones.add(funcion);
-    //     contador++;
-    // }
-
     @Override
     public void add(Funcion funcion) {
         // TODO Auto-generated method stub
@@ -62,15 +42,6 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         }
     }
 
-    // @Override
-    // public void update(Funcion funcion) {
-    //     // TODO Auto-generated method stub
-    //     UtilExceptions.checkObjetoNulo(funcion, "La funcion no pueder nula");
-    //     int idx = funciones.indexOf(funcion);
-    //     if (idx > 0) {
-    //         funciones.set(idx, funcion);
-    //     }
-    // }
 
     @Override
     public void update(Funcion funcion) {
@@ -87,10 +58,7 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         }
     }
 
-    // @Override
-    // public void delete(Integer id) {
-    //     this.funciones.remove(getById(id));
-    // }
+   
 
     @Override
     public void delete(Integer id) {
@@ -116,21 +84,7 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         return funciones;
     }
 
-    // @Override
-    // public Funcion getById(Integer id) {
-    //     // TODO Auto-generated method stub
-    //     UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
-    //     Funcion funcion = null;
-    //     Iterator<Funcion> it = this.funciones.iterator();
-    //     while (it.hasNext() && funcion == null) {
-    //         Funcion aux = it.next();
-    //         if (aux.getId_funcion() == id) {
-    //             funcion = aux;
-    //         }
-    //     }
-    //     UtilExceptions.checkObjetoNulo(funcion, "No existe funcion con id " + id);
-    //     return funcion;
-    // }
+ 
 
     @Override
     public Funcion getById(Integer id) {
@@ -152,28 +106,6 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         return funcion;
     }
 
-    // public void cargarFuncionesFake(List<Sala> x, List<Pelicula> y) {
-    //     int contSalas = 0;
-    //     while (x.size() > contSalas) {
-    //         creacionFuncionPorSala(x.get(contSalas), y);
-    //         contSalas++;
-    //     }
-    // }
-
-    // public void creacionFuncionPorSala(Sala s, List<Pelicula> y) {
-    //     int auxCont = 0;
-    //     Pelicula p;
-
-    //     for (String horario : horarios) {
-    //         p = y.get(auxCont);
-    //         add(new Funcion(contador, s, p, "2024-20-10", horario));
-    //         auxCont++;
-    //     }
-    // }
-
-    // public List<String> getListaHorarios() {
-    //     return this.horarios;
-    // }
 
     private Funcion rsRowToFuncion(ResultSet rs) throws SQLException{
         SalaDAO salaDao = new SalaDAO();
@@ -251,6 +183,17 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
             throw new RuntimeException(e);
         }
     }
+
+    public List<LocalDate> FechasSemanaEntrante(){
+        List<LocalDate> fechaHabilitadas = new ArrayList<>();
+        LocalDate hoy = LocalDate.now();
+        LocalDate inicioSemanaSiguiente = hoy.with(DayOfWeek.MONDAY).plusWeeks(1);
+        for (int i = 0; i < 7; i++) {
+            fechaHabilitadas.add(inicioSemanaSiguiente.plusDays(i));
+        }
+        return fechaHabilitadas;
+    }
+
 
 }
 

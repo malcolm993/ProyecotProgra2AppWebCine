@@ -86,10 +86,15 @@ public class EdicionPeliculasServlet extends HttpServlet {
                     p = new Pelicula();
                     cargarPeliculaParams(p, req, resp);
                     peliculaDao.add(p);
-                    req.setAttribute("peliculaAltaFuncion", p);
+                    //p = peliculaDao.getLastInsertedPelicula();
                     if(p.getIs_Cartelera()){ 
                         System.out.println("ingreso en el If por que Esta En Cartelera");
-                        req.getRequestDispatcher("/edicionpeliculas/addFuncion").forward(req, resp);
+                        //req.setAttribute("peliculaAltaFuncion", p);
+                        //req.setAttribute("viendeDesdeAltaPelicula", true);
+                        System.out.println(p);
+                        //resp.sendRedirect(req.getContextPath()+"/edicionfunciones/addFuncionNuevaPelicula?idNuevaPelicula="+p.getId());
+                        resp.sendRedirect(req.getContextPath()+"/edicionfunciones/addFuncionNuevaPelicula");
+                        return;
                     }    
                     break;
 
@@ -116,15 +121,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
     }
 
     private void cargarPeliculaParams(Pelicula peli, HttpServletRequest req, HttpServletResponse response) throws IOException {
-        /*
-        peli.setNombre_pelicula(req.getParameter("nombre"));
-        peli.setApto_publico(req.getParameter("aptopara"));
-        peli.setDirector(req.getParameter("director"));
-        peli.setDuracion_min(Integer.parseInt(req.getParameter("duracion")));
-        peli.setFechaDeEstreno(req.getParameter("fechaEstreno"));
-        peli.setSinopsis(req.getParameter("sinopsis"));
-         */
-
+        
         try {
             // Primero verificamos si los parámetros son nulos antes de asignar valores
             String nombre = req.getParameter("nombre");
