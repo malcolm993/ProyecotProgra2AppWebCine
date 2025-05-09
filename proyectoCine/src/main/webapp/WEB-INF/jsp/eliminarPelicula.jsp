@@ -23,7 +23,7 @@
                             <p class="card-text"><strong>Duraciin:</strong> ${pelicula.duracion_min} min</p>
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
-                            <p class="card-text"><strong>Estado:</strong> ${pelicula.estadoPelicula}</p>
+                            <p class="card-text"><strong>En cartelera :</strong> ${pelicula.is_Cartelera}</p>
                         </div>
                     </div>
                 </div>

@@ -10,8 +10,6 @@
     <body>
         <div class="container mt-5">
             <h1 class="text-center">Detalles de la Pelicula</h1>
-            <p>Context Path: ${pageContext.request.contextPath}</p>
-            <p>Foto: ${pelicula.foto}</p>
 
             <!-- Informacion de la pelicula -->
             <div class="card mt-4">
@@ -26,7 +24,7 @@
                             <p class="card-text"><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
                             <p class="card-text"><strong>Director:</strong> ${pelicula.director}</p>
                             <p class="card-text"><strong>Apto para:</strong> ${pelicula.apto_publico}</p>
-                            <p class="card-text"><strong>Estado:</strong> ${pelicula.estadoPelicula}</p>
+                            <p class="card-text"><strong>Esta en cartelera : </strong> ${pelicula.is_Cartelera}</p>
                         </div>
                     </div>
                 </div>
