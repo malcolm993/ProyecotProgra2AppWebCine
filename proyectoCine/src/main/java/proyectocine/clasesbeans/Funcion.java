@@ -16,11 +16,11 @@ public class Funcion implements Serializable {
     private Sala sala;
     private Pelicula pelicula;
     private String fechaDeFuncion;
-    private HorarioFuncion horarioFuncion;
+    private String horarioFuncion;
     
 
     public Funcion(int id_funcion, Sala sala, Pelicula pelicula, String fechaDeFuncion,
-            HorarioFuncion horario) {
+            String horario) {
         this.id_funcion = id_funcion;
 
         this.sala = sala;
@@ -37,11 +37,11 @@ public class Funcion implements Serializable {
         this.fechaDeFuncion = fechaDeFuncion;
     }
 
-    public HorarioFuncion getHorarioFuncion() {
+    public String getHorarioFuncion() {
         return horarioFuncion;
     }
 
-    public void setHorarioFuncion(HorarioFuncion horario) {
+    public void setHorarioFuncion(String horario) {
         this.horarioFuncion = horario;
     }
 

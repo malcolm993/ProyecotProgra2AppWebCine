@@ -115,7 +115,7 @@ public class FuncionDAO implements DAOFuncion<Funcion, Integer> {
         salaDao.getById(rs.getInt("id_sala")),
         peliculaDao.getById(rs.getInt("id_pelicula")), 
         rs.getString("fecha"),
-        HorarioFuncion.valueOf(rs.getString("horario"))
+        rs.getString("horario")
         );
     }
 

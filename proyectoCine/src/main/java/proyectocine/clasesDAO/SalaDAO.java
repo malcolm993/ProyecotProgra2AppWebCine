@@ -125,4 +125,22 @@ public class SalaDAO implements DAO<Sala, Integer> {
     return auxSala;
   }
 
+  public Sala buscarSalaPorTipo( String x) throws Exception {
+    Sala s = null;
+    int cont = 1;
+    int ultimoId = ultimaSala().getId();
+    
+    while(ultimoId >= cont && s == null){
+        //System.out.println("entro aca y el valor recibido es "+x);
+        Sala aux = getById(cont);
+        
+        if(aux !=null && aux.getTipoDeSala().toString().equals(x)){
+            //System.out.println(aux + "entro?");
+            s=aux;
+        }
+        cont++;
+    }
+    return s;
+    }
+
 }

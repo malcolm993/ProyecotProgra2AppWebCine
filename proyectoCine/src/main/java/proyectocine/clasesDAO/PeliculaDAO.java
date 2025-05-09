@@ -119,7 +119,7 @@
                 }
 
             } catch (SQLException ex) {
-                throw new RuntimeException("Error al obtener última película insertada", ex);
+                throw new RuntimeException("Error al obtener ï¿½ltima pelï¿½cula insertada", ex);
             }
 
             return pelicula;

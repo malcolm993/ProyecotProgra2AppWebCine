@@ -98,7 +98,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
                 case "/addFuncion": // Form de alta
                     
                     String salaFija = req.getParameter("tipoSala");
-                    req.setAttribute("sala", buscarSalaPorTipo(salaFija));
+                    //req.setAttribute("sala", buscarSalaPorTipo(salaFija));
                     req.setAttribute("fechaFuncion", funcionDAO.getFechaFuncion());
                     req.setAttribute("listaPeliculas", pelicuDao.getAll());
                     req.setAttribute("listaHorarios", funcionDAO.getHorarios());
@@ -178,10 +178,10 @@ public class EdicionFuncionesServlet extends HttpServlet {
             String peliculaIdAltaFuncion = req.getParameter("peliculaId");
             String peliculaNombre = req.getParameter("pelicula");
             String salaTipo = req.getParameter("tipoDeSala");
-            String fechaDeFuncion = req.getParameter("fechaDeFuncion");
+            String fechaDeFuncion = req.getParameter("fechaFuncion");
             String horario = req.getParameter("horario");
 
-            int salaId = buscarSalaPorTipo(salaTipo).getId();
+            Sala salaFuncionNueva = salaDao.buscarSalaPorTipo(salaTipo);
 
             // Imprimimos los valores para depuración
             System.out.println("Pelicula: " + peliculaNombre);
@@ -191,19 +191,20 @@ public class EdicionFuncionesServlet extends HttpServlet {
             System.out.println("Horario: " + horario);
 
             // Validamos que los parámetros no sean nulos o vacíos
-            if (peliculaNombre == null || salaId == 0 || fechaDeFuncion == null || horario == null) {
+            if (peliculaIdAltaFuncion == null || salaFuncionNueva == null || fechaDeFuncion == null || horario == null) {
                 throw new NullPointerException("Uno o más parámetros son nulos.");
             }
 
             // Asignamos los valores recibidos al objeto 'Funcion'
             // Primero debemos obtener el objeto Pelicula asociado al nombre recibido
             // Asignamos la película a la función
-            fun.setPelicula(buscarPelicula(peliculaNombre));
+            // rev fun.setPelicula(buscarPelicula(peliculaNombre));
+            fun.setPelicula(pelicuDao.getById(Integer.parseInt(peliculaIdAltaFuncion)));
             //Asignamos la Sala
-            fun.setSala(buscarSalaPorTipo(salaTipo));
+            fun.setSala(salaFuncionNueva);
             // Asignamos la fecha y el horario
             fun.setFechaDeFuncion(fechaDeFuncion);
-            fun.setHorarioFuncion(HorarioFuncion.valueOf(horario));
+            fun.setHorarioFuncion(horario);
 
         } catch (NullPointerException e) {
             System.out.println("Error: Parámetro nulo - " + e.getMessage());
@@ -234,24 +235,6 @@ public class EdicionFuncionesServlet extends HttpServlet {
         }
         return p;
 
-    }
-    
-    private Sala buscarSalaPorTipo( String x) throws Exception {
-    Sala s = null;
-    int cont = 1;
-    int ultimoId = salaDao.ultimaSala().getId();
-    
-    while(ultimoId >= cont && s == null){
-        System.out.println("entro aca y el valor recibido es "+x);
-        Sala aux = salaDao.getById(cont);
-        
-        if(aux !=null && aux.getTipoDeSala().toString().equals(x)){
-            System.out.println(aux + "entro?");
-            s=aux;
-        }
-        cont++;
-    }
-    return s;
     }
 
 }
