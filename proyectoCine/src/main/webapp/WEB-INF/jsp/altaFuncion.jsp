@@ -31,6 +31,11 @@
                   <input type="text" value="${peliculaAltaFuncion.nombre_pelicula}" readonly class="form-control">
                   <input type="hidden" name="peliculaId" value="${peliculaAltaFuncion.id}">
                 </c:when>
+                <c:when test="${not empty peliculaCambioACartelera}">
+                  <input type="text" value="${peliculaCambioACartelera.nombre_pelicula}" readonly class="form-control">
+                  <input type="hidden" name="peliculaId" value="${peliculaCambioACartelera.id}">
+                </c:when>
+
                 <c:otherwise>
                   <!-- Lista de otras opciones de pel�culas en caso de que el flujo no venga de alta pelicula-->
                   <select id="pelicula" name="pelicula" class="form-control" required>
@@ -48,22 +53,6 @@
             <div class="mb-3 row">
               <label for="sala" class="col-sm-2 col-form-label">Sala ID:</label>
               <div class="col-sm-10">
-                <!-- aca pongo la logica para elejir la sala segun el flujo-->
-                <!-- 
-                <c:choose>
-                  <c:when test="${vieneDesdeAltaPelicula}">
-                    <select id="tipoDeSala" name="tipoDeSala" class="form-control" required>
-                      <c:forEach items="${listaSalas}" var="sala">
-                        <option value="${sala.tipoDeSala}">${sala.tipoDeSala}</option>
-                      </c:forEach>
-                    </select>
-                  </c:when>
-                  <c:otherwise>
-                  
-                    <input type="text" id="salaId" name="salaId" class="form-control" value="${sala.id}" readonly>
-                  </c:otherwise>
-                </c:choose>
-                -->
                 <select id="tipoDeSala" name="tipoDeSala" class="form-control" required>
                   <c:forEach items="${listaSalas}" var="sala">
                     <option value="${sala.tipoDeSala}">${sala.tipoDeSala}</option>

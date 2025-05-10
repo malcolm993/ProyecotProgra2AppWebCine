@@ -63,7 +63,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
     req.setAttribute("userLogueado", user);
     try {
       String destino;
-      String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
+      String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/edicionpeliculas"
       pathInfo = pathInfo == null ? "" : pathInfo;
       String idString = req.getParameter("idfuncion");
 
@@ -85,9 +85,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
           req.setAttribute("fechas", funcionDAO.FechasSemanaEntrante());
           req.setAttribute("horarios", funcionDAO.getHorarios());
           // System.out.println(funcionDAO.FechasSemanaEntrante());
-          // System.out.println("ultima pelicula ingresada fue: "+p);
-          // System.out.println(funcionDAO.getHorarios());
-          // System.out.println("hasta aca bien , id: " + idNuevaPelicula);
+          System.out.println("ultima pelicula ingresada fue: "+p);
 
           destino = "/WEB-INF/jsp/altaFuncion.jsp";
 
@@ -95,12 +93,14 @@ public class EdicionFuncionesServlet extends HttpServlet {
 
         case "/addFuncion": // Form de alta
 
-          // String salaFija = req.getParameter("tipoSala");
-          // req.setAttribute("sala", buscarSalaPorTipo(salaFija));
+          Pelicula p2 = (Pelicula) req.getSession().getAttribute("peliculaParaFuncion");
+          System.out.println(p2);
+          req.setAttribute("peliculaCambioACartelera", p2);
           req.setAttribute("listaSalas", salaDao.getAll());
           req.setAttribute("fechas", funcionDAO.FechasSemanaEntrante());
           req.setAttribute("listaPeliculasEnCartelera", pelicuDao.getPeliculasEnCartelera());
           req.setAttribute("horarios", funcionDAO.getHorarios());
+          req.getSession().removeAttribute("peliculaParaFuncion");
           destino = "/WEB-INF/jsp/altaFuncion.jsp";
           break;
 
@@ -141,6 +141,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
       switch (pathInfo) {
 
         case "/addFuncion": // Form de alta
+          System.out.println("entro a la funcion doPost addFuncion");
           f = new Funcion();
           cargarFuncionParam(f, req, resp);
           funcionDAO.addPorSala(f);
@@ -181,7 +182,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
       String horario = req.getParameter("horario");
 
       Sala salaFuncionNueva = salaDao.buscarSalaPorTipo(salaTipo);
-      if (peliculaIdAltaFuncion == null) {
+      if (peliculaIdAltaFuncion == null ) {
         System.out.println("el if funciono bien ");
         peliculaIdAltaFuncion = String.valueOf(pelicuDao.busquedaPorNombre(peliculaNombre).getId());
         System.out.println("valor obtenido dentro del if"+peliculaIdAltaFuncion);

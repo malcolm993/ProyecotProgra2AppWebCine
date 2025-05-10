@@ -89,10 +89,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
                     //p = peliculaDao.getLastInsertedPelicula();
                     if(p.getIs_Cartelera()){ 
                         System.out.println("ingreso en el If por que Esta En Cartelera");
-                        //req.setAttribute("peliculaAltaFuncion", p);
-                        //req.setAttribute("viendeDesdeAltaPelicula", true);
-                        System.out.println(p);
-                        //resp.sendRedirect(req.getContextPath()+"/edicionfunciones/addFuncionNuevaPelicula?idNuevaPelicula="+p.getId());
+                        System.out.println(p);                 
                         resp.sendRedirect(req.getContextPath()+"/edicionfunciones/addFuncionNuevaPelicula");
                         return;
                     }    
@@ -101,8 +98,14 @@ public class EdicionPeliculasServlet extends HttpServlet {
                 case "/updatePelicula": // Form de alta
                     id_p = Integer.parseInt(req.getParameter("id"));
                     p = peliculaDao.getById(id_p);
+                    boolean estabaEnCartelera = p.getIs_Cartelera();
                     cargarPeliculaParams(p, req, resp);
                     peliculaDao.update(p);
+                    if( !estabaEnCartelera && p.getIs_Cartelera()){ 
+                        req.getSession().setAttribute("peliculaParaFuncion", p); 
+                        resp.sendRedirect(req.getContextPath()+"/edicionfunciones/addFuncion");
+                        return;
+                    } 
                     break;
 
                 case "/deletePelicula": // Form de alta
