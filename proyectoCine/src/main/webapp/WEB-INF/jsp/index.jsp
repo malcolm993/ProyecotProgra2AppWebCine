@@ -30,14 +30,17 @@
     </header>
     <!-- Section-->
     <!--CARTELERA-->
-    <section class="py-5">
+    <section id="CarteleraCine"class="py-5">
       <div class="container px-4 px-lg-5">
         <div class="text-center">
           <h2> CARTELERA</h2>
           <!-- enlace a servlet edicion peliculas -->
+          <!--
           <c:if test="${userLogueado.rolUsuario == 'ADMIN'}">
             <a href="edicionpeliculas" class="btn btn-outline-primary mt-3">ABM PELICULAS</a>
-          </c:if>
+          </c:if> 
+          --> 
+
         </div>
       </div>
       <div class="container px-4 px-lg-5 mt-5">
@@ -74,14 +77,16 @@
       </div>
     </section>
     <!--PROXIMAMENTE-->
-    <section class="py-5">
+    <section id="ProximamenteCine" class="py-5">
       <div class="container px-4 px-lg-5 my-5 text-center">
 
         <h2>PROXIMAMENTE</h2>
         <!-- enlace a servlet edicion peliculas -->
+        <!--  
         <c:if test="${userLogueado.rolUsuario == 'ADMIN'}">
           <a href="edicionpeliculas" class="btn btn-outline-primary">ABM ESTRENOS</a>
         </c:if>
+        -->
       </div>
 
       <div class="container px-4 px-lg-5 mt-5">
@@ -99,7 +104,7 @@
                       <!-- Product name-->
                       <h5 class="fw-bolder"> ${pelicula.nombre_pelicula}</h5>
                       <!-- Product price-->
-                      $40.00 - $80.00
+                      
                     </div>
                   </div>
                   <!-- Product actions-->
@@ -114,12 +119,14 @@
         </div>
       </div>
     </section>
+    <!-- 
     <section class="py-5">
       <div class="container px-4 px-lg-5 my-5 text-center">
         <c:if test="${userLogueado.rolUsuario == 'ADMIN'}">
           <a href="edicionfunciones" class="btn btn-outline-primary ">FUNCIONES</a>
         </c:if>
       </div>
+    -->
 
 
 

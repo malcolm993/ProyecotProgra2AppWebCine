@@ -16,11 +16,13 @@
         <url-pattern>/reserva</url-pattern>
         <url-pattern>/edicionfunciones</url-pattern>
         <url-pattern>/edicionpeliculas</url-pattern>
+        <url-pattern>/ABMCine</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>admin-filter</filter-name>
         <url-pattern>/edicionfunciones</url-pattern>
         <url-pattern>/edicionpeliculas</url-pattern>
+        <url-pattern>/ABMCine</url-pattern>
     </filter-mapping>
     <servlet>
         <description>controlador de logeo del usuario</description>
@@ -53,6 +55,10 @@
         <servlet-name>reserva-servlet</servlet-name>
         <servlet-class>proyectocine.proyectocine.ReservaEntradaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ABMCine</servlet-name>
+        <servlet-class>proyectocine.proyectocine.ABMServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>usuario-servlet</servlet-name>
         <url-pattern>/usuariocine/*</url-pattern>
@@ -81,6 +87,10 @@
         <servlet-name>reserva-servlet</servlet-name>
         <url-pattern>/reserva</url-pattern>
         <url-pattern>/reserva/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ABMCine</servlet-name>
+        <url-pattern>/ABMCine</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
