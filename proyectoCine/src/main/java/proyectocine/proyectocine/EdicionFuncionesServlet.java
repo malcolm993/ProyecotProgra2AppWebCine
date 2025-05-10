@@ -85,7 +85,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
           req.setAttribute("fechas", funcionDAO.FechasSemanaEntrante());
           req.setAttribute("horarios", funcionDAO.getHorarios());
           // System.out.println(funcionDAO.FechasSemanaEntrante());
-          System.out.println("ultima pelicula ingresada fue: "+p);
+          System.out.println("funcion creada para ultima pelicula ingresada fue: "+p);
 
           destino = "/WEB-INF/jsp/altaFuncion.jsp";
 
@@ -94,7 +94,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
         case "/addFuncion": // Form de alta
 
           Pelicula p2 = (Pelicula) req.getSession().getAttribute("peliculaParaFuncion");
-          System.out.println(p2);
+          //System.out.println(p2);
           req.setAttribute("peliculaCambioACartelera", p2);
           req.setAttribute("listaSalas", salaDao.getAll());
           req.setAttribute("fechas", funcionDAO.FechasSemanaEntrante());
@@ -134,7 +134,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
     try {
       Funcion f;
       int id_f;
-      String destino;
+;
       String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
       pathInfo = pathInfo == null ? "" : pathInfo;
 
@@ -145,7 +145,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
           f = new Funcion();
           cargarFuncionParam(f, req, resp);
           funcionDAO.addPorSala(f);
-          destino = "/WEB-INF/jsp/altaFuncion.jsp";
+       
           break;
 
         case "/updateFuncion": // Form de alta
@@ -162,7 +162,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
           break;
         default: // pagina log In
           req.setAttribute("listaPeliculas", pelicuDao.getAll());
-          destino = "/WEB-INF/jsp/funcionesLista.jsp";
+          
       }
 
       resp.sendRedirect(getServletContext().getContextPath());
@@ -204,13 +204,19 @@ public class EdicionFuncionesServlet extends HttpServlet {
       // Primero debemos obtener el objeto Pelicula asociado al nombre recibido
       // Asignamos la película a la función
       // rev fun.setPelicula(buscarPelicula(peliculaNombre));
-      fun.setPelicula(pelicuDao.getById(Integer.parseInt(peliculaIdAltaFuncion)));
+      Pelicula peliculaEstadoMod = pelicuDao.getById(Integer.parseInt(peliculaIdAltaFuncion));
+      peliculaEstadoMod.setIs_Cartelera(true);
+      pelicuDao.update(peliculaEstadoMod);
+      fun.setPelicula(peliculaEstadoMod);
+
       // Asignamos la Sala
       fun.setSala(salaFuncionNueva);
       // Asignamos la fecha y el horario
       fun.setFechaDeFuncion(fechaDeFuncion);
       fun.setHorarioFuncion(horario);
 
+      //cambiamos ahora si el estado de cartelera porque se creo ua funcion
+      
     } catch (NullPointerException e) {
       System.out.println("Error: Parámetro nulo - " + e.getMessage());
       try {
