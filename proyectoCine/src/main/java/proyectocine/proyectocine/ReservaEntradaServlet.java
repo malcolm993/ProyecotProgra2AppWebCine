@@ -96,8 +96,13 @@ public class ReservaEntradaServlet extends HttpServlet {
           System.out.println(listaReservas);
           req.setAttribute("listaReservaUsuario", listaReservas);
           req.getRequestDispatcher("/WEB-INF/jsp/listaReservas.jsp").forward(req, resp);
-          ;
           break;
+        case "/reservasall":
+        List<Reserva> listaReservasTodas = reservaDao.getAll();
+        req.setAttribute("listaReservas", listaReservasTodas);
+        req.getRequestDispatcher("/WEB-INF/jsp/listaReservasAll.jsp").forward(req, resp);
+
+        break;
 
         default:
 
@@ -192,6 +197,7 @@ public class ReservaEntradaServlet extends HttpServlet {
       r.setHorario(horarioReserva);
       r.setUsuario(usuarioDao.getById(Integer.parseInt(usuarioId)));
       r.setCantidadEntradas(Integer.parseInt(cantidadEntradas));
+      r.setIsCancelable(true);
 
     } catch (NullPointerException e) {
       System.out.println("Error: Parámetro nulo - " + e.getMessage());

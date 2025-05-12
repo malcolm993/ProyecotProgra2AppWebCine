@@ -24,6 +24,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
       preparedStatement.setString(4, reserva.getFechaReserva());
       preparedStatement.setInt(5, reserva.getCantidadEntradas());
       preparedStatement.setString(6, reserva.getHorario());
+      preparedStatement.setBoolean(7, reserva.getisCancelable());
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -32,7 +33,7 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
 
   @Override
   public void update(Reserva reserva) {
-    String query = "UPDATE reserva_entrada SET id_funcion = ?, id_usuario = ?, costo_reserva = ?, fecha_reserva = ?, cantidad_entradas = ?, horario_reserva = ? WHERE id_reserva_entrada = ?";
+    String query = "UPDATE reserva_entrada SET id_funcion = ?, id_usuario = ?, costo_reserva = ?, fecha_reserva = ?, cantidad_entradas = ?, horario_reserva = ?, is_cancelable = ? WHERE id_reserva_entrada = ?";
     try (Connection con = ConnectionPool.getInstance().getConnection();
         PreparedStatement preparedStatement = con.prepareStatement(query)) {
       // preparedStatement.setInt(1, reserva.getSala().getId());
@@ -42,7 +43,9 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
       preparedStatement.setString(4, reserva.getFechaReserva());
       preparedStatement.setInt(5, reserva.getCantidadEntradas());
       preparedStatement.setString(6, reserva.getHorario());
-      preparedStatement.setInt(7, reserva.getId());
+      preparedStatement.setBoolean(7, reserva.getisCancelable());
+      preparedStatement.setInt(8, reserva.getId());
+      
       preparedStatement.executeUpdate();
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -97,16 +100,16 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
 
   private Reserva rsRowToReserva(ResultSet rs) throws SQLException {
     FuncionDAO funcionDao = new FuncionDAO();
-    UsuarioDAO usuarioDao = new UsuarioDAO();
-    SalaDAO salaDAO = new SalaDAO();
+    UsuarioDAO usuarioDao = new UsuarioDAO();  
     return new Reserva(rs.getInt("cantidad_entradas"),
         rs.getInt("costo_reserva"),
         rs.getString("fecha_reserva"),
         funcionDao.getById(rs.getInt("id_funcion")),
         rs.getString("horario_reserva"),
         rs.getInt("id_reserva_entrada"),
-        // salaDAO.getById(rs.getInt("id_sala")),
-        usuarioDao.getById(rs.getInt("id_usuario")));
+        usuarioDao.getById(rs.getInt("id_usuario")),
+        rs.getBoolean("is_cancelable"));
+        
   }
 
   public List<Reserva> reservasUsuario(Integer idUsuario) {
@@ -117,7 +120,15 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
       preparedStatement.setInt(1, idUsuario);
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         while (resultSet.next()) {
-          listaReservasUsuario.add(rsRowToReserva(resultSet));
+
+          Reserva r = rsRowToReserva(resultSet);
+
+          r.actualizarCancelable();
+
+          listaReservasUsuario.add(r);
+
+          update(r);
+
         }
 
       }

@@ -16,7 +16,7 @@
               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/inicio#ProximamenteCine">Proximamente</a></li>
 
               <c:choose>
-                <c:when test="${userLogueado != null}">
+                <c:when test="${userLogueado.rolUsuario == 'ADMIN'}">
                   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/ABMCine">Edicion CINE</a></li>
                 </c:when >
                </c:choose>

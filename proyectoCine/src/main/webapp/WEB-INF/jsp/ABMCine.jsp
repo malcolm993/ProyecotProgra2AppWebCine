@@ -51,6 +51,14 @@
 
     <!-- Footer-->
 
+    <section class="py-5">
+      <div class="container px-4 px-lg-5 my-5 text-center">
+        <c:if test="${userLogueado.rolUsuario == 'ADMIN'}">
+          <a href="reserva/reservasall" class="btn btn-outline-primary ">CHECK RESERVAS</a>
+        </c:if>
+      </div>    
+    </section>
+
 
     <c:import url="includes/footer.jsp" />
 

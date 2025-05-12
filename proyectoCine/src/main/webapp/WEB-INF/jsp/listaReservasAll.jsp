@@ -12,7 +12,7 @@
 
     <body>
       <div class="container mt-5">
-        <h1 class="text-center">Mis Reservas</h1>
+        <h1 class="text-center">Reservas Realizadas</h1>
 
         <!-- Listado de Reservas -->
         <div class="card mt-4">
@@ -21,7 +21,7 @@
           </div>
           <div class="card-body">
             <c:choose>
-              <c:when test="${not empty listaReservaUsuario}">
+              <c:when test="${not empty listaReservas}">
                 <div class="table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -32,11 +32,12 @@
                         <th>Horario</th>
                         <th>Sala</th>
                         <th>Asientos</th>
-                        <th>Acciones</th>
+                        <th>Id Usuario</th>
+
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach items="${listaReservaUsuario}" var="reserva">
+                      <c:forEach items="${listaReservas}" var="reserva">
                         <tr>
                           <td>${reserva.id}</td>
                           <td>${reserva.funcion.pelicula.nombre_pelicula}</td>
@@ -44,20 +45,8 @@
                           <td>${reserva.funcion.horarioFuncion}</td>
                           <td>${reserva.funcion.sala.tipoDeSala}</td>
                           <td>${reserva.cantidadEntradas}</td>
-                          <td>
-                            <c:if test="${reserva.isCancelable}">
-                              <div class="btn-group" role="group">
-
-                                <a href="reservas/cancelarReserva?id=${reserva.id}"
-                                  class="btn btn-danger btn-sm">Cancelar</a>
-
-                                <!--   
-                              <a href="reservas/detalleReserva?id=${reserva.id}"
-                                class="btn btn-info btn-sm">Detalle</a>
-                              -->
-
-                              </div>
-                            </c:if>
+                          <td>${reserva.usuario.id}
+             
                           </td>
                         </tr>
                       </c:forEach>
@@ -67,14 +56,11 @@
               </c:when>
               <c:otherwise>
                 <div class="alert alert-info" role="alert">
-                  No tienes reservas activas.
+                  No hay reservas hechas por ningun usuario.
                 </div>
               </c:otherwise>
             </c:choose>
 
-            <div class="mt-3">
-              <a href="/proyectoCine/cartelera" class="btn btn-success">Nueva Reserva</a>
-            </div>
           </div>
         </div>
       </div>
