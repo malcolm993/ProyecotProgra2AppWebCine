@@ -22,6 +22,11 @@
                 </div>
             </div>
 
+            <div>
+                <h2>SE RECUERDA AL USUARIO QUE SI FUNCION YA TIENE RESERVAS HECHAS NO SE ELIMINARA</h2>
+
+            </div>
+
             <!-- Boton de confirmacion -->
             <div class="d-flex justify-content-center mt-4">
                 <form id = "formEliminarFuncion" action="deleteFuncion" method="POST">

@@ -14,10 +14,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.eclipse.tags.shaded.org.apache.regexp.recompile;
+
 import proyectocine.clasesDAO.DAO;
 import proyectocine.clasesDAO.DAOFuncion;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
+import proyectocine.clasesDAO.ReservaDAO;
 import proyectocine.clasesDAO.SalaDAO;
 import proyectocine.clasesbeans.Funcion;
 import proyectocine.clasesbeans.HorarioFuncion;
@@ -38,6 +42,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
   private PeliculaDAO pelicuDao;
   private SalaDAO salaDao;
   private FuncionDAO funcionDAO;
+  private ReservaDAO reservaDao;
 
   @Override
   public void init() throws ServletException {
@@ -45,7 +50,7 @@ public class EdicionFuncionesServlet extends HttpServlet {
     pelicuDao = new PeliculaDAO();
     salaDao = new SalaDAO();
     funcionDAO = new FuncionDAO();
-
+    reservaDao = new ReservaDAO();
     //try {
     //  System.out.println(pelicuDao.getAll());
     //  System.out.println(salaDao.getAll());
@@ -155,10 +160,13 @@ public class EdicionFuncionesServlet extends HttpServlet {
           funcionDAO.update(f);
           break;
 
-        case "/deleteFuncion": // Form de alta
+        case "/deleteFuncion": 
+
           id_f = Integer.parseInt(req.getParameter("idFuncion"));
-          System.out.println("id de funcion:" + id_f);
-          funcionDAO.delete(id_f);
+          if(reservaDao.getListaReservasByIdFuncion(id_f).isEmpty()){
+            funcionDAO.delete(id_f);            
+          }
+
           break;
         default: // pagina log In
           req.setAttribute("listaPeliculas", pelicuDao.getAll());

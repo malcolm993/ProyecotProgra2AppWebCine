@@ -120,22 +120,56 @@ public class ReservaDAO implements DAO<Reserva, Integer> {
       preparedStatement.setInt(1, idUsuario);
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         while (resultSet.next()) {
-
           Reserva r = rsRowToReserva(resultSet);
-
           r.actualizarCancelable();
-
           listaReservasUsuario.add(r);
-
           update(r);
-
         }
-
       }
 
     } catch (SQLException e) {
       throw new RuntimeException("ERROR AL OBTENER LAS RESERVAS DEL USUARIO");
     }
     return listaReservasUsuario;
+  }
+
+  public List<Reserva> getListaReservasByIdPelicula(Integer idPelicula) {
+
+    String query = "SELECT * FROM reserva_entrada WHERE id_pelicula = ?";
+    List<Reserva> listaReservasPorIdPelicula = new ArrayList<>();
+    try (Connection con = ConnectionPool.getInstance().getConnection();
+        PreparedStatement preparedStatement = con.prepareStatement(query)) {
+      preparedStatement.setInt(1, idPelicula);
+      try (ResultSet resultSet = preparedStatement.executeQuery()) {
+        while (resultSet.next()) {
+          Reserva r = rsRowToReserva(resultSet);         
+          listaReservasPorIdPelicula.add(r);
+        }
+      }
+
+    } catch (SQLException e) {
+      throw new RuntimeException("ERROR AL OBTENER LAS RESERVAS EL ID DE LA PELICULA");
+    }
+    return listaReservasPorIdPelicula;
+  }
+
+  public List<Reserva> getListaReservasByIdFuncion(Integer idFuncion) {
+
+    String query = "SELECT * FROM reserva_entrada WHERE id_funcion = ?";
+    List<Reserva> listaReservasPorIdFuncion = new ArrayList<>();
+    try (Connection con = ConnectionPool.getInstance().getConnection();
+        PreparedStatement preparedStatement = con.prepareStatement(query)) {
+      preparedStatement.setInt(1, idFuncion);
+      try (ResultSet resultSet = preparedStatement.executeQuery()) {
+        while (resultSet.next()) {
+          Reserva r = rsRowToReserva(resultSet);         
+          listaReservasPorIdFuncion.add(r);
+        }
+      }
+
+    } catch (SQLException e) {
+      throw new RuntimeException("ERROR AL OBTENER LAS RESERVAS SEGUN ID FUNCION");
+    }
+    return listaReservasPorIdFuncion;
   }
 }

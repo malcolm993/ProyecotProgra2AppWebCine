@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
+import proyectocine.clasesDAO.ReservaDAO;
 import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 
@@ -23,11 +24,13 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
   private PeliculaDAO peliculaDao;
   private FuncionDAO funcionDao;
+  private ReservaDAO reservaDao;
 
   @Override
   public void init() throws ServletException {
     peliculaDao = new PeliculaDAO();
     funcionDao = new FuncionDAO();
+    reservaDao = new ReservaDAO();
   }
 
   @Override
@@ -111,8 +114,11 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
         case "/deletePelicula": // Form de alta
           id_p = Integer.parseInt(req.getParameter("id"));
-          funcionDao.deletePorIdPelicula(id_p); // consultar con nico
+          System.out.println(reservaDao.getListaReservasByIdPelicula(id_p));
+          if(reservaDao.getListaReservasByIdPelicula(id_p).isEmpty()){ 
+          funcionDao.deletePorIdPelicula(id_p); 
           peliculaDao.delete(id_p);
+          }
           break;
 
       }
