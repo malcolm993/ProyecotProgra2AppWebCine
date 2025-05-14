@@ -13,32 +13,7 @@ import proyectocine.clasesbeans.Sala;
 
 public class PeliculaDAO implements DAO<Pelicula, Integer> {
 
-  // private static int contador = 1; // Simula un id autoincremental de base de
-  // datos
-  // private List<Pelicula> peliculas;
-  // private static PeliculaDAO peliculashardcodeadas;
 
-  // private PeliculaDAO() {
-  // this.peliculas = new ArrayList<>();
-  // cargerPeliculasFake();
-  // }
-
-  // public static PeliculaDAO getInstance() {
-  // if (peliculashardcodeadas == null) {
-  // peliculashardcodeadas = new PeliculaDAO();
-  // }
-
-  // return peliculashardcodeadas;
-  // }
-
-  // @Override
-  // public void add(Pelicula pelicula) {
-  // // TODO Auto-generated method stub
-  // UtilExceptions.checkObjetoNulo(pelicula, "La pelicula no pueder nula");
-  // pelicula.setId(contador);
-  // peliculas.add(pelicula);
-  // contador++;
-  // }
   @Override
   public void add(Pelicula pelicula) {
     String query = "insert into pelicula (duracion_min,nombre_pelicula,sinopsis,Apto_publico,fecha_estreno,director,is_cartelera,imagen) values(?,?,?,?,?,?,?,?)";

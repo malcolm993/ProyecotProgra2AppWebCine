@@ -41,7 +41,7 @@
                           <hr class="dropdown-divider" />
                         </li>
                         <li><a class="dropdown-item" href="${pageContext.request.contextPath}/reserva/reservasUsuario">Revisar Compras</a></li>
-
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/usuariocine/checkusuario">Revisar Usuario</a></li>
                       </ul>
                     </li>
                   </c:otherwise>

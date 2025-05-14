@@ -14,6 +14,8 @@
     <filter-mapping>
         <filter-name>auth-filter</filter-name>
         <url-pattern>/reserva/*</url-pattern>
+        <url-pattern>/usuariocine/checkusuario</url-pattern>
+        <url-pattern>/usuariocine/edicionusuario</url-pattern>
         <url-pattern>/edicionfunciones</url-pattern>
         <url-pattern>/edicionpeliculas</url-pattern>
         <url-pattern>/ABMCine</url-pattern>
