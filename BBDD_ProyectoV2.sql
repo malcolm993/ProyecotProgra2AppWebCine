@@ -18,7 +18,8 @@
 --
 -- Table structure for table `funcion`
 --
-
+CREATE DATABASE bbdd-proyectoprogra2;
+USE bbdd-proyectoprogra2;
 DROP TABLE IF EXISTS `funcion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;

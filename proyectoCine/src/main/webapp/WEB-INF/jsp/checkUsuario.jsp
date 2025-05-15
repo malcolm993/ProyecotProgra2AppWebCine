@@ -71,7 +71,6 @@
                   </div>
                 </div>
               </div>
-              <p>${pageContext.request.contextPath}/usuariocine/edicionusuario</p>
               <!-- Botones de acción -->
               <div class="text-center mt-4">
                 <a href="${pageContext.request.contextPath}/usuariocine/edicionusuario" class="btn btn-primary me-2">

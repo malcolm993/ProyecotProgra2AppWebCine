@@ -68,7 +68,7 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     public void update(Usuario usuario) throws Exception {
         // TODO Auto-generated method stub
         UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
-        String query = "update set nombre = ?, apellido = ?, email = ?, contrasenia = ?, credito = ?, rol_usuario = ? where id_usuario = ?";
+        String query = "update usuario set nombre = ?, apellido = ?, email = ?, contrasenia = ?, credito = ?, rol_usuario = ? where id_usuario = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setString(1, usuario.getNombre());
             preparedStatement.setString(2, usuario.getApellido());
@@ -187,12 +187,11 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
     //     add(new Usuario(contador, "admin1", "lastname2", "admin1@gmail.com", "123", contador, RolUsuario.ADMIN));
     // }
 
-    public Usuario verificarUsuario(String nombre, String mail){
+    public Usuario verificarUsuario(String mail){
         Usuario usuario = null;
-        String query = "select * from usuario where email = ? and nombre = ?";
+        String query = "select * from usuario where email = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setString(1, mail);
-            preparedStatement.setString(2, nombre);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     usuario = rsRowToUsuario(resultSet);

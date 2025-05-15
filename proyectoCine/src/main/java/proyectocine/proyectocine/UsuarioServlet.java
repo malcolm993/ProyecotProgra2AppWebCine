@@ -28,15 +28,22 @@ public class UsuarioServlet extends HttpServlet {
     usuarioDAO = new UsuarioDAO();
   }
 
+  
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+    HttpSession session = req.getSession(false);
+    if (session != null && session.getAttribute("userLogueado") != null) {
+      System.out.println("entro en el If donde asigno un atributo User a Session");
+      Usuario user = (Usuario) session.getAttribute("userLogueado");
+      req.setAttribute("usuario", user);
+    }
     try {
       String destino;
       String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/usuariocine"
       pathInfo = pathInfo == null ? "" : pathInfo;
-      HttpSession session = req.getSession(false);
-      if(session != null && session.getAttribute("userLogueado") != null){ 
+
+      if (session != null && session.getAttribute("userLogueado") != null) {
         System.out.println("entro en el If donde asigno un atributo User a Session");
         Usuario user = (Usuario) session.getAttribute("userLogueado");
         req.setAttribute("usuario", user);
@@ -47,8 +54,8 @@ public class UsuarioServlet extends HttpServlet {
           break;
 
         case "/edicionusuario":
-          
-          destino ="/WEB-INF/jsp/editUser.jsp";
+
+          destino = "/WEB-INF/jsp/editUser.jsp";
           break;
 
         case "/checkusuario":
@@ -67,21 +74,57 @@ public class UsuarioServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    HttpSession session = req.getSession(false);
+    if (session != null && session.getAttribute("userLogueado") != null) {
+      System.out.println("entro en el If donde asigno un atributo User a Session do post");
+      Usuario user = (Usuario) session.getAttribute("userLogueado");
+      req.setAttribute("usuario", user);
+    }
     try {
       Usuario u;
 
       String pathInfo = req.getPathInfo();
       pathInfo = pathInfo == null ? "" : pathInfo;
-      if (pathInfo.equalsIgnoreCase("/signupcine")) {
-        u = new Usuario();
-        cargarUsuarioParams(u, req, resp);
-        if (usuarioDAO.verificarUsuario(u.getNombre(), u.getEmail()) == null) {
-          usuarioDAO.add(u);
-        } else {
-          req.setAttribute("hayError", true);
-          req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o mail");
-          doGet(req, resp);
-        }
+
+      // if (pathInfo.equalsIgnoreCase("/signupcine")) {
+      // u = new Usuario();
+      // cargarUsuarioParams(u, req, resp);
+      // if (usuarioDAO.verificarUsuario(u.getNombre(), u.getEmail()) == null) {
+      // usuarioDAO.add(u);
+      // } else {
+      // req.setAttribute("hayError", true);
+      // req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o
+      // mail");
+      // doGet(req, resp);
+      // }
+      // }
+
+      switch (pathInfo) {
+        case "/signupcine":
+          u = new Usuario();
+          cargarUsuarioParams(u, req, resp);
+          if (usuarioDAO.verificarUsuario( u.getEmail()) == null) {
+            usuarioDAO.add(u);
+          } else {
+            req.setAttribute("hayError", true);
+            req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o mail");
+            doGet(req, resp);
+          }
+          break;
+
+        case "/edicionusuario":
+          System.out.println("se entro aca para editar menos contraseñas");
+          u = new Usuario();
+          cargarUsuarioParams(u, req, resp);
+          if (usuarioDAO.verificarUsuario(u.getEmail()) == null) {
+            usuarioDAO.update(u);
+          } else {
+            req.setAttribute("hayError", true);
+            req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o mail");
+            doGet(req, resp);
+          }
+          break;
+
       }
       resp.sendRedirect(getServletContext().getContextPath());
     } catch (Exception ex) {
@@ -94,7 +137,12 @@ public class UsuarioServlet extends HttpServlet {
     String apellido = req.getParameter("apellido");
     String mail = req.getParameter("mail");
     String password = req.getParameter("password");
-
+    if (password == null) {
+      HttpSession session = req.getSession(false);
+      Usuario user = (Usuario) session.getAttribute("userLogueado");
+      req.setAttribute("usuario", user);
+      password = user.getContrasenia();
+    }
     System.out.println(name);
     System.out.println(apellido);
     System.out.println(mail);

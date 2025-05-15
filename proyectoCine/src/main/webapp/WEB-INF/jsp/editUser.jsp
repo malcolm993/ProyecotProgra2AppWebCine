@@ -39,7 +39,7 @@
                   <h3 class="text-center">Modificar Datos</h3>
                 </div>
                 <div class="card-body">
-                  <form action="${pageContext.request.contextPath}/actualizar-perfil" method="post"
+                  <form action="${pageContext.request.contextPath}/usuariocine/edicionusuario" method="post"
                     id="formEditarPerfil">
                     <!-- Campos editables -->
                     <div class="row mb-3">
@@ -58,13 +58,8 @@
                     <!-- Email (solo lectura o con verificación especial) -->
                     <div class="mb-3">
                       <label for="email" class="form-label">Email (para login)</label>
-                      <input type="email" class="form-control" id="email" name="email" value="${usuario.email}" required
-                        <c:if test="${empty param.allowEmailChange}">readonly</c:if>>
-                      <c:if test="${empty param.allowEmailChange}">
-                        <small class="text-muted">Para cambiar el email, <a
-                            href="${pageContext.request.contextPath}/solicitar-cambio-email">haz clic aquí</a></small>
-                      </c:if>
-                      
+                      <input type="email" class="form-control" id="mail" name="mail" value="${usuario.email}" required>
+
                     </div>
 
                     <!-- Sección para cambio de contraseña (oculta por defecto) -->
@@ -99,7 +94,7 @@
                       <button type="submit" class="btn btn-primary me-2">
                         <i class="bi bi-save-fill"></i> Guardar Cambios
                       </button>
-                      <a href="${pageContext.request.contextPath}/perfil" class="btn btn-outline-danger">
+                      <a href="${pageContext.request.contextPath}/checkusuario" class="btn btn-outline-danger">
                         <i class="bi bi-x-circle-fill"></i> Cancelar
                       </a>
                     </div>
