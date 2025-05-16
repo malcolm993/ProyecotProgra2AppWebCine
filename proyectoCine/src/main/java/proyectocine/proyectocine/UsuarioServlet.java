@@ -28,14 +28,14 @@ public class UsuarioServlet extends HttpServlet {
     usuarioDAO = new UsuarioDAO();
   }
 
-  
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     HttpSession session = req.getSession(false);
     if (session != null && session.getAttribute("userLogueado") != null) {
-      System.out.println("entro en el If donde asigno un atributo User a Session");
-      Usuario user = (Usuario) session.getAttribute("userLogueado");
+      System.out.println("entro en el If donde asigno un atributo User a Session ,doGet");
+      Usuario aux = (Usuario) session.getAttribute("userLogueado");
+      Usuario user = usuarioDAO.getById(aux.getId());
       req.setAttribute("usuario", user);
     }
     try {
@@ -43,11 +43,6 @@ public class UsuarioServlet extends HttpServlet {
       String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/usuariocine"
       pathInfo = pathInfo == null ? "" : pathInfo;
 
-      if (session != null && session.getAttribute("userLogueado") != null) {
-        System.out.println("entro en el If donde asigno un atributo User a Session");
-        Usuario user = (Usuario) session.getAttribute("userLogueado");
-        req.setAttribute("usuario", user);
-      }
       switch (pathInfo) {
         case "/signupcine": // Form de alta
           destino = "/WEB-INF/jsp/signUp.jsp";
@@ -62,6 +57,16 @@ public class UsuarioServlet extends HttpServlet {
 
           destino = "/WEB-INF/jsp/checkUsuario.jsp";
           break;
+
+        case "/erroraltausuario":
+          destino = "/WEB-INF/jsp/altaUsuarioError.jsp";
+          break;
+        case "/exitoaltausuario":
+          destino = "/WEB-INF/jsp/altaUsuarioExitosa.jsp";
+          break;
+        case "/cambiarcontrasenia":
+          destino = "/WEB-INF/jsp/editContrasenia.jsp";
+          break;
         default: // pagina log In
           destino = "/WEB-INF/jsp/login.jsp";
       }
@@ -74,59 +79,78 @@ public class UsuarioServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    HttpSession session = req.getSession(false);
-    if (session != null && session.getAttribute("userLogueado") != null) {
-      System.out.println("entro en el If donde asigno un atributo User a Session do post");
-      Usuario user = (Usuario) session.getAttribute("userLogueado");
-      req.setAttribute("usuario", user);
-    }
-    try {
-      Usuario u;
 
+    try {
+
+      Usuario u;
+      String destino = null;
       String pathInfo = req.getPathInfo();
       pathInfo = pathInfo == null ? "" : pathInfo;
-
-      // if (pathInfo.equalsIgnoreCase("/signupcine")) {
-      // u = new Usuario();
-      // cargarUsuarioParams(u, req, resp);
-      // if (usuarioDAO.verificarUsuario(u.getNombre(), u.getEmail()) == null) {
-      // usuarioDAO.add(u);
-      // } else {
-      // req.setAttribute("hayError", true);
-      // req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o
-      // mail");
-      // doGet(req, resp);
-      // }
-      // }
 
       switch (pathInfo) {
         case "/signupcine":
           u = new Usuario();
-          cargarUsuarioParams(u, req, resp);
-          if (usuarioDAO.verificarUsuario( u.getEmail()) == null) {
+         
+          if (usuarioDAO.verificarUsuario(u.getEmail()) == null) {
+            cargarUsuarioParams(u, req, resp);
+            System.out.println("entra post signup cine para alta");
             usuarioDAO.add(u);
+            destino = "/usuariocine/exitoaltausuario";
           } else {
-            req.setAttribute("hayError", true);
-            req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o mail");
-            doGet(req, resp);
+            System.out.println("entro aca por que hay un error en el alta");
+            destino = "/usuariocine/erroraltausuario";
           }
+
           break;
 
         case "/edicionusuario":
-          System.out.println("se entro aca para editar menos contraseñas");
-          u = new Usuario();
-          cargarUsuarioParams(u, req, resp);
-          if (usuarioDAO.verificarUsuario(u.getEmail()) == null) {
-            usuarioDAO.update(u);
+          int idUsuario = Integer.parseInt(req.getParameter("idUser"));
+          Usuario user = usuarioDAO.getById(idUsuario);
+          System.out.println(user);
+          Usuario aux = usuarioDAO.verificarUsuario(req.getParameter("mail"));
+          System.out.println(aux);
+          if (aux == null || aux.getId() == user.getId()) {
+            cargarUsuarioParams(user, req, resp);
+            usuarioDAO.update(user);
+            destino = "/usuariocine/checkusuario";
+
           } else {
+            req.setAttribute("usuario", user);
             req.setAttribute("hayError", true);
-            req.setAttribute("mensajeError", "ya existe un usuario con ese nombre o mail");
-            doGet(req, resp);
+            req.setAttribute("mensajeError", "El mail que ingresaste se encuentra en uso");
+            req.getRequestDispatcher("/WEB-INF/jsp/editUser.jsp").forward(req, resp);
+            return;
           }
+
           break;
 
+        case "/cambiarcontrasenia":
+          int idUsuario2 = Integer.parseInt(req.getParameter("idUser"));
+          Usuario user2 = usuarioDAO.getById(idUsuario2);
+          System.out.println(user2);
+          String nuevaPassword = req.getParameter("contrasenianueva");
+          String viejaPassword = user2.getContrasenia();
+          if (nuevaPassword != null && !viejaPassword.equalsIgnoreCase(nuevaPassword)) {
+            System.out.println("entro para realizar el cambio de contraseña");
+            user2.setContrasenia(nuevaPassword);
+            usuarioDAO.update(user2);
+            destino="/logout";  
+            System.out.println("llego hasta acac");
+          } else {
+            req.setAttribute("hayError", true);
+            req.setAttribute("mensajeError", "El mail que ingresaste se encuentra en uso");
+            req.getRequestDispatcher("/WEB-INF/jsp/editUser.jsp").forward(req, resp);
+            return;
+          }
+
+          break;
+        default:
+          destino = "/inicio";
+
       }
-      resp.sendRedirect(getServletContext().getContextPath());
+
+      resp.sendRedirect(getServletContext().getContextPath() + destino);
+
     } catch (Exception ex) {
       resp.sendError(500, ex.getMessage());
     }
@@ -138,10 +162,9 @@ public class UsuarioServlet extends HttpServlet {
     String mail = req.getParameter("mail");
     String password = req.getParameter("password");
     if (password == null) {
-      HttpSession session = req.getSession(false);
-      Usuario user = (Usuario) session.getAttribute("userLogueado");
-      req.setAttribute("usuario", user);
-      password = user.getContrasenia();
+      System.out.println("no hay contraseña enviada y el usuario en req");
+      password = u.getContrasenia();
+      System.out.println(password);
     }
     System.out.println(name);
     System.out.println(apellido);

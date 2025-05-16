@@ -76,7 +76,7 @@
                 <a href="${pageContext.request.contextPath}/usuariocine/edicionusuario" class="btn btn-primary me-2">
                   <i class="bi bi-pencil-fill"></i> Editar Perfil
                 </a>
-                <a href="${pageContext.request.contextPath}/cambiar-contrasenia" class="btn btn-outline-secondary me-2">
+                <a href="${pageContext.request.contextPath}/usuariocine/cambiarcontrasenia" class="btn btn-outline-secondary me-2">
                   <i class="bi bi-lock-fill"></i> Cambiar Contraseña
                 </a>
 

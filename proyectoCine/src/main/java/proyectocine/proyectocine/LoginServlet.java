@@ -12,6 +12,11 @@ import proyectocine.clasesbeans.Usuario;
 
 public class LoginServlet extends HttpServlet {
 
+    private UsuarioDAO usuarioDAO;
+
+    public void init() throws ServletException{
+         usuarioDAO = new UsuarioDAO();
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO Auto-generated method stub
@@ -25,8 +30,9 @@ public class LoginServlet extends HttpServlet {
         // TODO Auto-generated method stub
         String m = req.getParameter("mail");
         String p = req.getParameter("password");
-        Usuario user = new UsuarioDAO().getUser(m, p);
+        Usuario user = usuarioDAO.getUser(m, p);
         if (user != null) {
+            
             String haciaDondeIba = req.getParameter("deDondeViene");
             HttpSession session = req.getSession(); // Pido la sesión actual
             session.setMaxInactiveInterval(60 * 60 * 24); // Seteo tiempo máximo de inactividad (en segundos)

@@ -12,31 +12,6 @@ import proyectocine.clasesbeans.Usuario;
 
 public class UsuarioDAO implements DAO<Usuario, Integer> {
 
-    // private static int contador = 1; // Simula un id autoincremental de base de datos
-    // private List<Usuario> usuarios;
-    // private static UsuarioDAO usuarioshardcodeados;
-
-    // public UsuarioDAO() {
-    //     this.usuarios = new ArrayList<>();
-    //     cargarUsuariosFake();
-    // }
-
-    // public static UsuarioDAO getInstance() {
-    //     if (usuarioshardcodeados == null) {
-    //         usuarioshardcodeados = new UsuarioDAO();
-    //     }
-    //     return usuarioshardcodeados;
-    // }
-
-    // @Override
-    // public void add(Usuario usuario) {
-    //     // TODO Auto-generated method stub
-    //     UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
-    //     usuario.setId(contador);
-    //     usuarios.add(usuario);
-    //     contador++;
-    // }
-
     @Override
     public void add(Usuario usuario) {
         UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
@@ -54,15 +29,7 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
         }
     }
 
-    // @Override
-    // public void update(Usuario usuario) throws Exception {
-    //     // TODO Auto-generated method stub
-    //     UtilExceptions.checkObjetoNulo(usuario, "La pelicula no pueder nula");
-    //     int idx = usuarios.indexOf(usuario);
-    //     if (idx > 0) {
-    //         usuarios.set(idx, usuario);
-    //     }
-    // }
+
 
     @Override
     public void update(Usuario usuario) throws Exception {
@@ -122,21 +89,6 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
         return usuarios;
     }
 
-    // @Override
-    // public Usuario getById(Integer id) throws Exception {
-    //     // TODO Auto-generated method stub
-    //     UtilExceptions.checkNumeroNegativo(id, "El ID no puede ser negativo");
-    //     Usuario usuario = null;
-    //     Iterator<Usuario> it = this.usuarios.iterator();
-    //     while (it.hasNext() && usuario == null) {
-    //         Usuario aux = it.next();
-    //         if (aux.getId() == id) {
-    //             usuario = aux;
-    //         }
-    //     }
-    //     UtilExceptions.checkObjetoNulo(usuario, "No existe receta con id " + id);
-    //     return usuario;
-    // }
 
     @Override
     public Usuario getById(Integer id) {
@@ -160,13 +112,7 @@ public class UsuarioDAO implements DAO<Usuario, Integer> {
 
     public Usuario getUser(String mail, String password) {
         Usuario usuario = null;
-        // Iterator<Usuario> it = this.usuarios.iterator();
-        // while (it.hasNext() && usuario == null) {
-        //     Usuario aux = it.next();
-        //     if (aux.getEmail().equals(mail) && aux.getContrasenia().equals(password)) {
-        //         usuario = aux;
-        //     }
-        // }
+
         String query = "select * from usuario where email = ? and contrasenia = ?";
         try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
             preparedStatement.setString(1, mail);

@@ -151,7 +151,7 @@ CREATE TABLE `usuario` (
   `id_usuario` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
+  `email` varchar(45) UNIQUE NOT NULL,
   `contrasenia` varchar(45) NOT NULL,
   `credito` int DEFAULT NULL,
   `rol_usuario` enum('admin','cliente') NOT NULL,

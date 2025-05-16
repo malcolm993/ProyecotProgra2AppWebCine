@@ -79,7 +79,6 @@ public class EdicionPeliculasServlet extends HttpServlet {
     try {
       Pelicula p, p2;
       int id_p;
-      String aux = "nadas";
 
       String pathInfo = req.getPathInfo(); // Obtiene la parte de la URL después de "/recetas"
       pathInfo = pathInfo == null ? "" : pathInfo;

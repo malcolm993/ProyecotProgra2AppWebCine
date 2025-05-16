@@ -29,7 +29,14 @@
         </div>
       </header>
 
+
       <!-- Sección de Edición -->
+
+      <c:if test="${hayError}">
+        <div class="container mt-3 p-3 bg-danger text-light">
+          <h2>${mensajeError}</h2>
+        </div>
+      </c:if>
       <section class="py-5">
         <div class="container px-4 px-lg-5">
           <div class="row justify-content-center">
@@ -88,13 +95,13 @@
                     <c:if test="${not empty error}">
                       <div class="alert alert-danger">${error}</div>
                     </c:if>
-
+                    <input type="hidden" name="idUser" value="${usuario.id}" aria-label="Archivo" />
                     <!-- Botones de acción -->
                     <div class="text-center mt-4">
                       <button type="submit" class="btn btn-primary me-2">
                         <i class="bi bi-save-fill"></i> Guardar Cambios
                       </button>
-                      <a href="${pageContext.request.contextPath}/checkusuario" class="btn btn-outline-danger">
+                      <a href="${pageContext.request.contextPath}/usuariocine/checkusuario" class="btn btn-outline-danger">
                         <i class="bi bi-x-circle-fill"></i> Cancelar
                       </a>
                     </div>
