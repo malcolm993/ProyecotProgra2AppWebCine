@@ -45,7 +45,7 @@ public class UsuarioServlet extends HttpServlet {
 
       switch (pathInfo) {
         case "/signupcine": // Form de alta
-          destino = "/WEB-INF/jsp/signUp.jsp";
+        destino = "/WEB-INF/jsp/signUp.jsp";
           break;
 
         case "/edicionusuario":
