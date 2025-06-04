@@ -30,9 +30,7 @@ import proyectocine.clasesbeans.Usuario;
  */
 public class ReservaEntradaServlet extends HttpServlet {
 
-  // private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
-  // private DAOFuncion<Funcion, Integer> funcionesHardcodeado;
-  // private DAO<Sala, Integer> salasDaoHardcodeado;
+
   private PeliculaDAO pelicuDao;
   private SalaDAO salaDao;
   private FuncionDAO funcionDAO;
@@ -63,8 +61,7 @@ public class ReservaEntradaServlet extends HttpServlet {
 
       if (idString != null) {
         req.setAttribute("funcion", funcionDAO.getById(Integer.parseInt(idString)));
-        // System.out.println("???" +
-        // funcionesHardcodeado.getById(Integer.parseInt(idString)));
+
       }
 
       switch (pathInfo) {
@@ -78,7 +75,7 @@ public class ReservaEntradaServlet extends HttpServlet {
           break;
 
         case "/errorReserva":
-          System.out.println("aca entro??");
+
           req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req, resp);
           break;
 
@@ -140,18 +137,14 @@ public class ReservaEntradaServlet extends HttpServlet {
           // userA = (Usuario) session.getAttribute("userLogueado");
           System.out.println(userA);
           if (!reservaEntradasSala(cantEntradas, salaReservada) || !actualizacionCreditoUsario(userA, cantEntradas)) {
-            // destino = getServletContext().getContextPath() + "/reserva/errorReserva";
             destino = "/WEB-INF/jsp/errorReservaEntrada.jsp";
             System.out.println(destino + "???");
-            // es viable poner "
-            // req.getRequestDispatcher("/WEB-INF/jsp/errorReservaEntrada.jsp").forward(req,
-            // resp);"??
           } else {
 
             reser = new Reserva();
             cargarParametroReserva(reser, req, resp);
             reservaDao.add(reser);
-            // destino = getServletContext().getContextPath();
+
             req.setAttribute("entradaReserva", reser);
             System.out.println(reser);
             destino = "/WEB-INF/jsp/exitoReservaEntrada.jsp";

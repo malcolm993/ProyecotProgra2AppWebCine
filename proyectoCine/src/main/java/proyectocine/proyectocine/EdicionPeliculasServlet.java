@@ -167,7 +167,7 @@ public class EdicionPeliculasServlet extends HttpServlet {
 
       peli.setFechaDeEstreno(fechaEstreno);
       peli.setSinopsis(sinopsis);
-      // lo comento porque tegno que asegurarme que haya creado al menos ua funcion
+      // lo comento porque tegno que asegurarme que haya creado al menos una funcion
       // previo a cambiarlo a is_cartelera = true
       // peli.setIs_Cartelera(Boolean.parseBoolean(isCartelera));
       peli.setFoto(foto);

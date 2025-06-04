@@ -18,9 +18,6 @@ import proyectocine.clasesDAO.PeliculaDAO;
  */
 public class IndexServlet extends HttpServlet {
 
-    // private DAO<Pelicula, Integer> peliculaDaoHardcodeado;
-    // private DAO<Sala, Integer> salaDaoHardcodeado;
-    // private DAO<Funcion, Integer> funcionDaoHardcodeado;
     private PeliculaDAO peliculaDao;
 
     @Override
