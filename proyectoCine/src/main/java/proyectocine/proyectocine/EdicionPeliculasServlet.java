@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import proyectocine.clasesDAO.FuncionDAO;
 import proyectocine.clasesDAO.PeliculaDAO;
 import proyectocine.clasesDAO.ReservaDAO;
-import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 
 /**

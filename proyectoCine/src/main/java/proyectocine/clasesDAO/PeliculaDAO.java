@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import proyectocine.clasesbeans.EstadoPelicula;
 import proyectocine.clasesbeans.Pelicula;
 import proyectocine.clasesbeans.Sala;
 
